@@ -1,5 +1,5 @@
 # FEC
 HR FEC Project
 
-1. This is the first line of the README in which we explain stuff.
-2. This line was added during a branch.
+1. Copy the example.config.js file as config.js and replace with your GitHub personal auth token.
+2. Make sure your eslint is active.
