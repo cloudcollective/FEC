@@ -1,10 +1,8 @@
 import React from 'react';
 
-const QuestionsAnswersList = () => (
+const QuestionsAnswersList = ({ questions, answers }) => (
   <div>
-    <p>
-      This is the inside container for the QuestionsAnswersList
-    </p>
+    This is the inside container for the QuestionsAnswersList
   </div>
 );
 
