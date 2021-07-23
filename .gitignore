@@ -19,3 +19,4 @@ bin-release/
 node_modules
 config_folder
 config.js
+client/dist/bundle.js

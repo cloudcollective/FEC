@@ -9,7 +9,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.m?(js|jsx)$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -21,4 +21,5 @@ module.exports = {
     ],
   },
   mode: 'development',
-}
+  resolve: { extensions: ['*', '.js', '.jsx'] },
+};
