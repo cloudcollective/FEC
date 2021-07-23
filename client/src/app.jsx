@@ -4,10 +4,13 @@ import QuestionsAnswers from './qa';
 // import RelatedProducts from './relatedProducts';
 // import ReviewsRatings from './rr';
 
-const app = () => (
+const app = ({ data }) => (
   // <ProductDetails data={data} />
   // <RelatedProducts data={data} />
-  <QuestionsAnswers />
+  <QuestionsAnswers
+    questions={data.questions}
+    answers={data.answers}
+  />
 );
 
 export default app;
