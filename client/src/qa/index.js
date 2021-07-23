@@ -1,5 +1,5 @@
 import React from 'react';
-import QuestionsAnswersList from './components/QuestionsAnswersList.jsx';
+import QuestionsAnswersList from './components/QuestionsAnswersList';
 
 const QuestionsAnswersContainer = ({ questions, answers }) => (
   <div>
