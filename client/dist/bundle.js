@@ -16,7 +16,7 @@
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var _qa__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./qa */ \"./client/src/qa/index.js\");\n // import ProductDetails from './productDetails';\n\n // import RelatedProducts from './relatedProducts';\n// import ReviewsRatings from './rr';\n\nvar app = function app(_ref) {\n  var data = _ref.data;\n  return (\n    /*#__PURE__*/\n    // <ProductDetails data={data} />\n    // <RelatedProducts data={data} />\n    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_qa__WEBPACK_IMPORTED_MODULE_1__.default, {\n      questions: data.questions,\n      answers: data.answers\n    })\n  );\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (app);\n\n//# sourceURL=webpack://FEC/./client/src/app.jsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var _productDetails__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./productDetails */ \"./client/src/productDetails/index.js\");\n\n // import QuestionsAnswers from './qa';\n// import RelatedProducts from './relatedProducts';\n// import ReviewsRatings from './rr';\n\nvar app = function app(_ref) {\n  var data = _ref.data;\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_productDetails__WEBPACK_IMPORTED_MODULE_1__.default, {\n    product: data.product,\n    productStyles: data.productStyles\n  }) // <RelatedProducts data={data} />\n  // <QuestionsAnswers\n  //   questions={data.questions}\n  //   answers={data.answers}\n  // />\n  ;\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (app);\n\n//# sourceURL=webpack://FEC/./client/src/app.jsx?");
 
 /***/ }),
 
@@ -31,25 +31,25 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 
 /***/ }),
 
-/***/ "./client/src/qa/components/QuestionsAnswersList.jsx":
-/*!***********************************************************!*\
-  !*** ./client/src/qa/components/QuestionsAnswersList.jsx ***!
-  \***********************************************************/
+/***/ "./client/src/productDetails/components/AddToCart.jsx":
+/*!************************************************************!*\
+  !*** ./client/src/productDetails/components/AddToCart.jsx ***!
+  \************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\n\nvar QuestionsAnswersList = function QuestionsAnswersList(_ref) {\n  var questions = _ref.questions,\n      answers = _ref.answers;\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, \"This is the inside container for the QuestionsAnswersList\");\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QuestionsAnswersList);\n\n//# sourceURL=webpack://FEC/./client/src/qa/components/QuestionsAnswersList.jsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\n\nvar AddToCart = function AddToCart() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"h1\", null, \"This is Add To Cart\");\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AddToCart);\n\n//# sourceURL=webpack://FEC/./client/src/productDetails/components/AddToCart.jsx?");
 
 /***/ }),
 
-/***/ "./client/src/qa/index.js":
-/*!********************************!*\
-  !*** ./client/src/qa/index.js ***!
-  \********************************/
+/***/ "./client/src/productDetails/index.js":
+/*!********************************************!*\
+  !*** ./client/src/productDetails/index.js ***!
+  \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var _components_QuestionsAnswersList_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/QuestionsAnswersList.jsx */ \"./client/src/qa/components/QuestionsAnswersList.jsx\");\n\n\n\nvar QuestionsAnswersContainer = function QuestionsAnswersContainer(_ref) {\n  var questions = _ref.questions,\n      answers = _ref.answers;\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"p\", null, \"This is the outside container for the QuestionsAnswersList\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_QuestionsAnswersList_jsx__WEBPACK_IMPORTED_MODULE_1__.default, {\n    questions: questions,\n    answers: answers\n  }));\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QuestionsAnswersContainer);\n\n//# sourceURL=webpack://FEC/./client/src/qa/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var _components_AddToCart_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/AddToCart.jsx */ \"./client/src/productDetails/components/AddToCart.jsx\");\n\n\n\nvar ProductDetails = function ProductDetails(props) {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_AddToCart_jsx__WEBPACK_IMPORTED_MODULE_1__.default, null), console.log(props.product), console.log(props.productStyles));\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductDetails);\n\n//# sourceURL=webpack://FEC/./client/src/productDetails/index.js?");
 
 /***/ }),
 
