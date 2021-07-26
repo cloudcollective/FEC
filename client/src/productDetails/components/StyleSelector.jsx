@@ -1,7 +1,15 @@
 import React from 'react';
 
-const StyleSelector = () => (
-  <h1>This is Style Selector</h1>
+// styles
+const StyleSelector = (props) => (
+  <>
+    <div>
+      <p>STYLE > {props.styles.results[0].name}</p>
+    </div>
+    <div>
+      <img src={props.styles.results[0].photos[0].thumbnail_url} />
+    </div>
+  </>
 );
 
 export default StyleSelector;
