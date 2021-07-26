@@ -1,5 +1,5 @@
 import React from 'react';
-import AddToCart from './components/AddToCart.jsx';
+import AddToCart from './components/AddToCart';
 
 const ProductDetails = (props) => (
   <div>
