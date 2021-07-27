@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import QuestionEntry from './QuestionEntry';
 
-const QuestionsAnswersList = ({ questions, answers }) => {
-  console.log(answers);
-
-  return (
-    <div>
-      Product ID {questions.product_id}
-      {/* {questions.results} */}
-
-    </div>
-  );
-};
+const QuestionsAnswersList = ({ questions, answers }) => (
+  <div data-testid="qa-list">
+    {questions.results.map((question) => (
+      <QuestionEntry
+        key={question.question_id}
+        question={question}
+        answers={answers.results}
+      />
+    ))}
+  </div>
+);
 
 QuestionsAnswersList.propTypes = {
   questions: PropTypes.shape({
