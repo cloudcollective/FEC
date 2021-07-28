@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import ImageGallery from './components/ImageGallery';
 import ProductInformation from './components/ProductInformation';
@@ -49,7 +50,7 @@ const ProductDetails = (props) => (
       <RightColumn>
         <ProductInformation product={props.product} styles={props.productStyles} />
         <StyleSelector styles={props.productStyles} />
-        <AddToCart />
+        <AddToCart styles={props.productStyles} />
       </RightColumn>
     </Content>
 

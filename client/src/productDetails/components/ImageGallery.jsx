@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+// import { useState } from 'react';
 import styled from 'styled-components';
 
 const Gallery = styled.div`
@@ -17,9 +18,12 @@ const Thumbnails = styled.img`
   display: block;
 `;
 
-const MainImageContainer = styled.div``;
+const MainImageContainer = styled.div`
+  border: 1px solid black;
+`;
 
 const MainImage = styled.img`
+  justify-content: center;
   max-height: 800px;
   max-width: 800px;
   cursor: pointer;
@@ -27,6 +31,7 @@ const MainImage = styled.img`
 
 const ImageGallery = (props) => {
   const photos = props.photos.results[0].photos;
+
   return (
     <Gallery>
       <ThumbContainer>

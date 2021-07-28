@@ -1,4 +1,11 @@
 import React from 'react';
+import styled from 'styled-components';
+
+/*
+      <ThumbContainer>
+        {photos.map((photo, index) => <Thumbnails src={photo.thumbnail_url} key={index} alt="thumbnails" />)}
+      </ThumbContainer>
+*/
 
 // styles
 const StyleSelector = (props) => (
