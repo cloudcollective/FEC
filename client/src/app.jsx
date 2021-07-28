@@ -1,16 +1,14 @@
 import React from 'react';
-// import ProductDetails from './productDetails';
-import QuestionsAnswers from './qa';
-// import RelatedProducts from './relatedProducts';
-// import ReviewsRatings from './rr';
+import productDetails from './productDetails';
+import qa from './qa';
+import relatedProducts from './relatedProducts';
+import ReviewList from './rr';
 
-const app = ({ data }) => (
-  // <ProductDetails data={data} />
-  // <RelatedProducts data={data} />
-  <QuestionsAnswers
-    questions={data.questions}
-    answers={data.answers}
-  />
+const app = () => (
+  <div>
+  <h1>Hello from React</h1>
+      <ReviewList />
+    </div>
 );
 
 export default app;
