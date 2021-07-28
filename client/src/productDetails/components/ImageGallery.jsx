@@ -12,7 +12,9 @@ const ThumbContainer = styled.div`
 `;
 
 const Thumbnails = styled.img`
-  height: 92px;
+  height: 80px;
+  width: 60px;
+  object-fit: cover;
   margin: 10px 0;
   cursor: pointer;
   display: block;

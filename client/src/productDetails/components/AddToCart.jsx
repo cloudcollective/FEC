@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const CartContainer = styled.div`
@@ -31,6 +31,7 @@ const AddToCart = (props) => {
         <form>
           <select name="size" id="size">
             <option value="default">SELECT SIZE</option>
+            {/* set state for selected size and its index,  */}
             {size.map((size, index) => <option value={size} key={index}>{size}</option>)}
           </select>
         </form>
