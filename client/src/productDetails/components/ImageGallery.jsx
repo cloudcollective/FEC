@@ -1,8 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Image = styled.img`
-  max-width: 100%;
+const Gallery = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const ThumbContainer = styled.div`
+  flex-direction: column;
 `;
 
 const Thumbnails = styled.img`
@@ -12,23 +17,25 @@ const Thumbnails = styled.img`
   display: block;
 `;
 
-const MainProduct = styled.div`
+const MainImageContainer = styled.div``;
 
+const MainImage = styled.img`
+  max-height: 800px;
+  max-width: 800px;
+  cursor: pointer;
 `;
 
-// props.photos
-// .results[0].photos
 const ImageGallery = (props) => {
   const photos = props.photos.results[0].photos;
   return (
-    <>
-      <div>
+    <Gallery>
+      <ThumbContainer>
         {photos.map((photo, index) => <Thumbnails src={photo.thumbnail_url} key={index} alt="thumbnails" />)}
-      </div>
-      <div>
-        <img src={photos[0].url} alt="first product image" />
-      </div>
-    </>
+      </ThumbContainer>
+      <MainImageContainer>
+        <MainImage src={photos[0].url} alt="first product image" />
+      </MainImageContainer>
+    </Gallery>
   );
 };
 

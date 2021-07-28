@@ -13,19 +13,21 @@ const Body = styled.div`
 `;
 
 const Content = styled.div`
-  float: left;
+  display: flex;
+  justify-content: flex-start;
   padding: 15px;
 `;
 
 const LeftColumn = styled.div`
-  float: left;
+  display: flex;
   width: 75%;
   border: 10px;
   height: 300px;
 `;
 
 const RightColumn = styled.div`
-  float: left;
+  display: flex;
+  flex-direction: column;
   width: 25%;
   border: 10px;
 `;
@@ -38,7 +40,6 @@ const RightColumn = styled.div`
 // `;
 
 const ProductDetails = (props) => (
-  //
   <Body>
     <Content>
       <LeftColumn>
