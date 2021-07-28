@@ -1,19 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import Form from './Form';
 
-const Modal = () => {
-  const [isVisible, setIsVisible] = useState(true);
+const Modal = ({ isVisible, setIsVisible }) => {
+  if (!isVisible) {
+    return null;
+  }
 
   return (
-    <div
-      role="dialog"
-      className="modal"
-    >
-    {isVisible &&
+    <div role="dialog" className="modal">
       <h3>Ask Your Question</h3>
-      <h5>About the [Product Name Here]</h5>
-      I am a modal div!}
+      <Form />
+      <button type="button" onClick={() => setIsVisible(false)}>Close</button>
     </div>
   );
+};
+
+Modal.propTypes = {
+  isVisible: PropTypes.bool.isRequired,
+  setIsVisible: PropTypes.func.isRequired,
 };
 
 export default Modal;
