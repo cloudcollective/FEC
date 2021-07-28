@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const atlier = require('./atlier');
+const atelier = require('./atelier');
 
 const app = express();
 
@@ -11,11 +11,11 @@ app.get('/products/:id', (req, res) => {
   const { id } = req.params;
 
   Promise.all([
-    atlier.getProductById(id),
-    atlier.getProductStylesById(id),
-    atlier.getRelatedProductsById(id),
-    atlier.getReviewsById(id),
-    atlier.getMetaReviewsById(id),
+    atelier.getProductById(id),
+    atelier.getProductStylesById(id),
+    atelier.getRelatedProductsById(id),
+    atelier.getReviewsById(id),
+    atelier.getMetaReviewsById(id),
   ])
     .then((data) => {
       res.status(201).send(data);
@@ -29,9 +29,9 @@ app.get('/related/:id', (req, res) => {
   const { id } = req.params;
 
   Promise.all([
-    atlier.getProductById(id),
-    atlier.getProductStylesById(id),
-    atlier.getMetaReviewsById(id),
+    atelier.getProductById(id),
+    atelier.getProductStylesById(id),
+    atelier.getMetaReviewsById(id),
   ])
     .then((data) => {
       const relatedData = {
@@ -55,8 +55,8 @@ app.get('/reviews/:id', (req, res) => {
   const { id, sort } = req.query;
 
   Promise.all([
-    atlier.getReviewsById(id, sort),
-    atlier.getMetaReviewsById(id),
+    atelier.getReviewsById(id, sort),
+    atelier.getMetaReviewsById(id),
   ])
     .then((data) => {
       res.status(201).send(data);
@@ -69,7 +69,7 @@ app.get('/reviews/:id', (req, res) => {
 app.get('/reviews/meta', (req, res) => {
   const { id } = req.params;
 
-  atlier.getMetaReviewsById(id)
+  atelier.getMetaReviewsById(id)
     .then((data) => {
       res.status(201).send(data);
     })
