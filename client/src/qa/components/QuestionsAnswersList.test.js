@@ -1,8 +1,8 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import QuestionsAnswersList from './QuestionsAnswersList';
-import sampleData from '../../../../exampleProductData.js';
+import sampleData from '../../../../exampleProductData';
 
 const { questions, answers } = sampleData;
 
