@@ -1,12 +1,19 @@
-import React from 'react'
+import React from 'react';
+import StarRatingBar from './StarRatingBar.jsx';
 
 const ReviewListTile = (props) => (
-  return (
-    <div>
-      {this.props.result.review_id}
-    </div>
-  )
-}
+
+  <div>
+    <div>{props.result.rating}</div>
+    <div><StarRatingBar rating={props.result.rating} /></div>
+    <div>{props.result.reviewer_name}</div>
+    <div>{props.result.summary} <br /></div>
+    <div>{props.result.body}</div>
+    <div>helpful?</div>
+
+  </div>
+);
+
 
 export default ReviewListTile;
 

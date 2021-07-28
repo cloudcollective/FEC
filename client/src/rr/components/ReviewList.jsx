@@ -4,8 +4,7 @@ import ReviewListTile from './ReviewListTile.jsx'
 class ReviewList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {},
-
+    this.state = {};
   }
 
   render() {
@@ -16,3 +15,5 @@ class ReviewList extends React.Component {
     )
   }
 }
+
+export default ReviewList;
