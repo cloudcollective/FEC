@@ -7,8 +7,10 @@ const ProductInformation = (props) => (
   <>
     <div className="ratingAndReview">
       <p>
+        {/* Need rating function */}
         <span>★★★★★</span>
         <span>
+          {/* anchor tag to Reviews and Rating */}
           <a>Read all reviews</a>
         </span>
       </p>

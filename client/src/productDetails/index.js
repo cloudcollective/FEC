@@ -7,6 +7,18 @@ import StyleSelector from './components/StyleSelector';
 import AddToCart from './components/AddToCart';
 // import ProductOverview from './components/ProductOverview';
 
+const tempProductID = 25167;
+
+const getData = (callback) => {
+  axios.get(`/products/${tempProductID}`)
+    .then((product) => {
+      callback(product.data);
+    })
+    .catch((err) => {
+      console.log(`Failed to fetch data from the server: ${err}`);
+    })
+};
+
 const Body = styled.div`
   box-sizing: border-box;
   margin: 0;
@@ -40,27 +52,35 @@ const RightColumn = styled.div`
 //   margin-top: 20px;
 // `;
 
-const ProductDetails = (props) => (
-  <Body>
-    <Content>
-      <LeftColumn>
-        <ImageGallery photos={props.productStyles} />
-      </LeftColumn>
+const ProductDetails = (props) => {
+  const [productData, setProductData] = useState({});
 
-      <RightColumn>
-        <ProductInformation product={props.product} styles={props.productStyles} />
-        <StyleSelector styles={props.productStyles} />
-        <AddToCart styles={props.productStyles} />
-      </RightColumn>
-    </Content>
+  useEffect(() => {
+    getData(setProductData);
+  }, []);
 
-    {/* <Footer>
-      <ProductOverview product={props.product} />
-    </Footer> */}
+  return (
+    < Body >
+      {console.log(productData[1])}
+      {console.log(productData[0])}
+      {console.log(props.productStyles)}
+      {console.log(props.product)}
+      <Content>
+        <LeftColumn>
+          <ImageGallery photos={props.productStyles} />
+        </LeftColumn>
 
-    {console.log(props.product)}
-    {console.log(props.productStyles)}
-  </Body>
-);
+        <RightColumn>
+          <ProductInformation product={props.product} styles={props.productStyles} />
+          <StyleSelector styles={props.productStyles} />
+          <AddToCart styles={props.productStyles} />
+        </RightColumn>
+      </Content>
 
+      {/* <Footer>
+        <ProductOverview product={props.product} />
+      </Footer> */}
+    </ Body>
+  )
+}
 export default ProductDetails;
