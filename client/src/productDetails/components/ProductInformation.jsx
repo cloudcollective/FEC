@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -34,7 +35,7 @@ const ProductInformation = ({ product, styles }) => {
         <p>${product.default_price}</p>
       </div>
     </>
-  )
+  );
 };
 
 export default ProductInformation;

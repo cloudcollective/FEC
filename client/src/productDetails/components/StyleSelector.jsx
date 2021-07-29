@@ -1,29 +1,6 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
-
-/*
-const Gallery = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const ThumbContainer = styled.div`
-  flex-direction: column;
-`;
-
-      <ThumbContainer>
-        {photos.map((photo, index) => <Thumbnails src={photo.thumbnail_url} key={index} alt="thumbnails" />)}
-      </ThumbContainer>
-
-      const Thumbnails = styled.img`
-        height: 80px;
-        width: 60px;
-        object-fit: cover;
-        margin: 10px 0;
-        cursor: pointer;
-        display: block;
-      `;
-*/
 
 const ThumbContainer = styled.div`
   display: flex;
@@ -40,7 +17,6 @@ const Thumbnails = styled.img`
   border-radius: 45%;
 `;
 
-// styles
 const StyleSelector = ({ styles }) => {
   if (!styles) {
     return null;
@@ -55,7 +31,7 @@ const StyleSelector = ({ styles }) => {
       </div>
       <ThumbContainer>
         {styles.results.map((style, index) =>
-          <Thumbnails src={style.photos[0].thumbnail_url} key={index} alt="thumbnails" />)}
+          <Thumbnails src={style.photos[0].thumbnail_url} key={index} alt="thumbnails" onClick={() => console.log(style.style_id)} />)}
       </ThumbContainer>
     </>
   );

@@ -13,8 +13,6 @@ const SizeAndQuantity = styled.div`
 const AddBagAndFavorite = styled.div`
   flex-direction: row;
 `;
-// {photos.map((photo, index) => <Thumbnails src={photo.thumbnail_url} key={index} alt="thumbnails" />)}
-// styles
 
 const AddToCart = (props) => {
   const quantityAndSize = props.styles.results[0].skus;

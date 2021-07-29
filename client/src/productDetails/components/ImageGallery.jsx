@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -43,14 +44,14 @@ const ImageGallery = ({ productData }) => {
   };
 
   return (
-    < Gallery >
+    <Gallery>
       <ThumbContainer>
         {photos.map((photo, index) => <Thumbnails src={photo.thumbnail_url} key={index} alt="thumbnails" onClick={() => changeMainPhoto(index)} />)}
       </ThumbContainer>
       <MainImageContainer>
         <MainImage src={photos[currImg].url} alt="first product image" />
       </MainImageContainer>
-    </ Gallery>
+    </Gallery>
   );
 };
 
