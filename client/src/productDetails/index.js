@@ -16,7 +16,7 @@ const getData = (callback) => {
     })
     .catch((err) => {
       console.log(`Failed to fetch data from the server: ${err}`);
-    })
+    });
 };
 
 const Body = styled.div`
@@ -61,13 +61,13 @@ const ProductDetails = (props) => {
 
   return (
     < Body >
-      {console.log(productData[1])}
-      {console.log(productData[0])}
-      {console.log(props.productStyles)}
-      {console.log(props.product)}
+      {/* {console.log(productData[1])}
+      {console.log(productData[0])} */}
+      {/* {console.log(props.productStyles)}
+      {console.log(props.product)} */}
       <Content>
         <LeftColumn>
-          <ImageGallery photos={props.productStyles} />
+          <ImageGallery productData={productData[1]} />
         </LeftColumn>
 
         <RightColumn>

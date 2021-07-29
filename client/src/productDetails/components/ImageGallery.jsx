@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-// import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Gallery = styled.div`
@@ -15,35 +14,47 @@ const Thumbnails = styled.img`
   height: 80px;
   width: 60px;
   object-fit: cover;
-  margin: 10px 0;
+  margin: 10px;
   cursor: pointer;
   display: block;
 `;
 
 const MainImageContainer = styled.div`
-  border: 1px solid black;
 `;
 
 const MainImage = styled.img`
   justify-content: center;
-  max-height: 800px;
-  max-width: 800px;
+  max-height: 700px;
+  max-width: 700px;
   cursor: pointer;
+  margin: 10px;
 `;
 
-const ImageGallery = (props) => {
-  const photos = props.photos.results[0].photos;
+const ImageGallery = ({ productData }) => {
+  // const { photos } = productData.results[0];
+  // const [currImg, setCurrImg] = useState(0);
+  // const [data, setData] = useState({});
+
+  if (!productData) {
+    return null;
+  }
 
   return (
-    <Gallery>
+    < Gallery >
       <ThumbContainer>
-        {photos.map((photo, index) => <Thumbnails src={photo.thumbnail_url} key={index} alt="thumbnails" />)}
+        {console.log('This is product data: ', productData)}
+        {console.log(productData.results)}
+        {/* {photos.map((photo, index) => <Thumbnails src={photo.thumbnail_url} key={index} alt="thumbnails" />)} */}
       </ThumbContainer>
       <MainImageContainer>
-        <MainImage src={photos[0].url} alt="first product image" />
+        {/* <MainImage src={photos[0].url} alt="first product image" /> */}
       </MainImageContainer>
-    </Gallery>
+    </ Gallery>
   );
 };
+
+// ImageGallery.propTypes = {
+//   results: PropTypes.arrayOf.isRequired,
+// };
 
 export default ImageGallery;
