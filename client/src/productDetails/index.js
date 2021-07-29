@@ -69,9 +69,8 @@ const ProductDetails = (props) => {
         <LeftColumn>
           <ImageGallery productData={productData[1]} />
         </LeftColumn>
-
         <RightColumn>
-          <ProductInformation product={props.product} styles={props.productStyles} />
+          <ProductInformation product={productData[0]} styles={productData[1]} />
           <StyleSelector styles={props.productStyles} />
           <AddToCart styles={props.productStyles} />
         </RightColumn>

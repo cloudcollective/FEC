@@ -45,7 +45,6 @@ const ImageGallery = ({ productData }) => {
   return (
     < Gallery >
       <ThumbContainer>
-        {console.log('This is product data: ', productData)}
         {photos.map((photo, index) => <Thumbnails src={photo.thumbnail_url} key={index} alt="thumbnails" onClick={() => changeMainPhoto(index)} />)}
       </ThumbContainer>
       <MainImageContainer>
