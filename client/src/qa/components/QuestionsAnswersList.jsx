@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import QuestionEntry from './QuestionEntry';
+import QuestionAndAnswerEntry from './QuestionAndAnswerEntry';
 
 const QuestionsAnswersList = ({ questions, answers }) => (
   <div data-testid="qa-list">
     {questions.results.map((question) => (
-      <QuestionEntry
+      <QuestionAndAnswerEntry
         key={question.question_id}
         question={question}
         answers={answers.results}
