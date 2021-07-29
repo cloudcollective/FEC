@@ -2,23 +2,28 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 // 'prop-types' should be listed in the project's dependencies. Run 'npm i -S prop-types' to add it
 import CardMaker from './components/CardMaker';
-
+import AddOutfit from './components/AddOutfit';
 // refactor using hooks later
-const RelatedProductsContainer = ({ products }) => {
-  const relatedProductId = [1, 2, 3];
-  return (
-    <div className="rp-container">
-      <div className="list-row-1">
-        <h4>Related Products</h4>
-        <div className="card-list"><CardMaker products={products} /></div>
-      </div>
-      <div className="list-row-2">
-        <h4>Custom Outfits</h4>
-        <div className="card-list">place</div>
+const RelatedProductsContainer = ({ product, products }) => (
+  <div className="rp-container">
+    <div className="list-row-1">
+      <h4>Related Products</h4>
+      <div className="card-list">
+        <CardMaker
+          products={products}
+          product={product}
+        />
       </div>
     </div>
-  );
-};
+    <div className="list-row-2">
+      <h4>Custom Outfits</h4>
+      <div className="card-list">
+        <AddOutfit product={product} />
+      </div>
+    </div>
+  </div>
+);
+
 // RelatedProductsContainer.propTypes = {
 //   products: PropTypes.object.isRequired,
 // };
@@ -36,3 +41,8 @@ JSX not allowed in files with extension '.js'
 8) Created CardMaker component.
 8.5) What the heck are prop.types? Learned Destructuring.
 */
+// const productId = products.data[0].id;
+// const relatedProductId = products.data[2];
+// const arrayOfProductsData = [];
+// const currentProductData = {};
+// getRelatedProductsData(productId, 'one')
