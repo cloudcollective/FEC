@@ -14,8 +14,12 @@ const AddBagAndFavorite = styled.div`
   flex-direction: row;
 `;
 
-const AddToCart = (props) => {
-  const quantityAndSize = props.styles.results[0].skus;
+const AddToCart = ({ styles }) => {
+  if (!styles) {
+    return null;
+  }
+
+  const quantityAndSize = styles.results[0].skus;
   const size = [];
   const quantity = [];
   for (const [sizeNum, qAndS] of Object.entries(quantityAndSize)) {

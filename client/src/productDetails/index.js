@@ -45,7 +45,7 @@ const RightColumn = styled.div`
 `;
 
 const ProductDetails = (props) => {
-  const [productData, setProductData] = useState({});
+  const [productData, setProductData] = useState([]);
 
   useEffect(() => {
     getData(setProductData);
@@ -60,7 +60,7 @@ const ProductDetails = (props) => {
         <RightColumn>
           <ProductInformation product={productData[0]} styles={productData[1]} />
           <StyleSelector styles={productData[1]} />
-          <AddToCart styles={props.productStyles} />
+          <AddToCart styles={productData[1]} />
         </RightColumn>
       </Content>
     </ Body>

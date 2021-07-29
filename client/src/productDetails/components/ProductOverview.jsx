@@ -1,18 +1,18 @@
 import React from 'react';
 
-const ProductOverview = (props) => (
+const ProductOverview = ({ product }) => (
   <>
     <div className="sloganAndDescription">
       <div>
-        <h2>{props.product.slogan}</h2>
+        <h2>{product.slogan}</h2>
       </div>
       <div>
-        <p>{props.product.description}</p>
+        <p>{product.description}</p>
       </div>
     </div>
     <div className="features">
       <div>
-        <div>{props.product.features[0].feature} : {props.product.features[0].value}</div>
+        <div>{product.features[0].feature} : {product.features[0].value}</div>
       </div>
     </div>
   </>

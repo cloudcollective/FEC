@@ -45,10 +45,16 @@ const ImageGallery = ({ productData }) => {
   return (
     <Gallery>
       <ThumbContainer>
-        {photos.map((photo, index) => <Thumbnails src={photo.thumbnail_url} key={index} alt="thumbnails" onClick={() => changeMainPhoto(index)} />)}
+        {photos.map((photo, index) => (
+          <Thumbnails
+            src={photo.thumbnail_url}
+            key={index} alt="thumbnails"
+            onClick={() => changeMainPhoto(index)}
+          />
+        ))}
       </ThumbContainer>
       <MainImageContainer>
-        <MainImage src={photos[currImg].url} alt="first product image" />
+        <MainImage src={photos[currImg].url} alt={productData.results.name} />
       </MainImageContainer>
     </Gallery>
   );
