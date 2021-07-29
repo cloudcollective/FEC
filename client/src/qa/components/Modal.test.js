@@ -3,7 +3,12 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Modal from './Modal';
 
-test('It should render', () => {
-  render(<Modal />);
+test('should render', () => {
+  render(<Modal isVisible={true}/>);
   expect(screen.getByRole('dialog')).toBeInTheDocument();
+});
+
+test('should render a close button', () => {
+  render(<Modal isVisible={true}/>);
+  expect(screen.getByText('Close')).toBeInTheDocument();
 });
