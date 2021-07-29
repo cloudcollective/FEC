@@ -8,6 +8,10 @@ const StyledFormGroup = styled.div`
   margin-bottom: 1rem;
 `;
 
+const WarningText = styled.div`
+  color: red;
+`;
+
 const Form = () => {
   const defaultQuestionInfo = {
     question: '',
@@ -116,7 +120,3 @@ const Form = () => {
 };
 
 export default Form;
-
-const WarningText = styled.div`
-  color: red;
-`;
