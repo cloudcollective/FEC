@@ -3,14 +3,18 @@ import PropTypes from 'prop-types';
 import QuestionsAnswersList from './components/QuestionsAnswersList';
 import SearchQuestions from './components/SearchQuestions';
 import AddQuestionBtn from './components/AddQuestionBtn';
-import Modal from './components/Modal';
+import QuestionModal from './components/QuestionModal';
+import useToggle from './components/common/useToggle';
+import AddAnswerBtn from './components/AddAnswerBtn';
+import AnswerModal from './components/AnswerModal';
 
 const divStyle = {
   border: '1px solid blue',
 };
 
 const QuestionsAnswersContainer = ({ questions, answers }) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const answerToggle = useToggle();
+  const questionToggle = useToggle();
 
   return (
     <div style={divStyle}>
@@ -22,10 +26,15 @@ const QuestionsAnswersContainer = ({ questions, answers }) => {
         questions={questions}
         answers={answers}
       />
-      <AddQuestionBtn setIsVisible={setIsVisible} />
-      <Modal
-        isVisible={isVisible}
-        setIsVisible={setIsVisible}
+      <AddAnswerBtn setIsVisible={answerToggle.toggle} />
+      <AnswerModal
+        isVisible={answerToggle.on}
+        setIsVisible={answerToggle.toggle}
+      />
+      <AddQuestionBtn setIsVisible={questionToggle.toggle} />
+      <QuestionModal
+        isVisible={questionToggle.on}
+        setIsVisible={questionToggle.toggle}
       />
     </div>
   );
