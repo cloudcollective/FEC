@@ -31,23 +31,25 @@ const MainImage = styled.img`
 `;
 
 const ImageGallery = ({ productData }) => {
-  // const { photos } = productData.results[0];
-  // const [currImg, setCurrImg] = useState(0);
-  // const [data, setData] = useState({});
+  const [currImg, setCurrImg] = useState(0);
 
   if (!productData) {
     return null;
   }
+  const { photos } = productData.results[0];
+
+  const changeMainPhoto = (index) => {
+    setCurrImg(index);
+  };
 
   return (
     < Gallery >
       <ThumbContainer>
         {console.log('This is product data: ', productData)}
-        {console.log(productData.results)}
-        {/* {photos.map((photo, index) => <Thumbnails src={photo.thumbnail_url} key={index} alt="thumbnails" />)} */}
+        {photos.map((photo, index) => <Thumbnails src={photo.thumbnail_url} key={index} alt="thumbnails" onClick={() => changeMainPhoto(index)} />)}
       </ThumbContainer>
       <MainImageContainer>
-        {/* <MainImage src={photos[0].url} alt="first product image" /> */}
+        <MainImage src={photos[currImg].url} alt="first product image" />
       </MainImageContainer>
     </ Gallery>
   );
