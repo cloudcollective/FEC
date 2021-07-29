@@ -46,20 +46,30 @@ const RightColumn = styled.div`
 
 const ProductDetails = (props) => {
   const [productData, setProductData] = useState([]);
+  const [styleId, setStyleId] = useState('');
+  const [styleIndex, setStyleIndex] = useState('');
 
   useEffect(() => {
     getData(setProductData);
   }, []);
 
+  const getStyleId = (styleId, index) => {
+    // console.log({ styleId, index });
+    setStyleId(styleId);
+    // setStyleIndex(index);
+    console.log({ styleId });
+  };
+
   return (
     < Body >
+      {console.log({ productData })}
       <Content>
         <LeftColumn>
           <ImageGallery productData={productData[1]} />
         </LeftColumn>
         <RightColumn>
           <ProductInformation product={productData[0]} styles={productData[1]} />
-          <StyleSelector styles={productData[1]} />
+          <StyleSelector styles={productData[1]} getStyleId={getStyleId} />
           <AddToCart styles={productData[1]} />
         </RightColumn>
       </Content>
