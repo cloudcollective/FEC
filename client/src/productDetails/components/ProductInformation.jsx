@@ -1,9 +1,4 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import styled from 'styled-components';
-
-// props.product
-// props.styles
 
 const ProductInformation = ({ product, styles }) => {
   const [currProduct, setCurrProduct] = useState(0);

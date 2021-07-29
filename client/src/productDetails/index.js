@@ -5,7 +5,6 @@ import ImageGallery from './components/ImageGallery';
 import ProductInformation from './components/ProductInformation';
 import StyleSelector from './components/StyleSelector';
 import AddToCart from './components/AddToCart';
-// import ProductOverview from './components/ProductOverview';
 
 const tempProductID = 25167;
 
@@ -45,13 +44,6 @@ const RightColumn = styled.div`
   border: 10px;
 `;
 
-// const Footer = styled.div`
-//   padding: 20px;
-//   text-align: center;
-//   background: #ddd;
-//   margin-top: 20px;
-// `;
-
 const ProductDetails = (props) => {
   const [productData, setProductData] = useState({});
 
@@ -71,11 +63,8 @@ const ProductDetails = (props) => {
           <AddToCart styles={props.productStyles} />
         </RightColumn>
       </Content>
-
-      {/* <Footer>
-        <ProductOverview product={props.product} />
-      </Footer> */}
     </ Body>
-  )
-}
+  );
+};
+
 export default ProductDetails;

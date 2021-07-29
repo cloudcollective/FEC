@@ -1,6 +1,5 @@
 import React from 'react';
 
-// product
 const ProductOverview = (props) => (
   <>
     <div className="sloganAndDescription">

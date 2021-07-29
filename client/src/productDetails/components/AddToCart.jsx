@@ -51,7 +51,7 @@ const AddToCart = (props) => {
         </div>
       </AddBagAndFavorite>
     </CartContainer>
-  )
-}
+  );
+};
 
 export default AddToCart;

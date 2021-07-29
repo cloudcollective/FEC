@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -54,9 +53,5 @@ const ImageGallery = ({ productData }) => {
     </Gallery>
   );
 };
-
-// ImageGallery.propTypes = {
-//   results: PropTypes.arrayOf.isRequired,
-// };
 
 export default ImageGallery;
