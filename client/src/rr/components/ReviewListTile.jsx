@@ -1,19 +1,30 @@
 import React from 'react';
 import StarRatingBar from './StarRatingBar.jsx';
+import { FaUser } from 'react-icons/fa';
 
-const ReviewListTile = (props) => (
+const ReviewListTile = (props) => {
+  console.log(props);
+  let bkgrnd = "white";
+  if (props.index % 2 === 0) {
+    bkgrnd = "lightGrey"
+  }
+  return (
 
-  <div>
-    <div>{props.result.rating}</div>
-    <div><StarRatingBar rating={props.result.rating} /></div>
-    <div>{props.result.reviewer_name}</div>
-    <div>{props.result.summary} <br /></div>
-    <div>{props.result.body}</div>
-    <div>helpful?</div>
-
-  </div>
-);
-
+    <div className="tile" style={{ backgroundColor: `${bkgrnd}`, borderBottomWidth:5 }}>
+      <div>
+        <div style={{ align: "right", display: "inline-block" }}>
+          <StarRatingBar rating={props.result.rating} />
+        </div>
+        <div style={{ align: "right", color: "black", fontFamily: "Courier New", fontSize: 15, display: "inline-block" }}>
+          <FaUser /> {props.result.reviewer_name} @ {props.result.date.slice(0, 10)}
+        </div>
+      </div>
+      <div style={{fontSize: 25}}><u>{props.result.summary}</u></div>
+      <div><br />{props.result.body}</div>
+      <div>helpful?</div>
+    </div>
+  )
+};
 
 export default ReviewListTile;
 

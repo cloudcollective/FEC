@@ -1,5 +1,5 @@
 import React from 'react';
-import ReviewListTile from './ReviewListTile.jsx'
+import ReviewListTile from './ReviewListTile.jsx';
 
 class ReviewList extends React.Component {
   constructor(props) {
@@ -9,10 +9,10 @@ class ReviewList extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.props.results.map((result, i) => <ReviewListTile result={result} key={i} />)}
+      <div style={{display: "flex", flexDirection: "column", width: "45%",}}>
+        {this.props.results.map((result, i) => <ReviewListTile result={result} index={i} />)}
       </div>
-    )
+    );
   }
 }
 
