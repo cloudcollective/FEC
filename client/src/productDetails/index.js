@@ -71,7 +71,7 @@ const ProductDetails = (props) => {
         </LeftColumn>
         <RightColumn>
           <ProductInformation product={productData[0]} styles={productData[1]} />
-          <StyleSelector styles={props.productStyles} />
+          <StyleSelector styles={productData[1]} />
           <AddToCart styles={props.productStyles} />
         </RightColumn>
       </Content>

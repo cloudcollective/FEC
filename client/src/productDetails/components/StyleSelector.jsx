@@ -30,17 +30,35 @@ const ThumbContainer = styled.div`
   flex-direction: row;
 `;
 
+const Thumbnails = styled.img`
+  height: 80px;
+  width: 60px;
+  object-fit: cover;
+  margin: 5px;
+  cursor: pointer;
+  display: block;
+  border-radius: 45%;
+`;
+
 // styles
-const StyleSelector = (props) => (
-  <>
-    <div>
-      {/* change the style name dynamically when clicked */}
-      <p>STYLE > {props.styles.results[0].name}</p>
-    </div>
-    <div>
-      <img src={props.styles.results[0].photos[0].thumbnail_url} />
-    </div>
-  </>
-);
+const StyleSelector = ({ styles }) => {
+  if (!styles) {
+    return null;
+  }
+
+  return (
+    <>
+      {console.log(styles)}
+      <div>
+        {/* change the style name dynamically when clicked */}
+        <p>STYLE: {styles.results[0].name}</p>
+      </div>
+      <ThumbContainer>
+        {styles.results.map((style, index) =>
+          <Thumbnails src={style.photos[0].thumbnail_url} key={index} alt="thumbnails" />)}
+      </ThumbContainer>
+    </>
+  );
+};
 
 export default StyleSelector;

@@ -14,8 +14,6 @@ const ProductInformation = ({ product, styles }) => {
 
   return (
     <>
-      {console.log(product)}
-      {console.log(styles)}
       <div className="ratingAndReview">
         <p>
           {/* Need rating function */}
