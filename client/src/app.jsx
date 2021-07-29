@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import axios from 'axios';
 // import ProductDetails from './productDetails';
 import RelatedProducts from './relatedProducts';
@@ -13,6 +14,23 @@ class App extends React.Component {
       relatedProductIDs: [],
       reviews: 'placeholder',
     };
+=======
+import ProductDetails from './productDetails';
+import QuestionsAnswers from './qa';
+// import RelatedProducts from './relatedProducts';
+// import ReviewsRatings from './rr';
+
+const app = ({ data }) => (
+  <>
+    <ProductDetails product={data.product} productStyles={data.productStyles} />
+    {/* <RelatedProducts data={data} /> */}
+    <QuestionsAnswers
+      questions={data.questions}
+      answers={data.answers}
+    />
+  </>
+);
+>>>>>>> main
 
     this.getProductData = this.getProductData.bind(this);
     this.getRelatedProductData = this.getProductData.bind(this);
