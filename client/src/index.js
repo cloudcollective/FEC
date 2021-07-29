@@ -4,4 +4,3 @@ import App from './app';
 // import productData from '../../exampleProductData';
 
 ReactDOM.render(<App />, document.getElementById('root'));
-

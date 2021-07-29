@@ -5,9 +5,9 @@ import RelatedProducts from './relatedProducts';
 // import QuestionsAnswers from './qa';
 // import ReviewsRatings from './rr';
 
-class App extends React.components {
-  constructor(props) {
-    super(props);
+class App extends React.Component {
+  constructor(prop) {
+    super(prop);
     this.state = {
       selectedProduct: {},
       relatedProductIDs: [],
@@ -64,19 +64,4 @@ class App extends React.components {
   }
 }
 
-// const app = ({ data }) => (
-//   <div>
-//     {/* <ProductDetails data={data} /> */}
-//     <div>
-//       <RelatedProducts products={data} />
-//     </div>
-//     {/* <div>
-//       <QuestionsAnswers
-//         questions={data.questions}
-//         answers={data.answers}
-//       />
-//     </div> */}
-//   </div>
-// );
-// export default app;
 export default App;
