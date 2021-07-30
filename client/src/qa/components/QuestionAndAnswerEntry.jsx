@@ -1,26 +1,59 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+// import styled from 'styled-components';
 import QuestionEntry from './QuestionEntry';
 import AnswerEntry from './AnswerEntry';
 
 const QuestionAndAnswerEntry = ({ question, answers }) => {
-  const [slice, setSlice] = useState(2);
-  const initialAnswers = answers.slice(0, slice);
+  const [slicer, setSlice] = useState(2);
+  const initialAnswers = answers.slice(0, slicer);
   const [currentAnswers, setCurrentAnswers] = useState(initialAnswers);
   const numOfAnswersLeft = answers.length - currentAnswers.length;
+  const showMoreAnswers = () => numOfAnswersLeft > 0;
+
+  useEffect(() => {
+    setCurrentAnswers(answers.slice(0, slicer));
+  }, [slicer]);
 
   return (
     <div>
       <QuestionEntry question={question} />
-      {currentAnswers.map((answer, index) => (
-        <AnswerEntry key={index} answer={answer} />
+      {currentAnswers.map((answer) => (
+        <AnswerEntry key={answer.answer_id} answer={answer} />
       ))}
-      {numOfAnswersLeft
-        && <button onClick={() => {
-          // setCurrentAnswers(prevAnswers => ...prevAnswers, answers)
-        }} type="button">See More Answers</button>}
+      {showMoreAnswers()
+        && (
+          <button
+            onClick={() => setSlice((prevSlicer) => prevSlicer + 2)}
+            type="button"
+          >
+            See More Answers
+          </button>
+        )}
     </div>
   );
+};
+
+QuestionAndAnswerEntry.propTypes = {
+  question: PropTypes.shape({
+    product_id: PropTypes.string,
+    results: PropTypes.arrayOf(PropTypes.shape({
+      question_id: PropTypes.number,
+      question_body: PropTypes.string,
+      question_date: PropTypes.string,
+      asker_name: PropTypes.string,
+      question_helpfulness: PropTypes.number,
+      reported: PropTypes.bool,
+    })),
+  }).isRequired,
+  answers: PropTypes.arrayOf(PropTypes.shape({
+    answer_id: PropTypes.number,
+    body: PropTypes.string,
+    date: PropTypes.string,
+    answerer_name: PropTypes.string,
+    helpfulness: PropTypes.number,
+    photos: PropTypes.arrayOf(PropTypes.string),
+  })).isRequired,
 };
 
 export default QuestionAndAnswerEntry;
