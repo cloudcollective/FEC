@@ -1,31 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import UserInfo from './UserInfo';
 
-const AnswerEntry = ({ answer }) => {
-  const formatDate = (date) => {
-    const d = new Date(date);
-    const [day, year] = [d.getDate(), d.getFullYear()];
-    const month = d.toLocaleString('default', { month: 'long' });
-    return `${month} ${day}, ${year}`;
-  };
+const AnswerEntry = ({ answer, first }) => (
+  <>
+    <FirstCol>{first && <h3>A: </h3>}</FirstCol>
+    <p>{answer.body}</p>
+    <SecondCol>
+      <UserInfo
+        username={answer.answerer_name}
+        date={answer.date}
+        helpfulness={answer.helpfulness}
+      />
+    </SecondCol>
+  </>
+);
 
-  return (
-    <>
-      <p>{answer.body}</p>
-      <p>by {answer.answerer_name}, {formatDate(answer.date)} | Helpful? <a href="#" onClick={()=>{}}>Yes</a> {'('}{answer.helpfulness}{')'} | <a href="#" onClick={()=>{}}>Report</a></p>
-    </>
-  );
-};
-//   <div style={divStyle}>
-//     <span>{answer}</span>
-//   </div>
-// );
+const FirstCol = styled.div`
+  grid-column: 1 / span 1
+`;
 
-const StyledSpan = styled.div`
-  width: 1.5em;
-  display: inline-block;
-  border: 1px solid red;
+const SecondCol = styled.div`
+  grid-column: 2 / span 1;
 `;
 
 AnswerEntry.propTypes = {
@@ -37,6 +34,11 @@ AnswerEntry.propTypes = {
     helpfulness: PropTypes.number,
     photos: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
+  first: PropTypes.bool,
+};
+
+AnswerEntry.defaultProps = {
+  first: true,
 };
 
 export default AnswerEntry;
