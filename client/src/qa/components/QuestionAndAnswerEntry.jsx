@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import QuestionEntry from './QuestionEntry';
 import AnswerEntry from './AnswerEntry';
 
@@ -16,23 +16,39 @@ const QuestionAndAnswerEntry = ({ question, answers }) => {
   }, [slicer]);
 
   return (
-    <div>
+    <StyledContainer>
       <QuestionEntry question={question} />
-      {currentAnswers.map((answer) => (
-        <AnswerEntry key={answer.answer_id} answer={answer} />
+      {currentAnswers.map((answer, index) => (
+        <AnswerEntry
+          first={index === 0}
+          key={answer.answer_id}
+          answer={answer}
+        />
       ))}
       {showMoreAnswers()
         && (
-          <button
-            onClick={() => setSlice((prevSlicer) => prevSlicer + 2)}
-            type="button"
-          >
-            See More Answers
-          </button>
+          <SecondCol>
+            <button
+              onClick={() => setSlice((prevSlicer) => prevSlicer + 2)}
+              type="button"
+            >
+              See More Answers
+            </button>
+          </SecondCol>
         )}
-    </div>
+    </StyledContainer>
   );
 };
+
+const StyledContainer = styled.div`
+  display: grid;
+  grid-template-columns: 0.5fr 10fr 2fr;
+  align-items: center;
+`;
+
+const SecondCol = styled.div`
+  grid-column: 2 / span 1;
+`;
 
 QuestionAndAnswerEntry.propTypes = {
   question: PropTypes.shape({
