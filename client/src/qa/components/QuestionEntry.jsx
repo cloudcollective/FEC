@@ -1,23 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const divStyle = {
-  border: '1px solid red',
-};
-
 const QuestionEntry = ({ question }) => (
-  <div style={divStyle}>
-    <h3>
-      <StyledSpan>Q:</StyledSpan>
-      <span>{question.question_body}</span>
-    </h3>
-  </div>
+  <>
+    <FirstCol><h3>Q: </h3></FirstCol>
+    <SecondCol><h3>{question.question_body}</h3></SecondCol>
+  </>
 );
 
-const StyledSpan = styled.div`
-  width: 1.5em;
-  display: inline-block;
-  border: 1px solid red;
+const FirstCol = styled.div`
+  grid-column: 1 / span 1
+`;
+
+const SecondCol = styled.div`
+  grid-column: 2 / span 1;
 `;
 
 export default QuestionEntry;
