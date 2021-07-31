@@ -14,10 +14,13 @@ const QuestionAndAnswerEntry = ({ question, answers }) => {
   useEffect(() => {
     setCurrentAnswers(answers.slice(0, slicer));
   }, [slicer]);
-
   return (
     <StyledContainer>
-      <QuestionEntry question={question} />
+      <QuestionEntry
+        question={question.question_body}
+        helpfulness={question.question_helpfulness}
+        questionId={question.question_id}
+      />
       {currentAnswers.map((answer, index) => (
         <AnswerEntry
           first={index === 0}
@@ -42,7 +45,7 @@ const QuestionAndAnswerEntry = ({ question, answers }) => {
 
 const StyledContainer = styled.div`
   display: grid;
-  grid-template-columns: 0.5fr 10fr 2fr;
+  grid-template-columns: 0.5fr 8fr 2fr;
   align-items: center;
 `;
 
