@@ -28,6 +28,7 @@ const QuestionsAnswersContainer = ({ productId, questions, answers }) => {
       </h3>
       <SearchQuestions />
       <QuestionsAnswersList
+        productName={productName}
         questions={questions}
         answers={answers}
       />

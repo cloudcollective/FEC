@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import QuestionEntry from './QuestionEntry';
 import AnswerEntry from './AnswerEntry';
 
-const QuestionAndAnswerEntry = ({ question, answers }) => {
+const QuestionAndAnswerEntry = ({ productName, question, answers }) => {
   const [slicer, setSlice] = useState(2);
   const initialAnswers = answers.slice(0, slicer);
   const [currentAnswers, setCurrentAnswers] = useState(initialAnswers);
@@ -20,6 +20,7 @@ const QuestionAndAnswerEntry = ({ question, answers }) => {
         question={question.question_body}
         helpfulness={question.question_helpfulness}
         questionId={question.question_id}
+        productName={productName}
       />
       {currentAnswers.map((answer, index) => (
         <AnswerEntry

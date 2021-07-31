@@ -6,7 +6,7 @@ import AddAnswerBtn from './AddAnswerBtn';
 import useToggle from './common/useToggle';
 import AnswerModal from './AnswerModal';
 
-const QuestionEntry = ({ question, helpfulness, questionId }) => {
+const QuestionEntry = ({ productName, question, helpfulness, questionId }) => {
   const answerToggle = useToggle();
 
   return (
@@ -21,6 +21,8 @@ const QuestionEntry = ({ question, helpfulness, questionId }) => {
         {' | '}
         <AddAnswerBtn setIsVisible={answerToggle.toggle} />
         <AnswerModal
+          productName={productName}
+          question={question}
           isVisible={answerToggle.on}
           setIsVisible={answerToggle.toggle}
         />
