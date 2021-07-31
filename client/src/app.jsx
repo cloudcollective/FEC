@@ -4,11 +4,16 @@ import QuestionsAnswers from './qa';
 // import RelatedProducts from './relatedProducts';
 // import ReviewsRatings from './rr';
 
+// When we're want to refactor to hooks
+// This will be the hooks version
+// const [productId, setProductId] = useState('25172');
+
 const app = ({ data }) => (
   <>
     <ProductDetails product={data.product} productStyles={data.productStyles} />
     {/* <RelatedProducts data={data} /> */}
     <QuestionsAnswers
+      productId="25172"
       questions={data.questions}
       answers={data.answers}
     />

@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from './common/Button';
+import ButtonLink from './common/ButtonLink';
 
 const AddAnswerBtn = ({ setIsVisible }) => (
-  <Button
+  <ButtonLink
     type="button"
-    onClick={() => setIsVisible(true)}
     label="Add Answer"
+    onClick={() => setIsVisible(true)}
   />
 );
 
