@@ -78,6 +78,18 @@ app.get('/reviews/meta', (req, res) => {
     });
 });
 
+app.put('/qa/answers/:answerId/report', (req, res) => {
+  const { answerId } = req.params;
+
+  atelier.reportAnswer(answerId)
+    .then(() => {
+      res.sendStatus(204);
+    })
+    .catch((error) => {
+      res.status(501).send(error);
+    });
+});
+
 const port = 3000;
 app.listen(port, () => {
   // eslint-disable-next-line no-console

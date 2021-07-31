@@ -86,10 +86,27 @@ const getRelatedProductsById = (id) => {
     });
 };
 
+const reportAnswer = (answerId) => {
+  const options = {
+    method: 'put',
+    url: `${baseURL}/qa/answers/${answerId}/report`,
+    headers: {
+      Authorization: config.TOKEN,
+    },
+  };
+
+  return axios(options)
+    .then((response) => response.data)
+    .catch((error) => {
+      throw error;
+    });
+};
+
 module.exports = {
   getProductById,
   getProductStylesById,
   getReviewsById,
   getMetaReviewsById,
   getRelatedProductsById,
+  reportAnswer,
 };
