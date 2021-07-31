@@ -12,6 +12,8 @@ const WarningText = styled.div`
   color: red;
 `;
 
+const capitalizeFirst = (string) => (string[0].toUpperCase() + string.slice(1));
+
 const Form = () => {
   const defaultQuestionInfo = {
     question: '',
@@ -30,8 +32,6 @@ const Form = () => {
     }));
   };
 
-  const capitalizeFirst = (string) => (string[0].toUpperCase() + string.slice(1));
-
   const handleInput = (e) => {
     const { name, value } = e.target;
     setInput((prevState) => ({
@@ -40,24 +40,35 @@ const Form = () => {
     }));
   };
 
-  const validate = () => {
-    const errorsFound = {};
+  // const validate = () => {
+  //   const errorsFound = {};
+  //   // for each inputElement -
+  //   if (question.trim() === '') {
+  //     errorsFound.question = 'Question is required';
+  //   }
+  //   if (nickname.trim() === '') {
+  //     errorsFound.nickname = 'Nickname is required';
+  //   }
+  //   if (email.trim() === '') {
+  //     errorsFound.email = 'Email is required';
+  //   }
+  //   return Object.keys(errorsFound).length === 0 ? null : errorsFound;
+  // };
 
-    if (question.trim() === '') {
-      errorsFound.question = 'Question is required';
-    }
-    if (nickname.trim() === '') {
-      errorsFound.nickname = 'Nickname is required';
-    }
-    if (email.trim() === '') {
-      errorsFound.email = 'Email is required';
-    }
+  const validate = (inputFields) => {
+    const errorsFound = {};
+    const inputs = Object.keys(inputFields);
+    inputs.forEach((inpt) => {
+      if (inputFields[inpt].trim() === '') {
+        errorsFound[inpt] = `${capitalizeFirst(inpt)} is required`;
+      }
+    });
     return Object.keys(errorsFound).length === 0 ? null : errorsFound;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const errorsFound = validate();
+    const errorsFound = validate(input);
     setErrors(errorsFound);
     if (errorsFound) {
       return;
