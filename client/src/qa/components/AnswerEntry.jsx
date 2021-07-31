@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import UserInfo from './UserInfo';
+import AnswererInfo from './AnswererInfo';
 
 const AnswerEntry = ({ answer, first }) => (
   <>
     <FirstCol>{first && <h3>A: </h3>}</FirstCol>
     <p>{answer.body}</p>
     <SecondCol>
-      <UserInfo
+      <AnswererInfo
+        answerId={answer.answer_id}
         username={answer.answerer_name}
         date={answer.date}
         helpfulness={answer.helpfulness}
