@@ -4,11 +4,11 @@ import '@testing-library/jest-dom';
 import Modal from './Modal';
 
 test('should render', () => {
-  render(<Modal isVisible={true}/>);
+  render(<Modal isVisible setIsVisible={()=> {}} />);
   expect(screen.getByRole('dialog')).toBeInTheDocument();
 });
 
 test('should render a close button', () => {
-  render(<Modal isVisible={true}/>);
+  render(<Modal isVisible setIsVisible={()=> {}} />);
   expect(screen.getByText('Close')).toBeInTheDocument();
 });

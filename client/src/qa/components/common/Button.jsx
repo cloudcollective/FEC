@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Button = ({ type, label, onClick }) => (
   <StyledButton
@@ -22,5 +23,11 @@ const StyledButton = styled.button`
     color: #767676;
   }
 `;
+
+Button.propTypes = {
+  type: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
 
 export default Button;

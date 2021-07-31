@@ -25,6 +25,18 @@ app.get('/products/:id', (req, res) => {
     });
 });
 
+// Get single product by id
+app.get('/single/products/:id', (req, res) => {
+  const { id } = req.params;
+  atelier.getProductById(id)
+    .then((data) => {
+      res.status(201).send(data);
+    })
+    .catch((error) => {
+      res.status(501).send(error);
+    });
+});
+
 app.get('/related/:id', (req, res) => {
   const { id } = req.params;
 
@@ -72,6 +84,18 @@ app.get('/reviews/meta', (req, res) => {
   atelier.getMetaReviewsById(id)
     .then((data) => {
       res.status(201).send(data);
+    })
+    .catch((error) => {
+      res.status(501).send(error);
+    });
+});
+
+app.put('/qa/answers/:answerId/report', (req, res) => {
+  const { answerId } = req.params;
+
+  atelier.reportAnswer(answerId)
+    .then(() => {
+      res.sendStatus(204);
     })
     .catch((error) => {
       res.status(501).send(error);
