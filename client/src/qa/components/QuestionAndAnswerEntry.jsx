@@ -5,7 +5,7 @@ import QuestionEntry from './QuestionEntry';
 import AnswerEntry from './AnswerEntry';
 
 const QuestionAndAnswerEntry = ({ productName, question, answers }) => {
-  const [slicer, setSlice] = useState(2);
+  const [slicer, setSlicer] = useState(2);
   const initialAnswers = answers.slice(0, slicer);
   const [currentAnswers, setCurrentAnswers] = useState(initialAnswers);
   const numOfAnswersLeft = answers.length - currentAnswers.length;
@@ -34,7 +34,7 @@ const QuestionAndAnswerEntry = ({ productName, question, answers }) => {
         && (
           <SecondCol>
             <button
-              onClick={() => setSlice((prevSlicer) => prevSlicer + 2)}
+              onClick={() => setSlicer(slicer + 2)}
               type="button"
             >
               See More Answers
