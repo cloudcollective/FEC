@@ -14,6 +14,7 @@ const QuestionAndAnswerEntry = ({ productName, question, answers }) => {
   useEffect(() => {
     setCurrentAnswers(answers.slice(0, slicer));
   }, [slicer]);
+
   return (
     <StyledContainer>
       <QuestionEntry
@@ -56,15 +57,12 @@ const SecondCol = styled.div`
 
 QuestionAndAnswerEntry.propTypes = {
   question: PropTypes.shape({
-    product_id: PropTypes.string,
-    results: PropTypes.arrayOf(PropTypes.shape({
-      question_id: PropTypes.number,
-      question_body: PropTypes.string,
-      question_date: PropTypes.string,
-      asker_name: PropTypes.string,
-      question_helpfulness: PropTypes.number,
-      reported: PropTypes.bool,
-    })),
+    question_id: PropTypes.number,
+    question_body: PropTypes.string,
+    question_date: PropTypes.string,
+    asker_name: PropTypes.string,
+    question_helpfulness: PropTypes.number,
+    reported: PropTypes.bool,
   }).isRequired,
   answers: PropTypes.arrayOf(PropTypes.shape({
     answer_id: PropTypes.number,
@@ -74,6 +72,7 @@ QuestionAndAnswerEntry.propTypes = {
     helpfulness: PropTypes.number,
     photos: PropTypes.arrayOf(PropTypes.string),
   })).isRequired,
+  productName: PropTypes.string.isRequired,
 };
 
 export default QuestionAndAnswerEntry;
