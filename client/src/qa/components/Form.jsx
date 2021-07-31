@@ -47,21 +47,6 @@ const Form = () => {
     }));
   };
 
-  // const validate = () => {
-  //   const errorsFound = {};
-  //   // for each inputElement -
-  //   if (question.trim() === '') {
-  //     errorsFound.question = 'Question is required';
-  //   }
-  //   if (nickname.trim() === '') {
-  //     errorsFound.nickname = 'Nickname is required';
-  //   }
-  //   if (email.trim() === '') {
-  //     errorsFound.email = 'Email is required';
-  //   }
-  //   return Object.keys(errorsFound).length === 0 ? null : errorsFound;
-  // };
-
   const validate = (inputFields) => {
     const errorsFound = {};
     const inputs = Object.keys(inputFields);
