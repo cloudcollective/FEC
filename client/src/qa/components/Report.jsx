@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import ButtonLink from './common/ButtonLink';
-// import axios from 'axios';
 
 const Report = ({ id }) => {
   const [isReportable, setIsReportable] = useState(true);
 
   const reportAnswer = () => {
     if (isReportable) {
-      console.log('youve been reported to the higher authorities', id);
-    }
-    setIsReportable(false);
+      axios.put(`/qa/answers/${id}/report`)
+        .then(setIsReportable(false))
+        .catch(() => {
+          setIsReportable(true);
+        });
+    };
   };
+
   return (
     <>
       {isReportable
