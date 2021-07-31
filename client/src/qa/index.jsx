@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import QuestionsAnswersList from './components/QuestionsAnswersList';
@@ -8,11 +8,18 @@ import QuestionModal from './components/QuestionModal';
 import useToggle from './components/common/useToggle';
 
 const QuestionsAnswersContainer = ({ productId, questions, answers }) => {
-
-  const [productId]= useState(productId)
+  const [productName, setProductName] = useState('');
   const { on, toggle } = useToggle(false);
 
-  useEffect()
+  useEffect(() => {
+    axios.get(`single/products/${productId}`)
+      .then((data) => {
+        setProductName(data.data.name);
+      })
+      .catch((error) => {
+        console.log('Error retrieving Product name', error);
+      });
+  }, [productId]);
 
   return (
     <div>
@@ -26,6 +33,7 @@ const QuestionsAnswersContainer = ({ productId, questions, answers }) => {
       />
       <AddQuestionBtn setIsVisible={toggle} />
       <QuestionModal
+        productName={productName}
         isVisible={on}
         setIsVisible={toggle}
       />
