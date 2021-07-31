@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Input from './common/Input';
-import TextareaInput from './common/TextareaInput';
-import Button from './common/Button';
+import Input from './Input';
+import TextareaInput from './TextareaInput';
+import Button from './Button';
 
 const StyledFormGroup = styled.div`
   margin-bottom: 1rem;
@@ -21,37 +22,25 @@ const validateEmail = (email) => {
   return pattern.test(email);
 };
 
-const validate = (inputFields) => {
-  const errorsFound = {};
-  const allInputs = Object.keys(inputFields);
-  allInputs.forEach((inpt) => {
-    if (inputFields[inpt].trim() === '') {
-      errorsFound[inpt] = `${capitalizeFirst(inpt)} is required`;
-    }
-    if (inpt === 'email') {
-      if (!validateEmail(inputFields[inpt])) {
-        errorsFound[inpt] = `${capitalizeFirst(inpt)} is in the wrong format`;
-      }
-    }
+const Form = ({ formFields, buttonLabel, doSubmit }) => {
+  // Extract field names from formFields object
+  // Set to an empty string
+  const defaultFields = {};
+  formFields.textareas.forEach((textarea) => {
+    defaultFields[textarea.name] = '';
   });
-  return Object.keys(errorsFound).length === 0 ? null : errorsFound;
-};
 
-const Form = () => {
-  const defaultQuestionInfo = {
-    question: '',
-    nickname: '',
-    email: '',
-  };
-  const [input, setInput] = useState(defaultQuestionInfo);
-  const { question, nickname, email } = input;
+  formFields.inputs.forEach((inpt) => {
+    defaultFields[inpt.name] = '';
+  });
 
+  const [input, setInput] = useState(defaultFields);
   const [errors, setErrors] = useState(null);
 
   const clearState = () => {
     setInput((prevState) => ({
       ...prevState,
-      ...defaultQuestionInfo,
+      ...defaultFields,
     }));
     setErrors(null);
   };
@@ -64,6 +53,22 @@ const Form = () => {
     }));
   };
 
+  const validate = (inputFields) => {
+    const errorsFound = {};
+    const allInputs = Object.keys(inputFields);
+    allInputs.forEach((inpt) => {
+      if (inputFields[inpt].trim() === '') {
+        errorsFound[inpt] = `${capitalizeFirst(inpt)} is required`;
+      }
+      if (inpt === 'email' && inputFields[inpt].trim() !== '') {
+        if (!validateEmail(inputFields[inpt])) {
+          errorsFound[inpt] = `${capitalizeFirst(inpt)} is in the wrong format`;
+        }
+      }
+    });
+    return Object.keys(errorsFound).length === 0 ? null : errorsFound;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const errorsFound = validate(input);
@@ -71,45 +76,39 @@ const Form = () => {
     if (errorsFound) {
       return;
     }
-    // do some api call
+    doSubmit();
     clearState();
   };
 
   return (
     <form aria-label="form">
       <StyledFormGroup>
-        <TextareaInput
-          label="Your Question*"
-          name="question"
-          maxLength="1000"
-          value={question}
-          onChange={handleInput}
-        />
+        {formFields.textareas.map((textarea) => (
+          <TextareaInput
+            key={textarea.name}
+            label={textarea.label}
+            name={textarea.name}
+            maxLength={textarea.maxLength}
+            value={input[textarea.name]}
+            onChange={handleInput}
+          />
+        ))}
       </StyledFormGroup>
 
-      <StyledFormGroup>
-        <Input
-          name="nickname"
-          label="What is your nickname*"
-          placeholder="Example: jackson11!"
-          maxLength="60"
-          value={nickname}
-          onChange={handleInput}
-          afterInput="For privacy reasons, do not use your full name or email address"
-        />
-      </StyledFormGroup>
-
-      <StyledFormGroup>
-        <Input
-          name="email"
-          label="Your email*"
-          placeholder="Example: jack@email.com"
-          maxLength="60"
-          value={email}
-          onChange={handleInput}
-          afterInput="For authentication reasons, you will not be emailed"
-        />
-      </StyledFormGroup>
+      {formFields.inputs.map((inpt) => (
+        <StyledFormGroup key={inpt.name}>
+          <Input
+            key={inpt.name}
+            name={inpt.name}
+            label={inpt.label}
+            placeholder={inpt.placeholder}
+            maxLength={inpt.maxLength}
+            value={input[inpt.name]}
+            onChange={handleInput}
+            afterInput={inpt.afterInput}
+          />
+        </StyledFormGroup>
+      ))}
       {errors
         && (
           <WarningText>
@@ -121,11 +120,30 @@ const Form = () => {
         )}
       <Button
         type="submit"
-        label="Submit question"
+        label={buttonLabel}
         onClick={handleSubmit}
       />
     </form>
   );
+};
+
+Form.propTypes = {
+  formFields: PropTypes.shape({
+    textareas: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string,
+      label: PropTypes.string,
+      maxLength: PropTypes.string,
+    })),
+    inputs: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string,
+      label: PropTypes.string,
+      placeholder: PropTypes.string,
+      maxLength: PropTypes.string,
+      afterInput: PropTypes.string,
+    })),
+  }).isRequired,
+  buttonLabel: PropTypes.string.isRequired,
+  doSubmit: PropTypes.func.isRequired,
 };
 
 export default Form;
