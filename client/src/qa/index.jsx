@@ -1,13 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import QuestionsAnswersList from './components/QuestionsAnswersList';
 import SearchQuestions from './components/SearchQuestions';
 import AddQuestionBtn from './components/AddQuestionBtn';
 import QuestionModal from './components/QuestionModal';
 import useToggle from './components/common/useToggle';
 
-const QuestionsAnswersContainer = ({ questions, answers }) => {
+const QuestionsAnswersContainer = ({ productId, questions, answers }) => {
+
+  const [productId]= useState(productId)
   const { on, toggle } = useToggle(false);
+
+  useEffect()
 
   return (
     <div>
