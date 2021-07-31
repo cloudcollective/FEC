@@ -14,6 +14,12 @@ const WarningText = styled.div`
 
 const capitalizeFirst = (string) => (string[0].toUpperCase() + string.slice(1));
 
+const validateEmail = (email) => {
+  const pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+
+  return pattern.test(email);
+};
+
 const Form = () => {
   const defaultQuestionInfo = {
     question: '',
@@ -30,6 +36,7 @@ const Form = () => {
       ...prevState,
       ...defaultQuestionInfo,
     }));
+    setErrors(null);
   };
 
   const handleInput = (e) => {
@@ -61,6 +68,11 @@ const Form = () => {
     inputs.forEach((inpt) => {
       if (inputFields[inpt].trim() === '') {
         errorsFound[inpt] = `${capitalizeFirst(inpt)} is required`;
+      }
+      if (inpt === 'email') {
+        if (!validateEmail(inputFields[inpt])) {
+          errorsFound[inpt] = `${capitalizeFirst(inpt)} is in the wrong format`;
+        }
       }
     });
     return Object.keys(errorsFound).length === 0 ? null : errorsFound;
