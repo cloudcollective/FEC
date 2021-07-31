@@ -53,19 +53,17 @@ const ProductDetails = (props) => {
     getData(setProductData);
   }, []);
 
-  const getStyleId = (styleId, index) => {
-    // console.log({ styleId, index });
-    setStyleId(styleId);
-    // setStyleIndex(index);
-    console.log({ styleId });
+  const getStyleId = (id, index) => {
+    setStyleId(id);
+    setStyleIndex(index);
   };
 
   return (
     < Body >
-      {console.log({ productData })}
       <Content>
+        {console.log({ productData })}
         <LeftColumn>
-          <ImageGallery productData={productData[1]} />
+          <ImageGallery productStyle={productData[1]} styleId={styleId} styleIndex={styleIndex} />
         </LeftColumn>
         <RightColumn>
           <ProductInformation product={productData[0]} styles={productData[1]} />
