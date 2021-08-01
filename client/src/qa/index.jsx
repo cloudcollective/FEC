@@ -7,9 +7,21 @@ import AddQuestionBtn from './components/AddQuestionBtn';
 import QuestionModal from './components/QuestionModal';
 import useToggle from './components/common/useToggle';
 
-const QuestionsAnswersContainer = ({ productId, questions, answers }) => {
+const QuestionsAnswersContainer = ({ productId }) => {
   const [productName, setProductName] = useState('');
+  const [questions, setQuestions] = useState({});
   const { on, toggle } = useToggle(false);
+
+  useEffect(() => {
+    axios.get(`qa/questions?product_id=${productId}`)
+      .then((data) => {
+        console.log(data.data);
+        setQuestions(data.data.results);
+      })
+      .catch((error) => {
+        console.log('Error retrieving questions via product ID', error);
+      });
+  }, []);
 
   useEffect(() => {
     axios.get(`single/products/${productId}`)
@@ -30,7 +42,6 @@ const QuestionsAnswersContainer = ({ productId, questions, answers }) => {
       <QuestionsAnswersList
         productName={productName}
         questions={questions}
-        answers={answers}
       />
       <AddQuestionBtn setIsVisible={toggle} />
       <QuestionModal
@@ -43,28 +54,7 @@ const QuestionsAnswersContainer = ({ productId, questions, answers }) => {
 };
 
 QuestionsAnswersContainer.propTypes = {
-  questions: PropTypes.shape({
-    product_id: PropTypes.string,
-    results: PropTypes.arrayOf(PropTypes.shape({
-      question_id: PropTypes.number,
-      question_body: PropTypes.string,
-      question_date: PropTypes.string,
-      asker_name: PropTypes.string,
-      question_helpfulness: PropTypes.number,
-      reported: PropTypes.bool,
-    })),
-  }).isRequired,
-  answers: PropTypes.shape({
-    question: PropTypes.string,
-    results: PropTypes.arrayOf(PropTypes.shape({
-      answer_id: PropTypes.number,
-      body: PropTypes.string,
-      date: PropTypes.string,
-      answerer_name: PropTypes.string,
-      helpfulness: PropTypes.number,
-      photos: PropTypes.arrayOf(PropTypes.string),
-    })),
-  }).isRequired,
+  productId: PropTypes.string.isRequired,
 };
 
 export default QuestionsAnswersContainer;
