@@ -7,19 +7,28 @@ const QuestionsAnswersList = ({ productName, questions }) => {
   const [slicer, setSlicer] = useState(2);
   const [currentQuestions, setCurrentQuestions] = useState(null);
   const [numOfQuestionsLeft, setNumOfQuestionsLeft] = useState(null);
+  const [sortedQuestions, setSortedQuestions] = useState(null);
+
+  const sortByHelpfulness = (a, b) => b.question_helpfulness - a.question_helpfulness;
 
   useEffect(() => {
     if (questions.length) {
-      const initialQuestions = questions.slice(0, slicer);
-      setCurrentQuestions(initialQuestions);
-      setNumOfQuestionsLeft(questions.length - initialQuestions.length);
+      setSortedQuestions([...questions].sort(sortByHelpfulness));
     }
   }, [questions]);
 
   useEffect(() => {
+    if (sortedQuestions !== null) {
+      const initialQuestions = sortedQuestions.slice(0, slicer);
+      setCurrentQuestions(initialQuestions);
+      setNumOfQuestionsLeft(sortedQuestions.length - initialQuestions.length);
+    }
+  }, [sortedQuestions]);
+
+  useEffect(() => {
     if (questions.length) {
-      setCurrentQuestions(questions.slice(0, slicer));
-      setNumOfQuestionsLeft(questions.length - currentQuestions.length);
+      setCurrentQuestions(sortedQuestions.slice(0, slicer));
+      setNumOfQuestionsLeft(sortedQuestions.length - currentQuestions.length);
     }
   }, [slicer]);
 
