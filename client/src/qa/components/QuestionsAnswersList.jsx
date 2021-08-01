@@ -1,12 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import QuestionAndAnswerEntry from './QuestionAndAnswerEntry';
+import Button from './common/Button';
 
-const QuestionsAnswersList = ({ productName, questions }) => (
-  <div data-testid="qa-list">
-    {!questions.length
-      ? <h4>Loading questions...</h4>
-      : questions.map((question) => (
+const QuestionsAnswersList = ({ productName, questions }) => {
+  const [slicer, setSlicer] = useState(2);
+  const [currentQuestions, setCurrentQuestions] = useState(null);
+  const [numOfQuestionsLeft, setNumOfQuestionsLeft] = useState(null);
+
+  useEffect(() => {
+    if (questions.length) {
+      const initialQuestions = questions.slice(0, slicer);
+      setCurrentQuestions(initialQuestions);
+      setNumOfQuestionsLeft(questions.length - initialQuestions.length);
+    }
+  }, [questions]);
+
+  useEffect(() => {
+    if (questions.length) {
+      setCurrentQuestions(questions.slice(0, slicer));
+      setNumOfQuestionsLeft(questions.length - currentQuestions.length);
+    }
+  }, [slicer]);
+
+  if (!currentQuestions) {
+    return (
+      <h4>Loading questions...</h4>
+    );
+  }
+
+  return (
+    <div data-testid="qa-list" style={{ height: '100vh', overflowY: 'auto' }}>
+      {currentQuestions.map((question) => (
         <QuestionAndAnswerEntry
           productName={productName}
           key={question.question_id}
@@ -14,8 +39,17 @@ const QuestionsAnswersList = ({ productName, questions }) => (
           answers={Object.values(question.answers)}
         />
       ))}
-  </div>
-);
+      {numOfQuestionsLeft > 0
+        && (
+          <Button
+            type="button"
+            label="See More Questions"
+            onClick={() => setSlicer(slicer + 2)}
+          />
+        )}
+    </div>
+  );
+};
 
 QuestionsAnswersList.propTypes = {
   questions: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(
