@@ -28,6 +28,7 @@ app.get('/products/:id', (req, res) => {
 // Get single product by id
 app.get('/single/products/:id', (req, res) => {
   const { id } = req.params;
+
   atelier.getProductById(id)
     .then((data) => {
       res.status(201).send(data);
@@ -87,6 +88,18 @@ app.get('/reviews/meta', (req, res) => {
     })
     .catch((error) => {
       res.status(501).send(error);
+    });
+});
+
+app.get('/qa/questions', (req, res) => {
+  const productId = req.query.product_id;
+
+  atelier.getQuestionsById(productId)
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((error) => {
+      res.status(500).send(error);
     });
 });
 
