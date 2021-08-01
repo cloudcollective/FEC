@@ -6,13 +6,16 @@ import AnswerEntry from './AnswerEntry';
 
 const QuestionAndAnswerEntry = ({ productName, question, answers }) => {
   const [slicer, setSlicer] = useState(2);
-  const initialAnswers = answers.slice(0, slicer);
+
+  // Sort answers and then slice
+  const sortedAnswers = [...answers].sort((a, b) => b.helpfulness - a.helpfulness);
+  const initialAnswers = sortedAnswers.slice(0, slicer);
   const [currentAnswers, setCurrentAnswers] = useState(initialAnswers);
-  const numOfAnswersLeft = answers.length - currentAnswers.length;
+  const numOfAnswersLeft = sortedAnswers.length - currentAnswers.length;
   const showMoreAnswers = () => numOfAnswersLeft > 0;
 
   useEffect(() => {
-    setCurrentAnswers(answers.slice(0, slicer));
+    setCurrentAnswers(sortedAnswers.slice(0, slicer));
   }, [slicer]);
 
   return (
