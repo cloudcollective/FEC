@@ -9,7 +9,7 @@ const AnswerEntry = ({ answer, first }) => (
     <p>{answer.body}</p>
     <SecondCol>
       <AnswererInfo
-        answerId={answer.answer_id}
+        answerId={answer.id}
         username={answer.answerer_name}
         date={answer.date}
         helpfulness={answer.helpfulness}
@@ -28,7 +28,7 @@ const SecondCol = styled.div`
 
 AnswerEntry.propTypes = {
   answer: PropTypes.shape({
-    answer_id: PropTypes.number,
+    id: PropTypes.number,
     body: PropTypes.string,
     date: PropTypes.string,
     answerer_name: PropTypes.string,
