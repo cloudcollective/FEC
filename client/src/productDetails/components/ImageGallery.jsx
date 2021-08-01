@@ -36,6 +36,7 @@ const ImageGallery = ({ productStyle, styleId, styleIndex }) => {
   if (!productStyle && !styleId && !styleIndex) {
     return null;
   }
+
   const { photos } = productStyle.results[0];
 
   const changeMainPhoto = (index) => {

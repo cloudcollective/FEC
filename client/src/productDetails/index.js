@@ -61,7 +61,6 @@ const ProductDetails = (props) => {
   return (
     < Body >
       <Content>
-        {console.log({ productData })}
         <LeftColumn>
           <ImageGallery productStyle={productData[1]} styleId={styleId} styleIndex={styleIndex} />
         </LeftColumn>
