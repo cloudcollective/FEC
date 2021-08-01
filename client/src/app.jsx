@@ -1,13 +1,24 @@
 import React from 'react';
-//import productDetails from './productDetails';
-//import qa from './qa';
-//import relatedProducts from './relatedProducts';
-import Reviews from './rr';
+import ProductDetails from './productDetails';
+import QuestionsAnswers from './qa';
 
-const app = () => (
-  <div>
-    <Reviews />
-  </div>
+// import RelatedProducts from './relatedProducts';
+// import ReviewsRatings from './rr';
+
+// When we're want to refactor to hooks
+// This will be the hooks version
+// const [productId, setProductId] = useState('25172');
+
+const app = ({ data }) => (
+  <>
+    <ProductDetails product={data.product} productStyles={data.productStyles} />
+    {/* <RelatedProducts data={data} /> */}
+    <QuestionsAnswers
+      productId="25172"
+      questions={data.questions}
+      answers={data.answers}
+    />
+  </>
 );
 
 export default app;
