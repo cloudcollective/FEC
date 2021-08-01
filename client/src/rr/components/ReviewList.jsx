@@ -9,8 +9,10 @@ class ReviewList extends React.Component {
 
   render() {
     return (
-      <div style={{display: "flex", flexDirection: "column", width: "45%",}}>
+      <div> 200 reviews sorted by relevance
+      <div style={{display: "flex", flexDirection: "column", width: "45%"}}>
         {this.props.results.map((result, i) => <ReviewListTile result={result} index={i} />)}
+      </div>
       </div>
     );
   }
