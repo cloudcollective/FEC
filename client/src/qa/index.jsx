@@ -15,7 +15,6 @@ const QuestionsAnswersContainer = ({ productId }) => {
   useEffect(() => {
     axios.get(`qa/questions?product_id=${productId}`)
       .then((data) => {
-        console.log(data.data);
         setQuestions(data.data.results);
       })
       .catch((error) => {
