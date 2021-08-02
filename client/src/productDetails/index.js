@@ -7,7 +7,8 @@ import StyleSelector from './components/StyleSelector';
 import AddToCart from './components/AddToCart';
 import ProductOverview from './components/ProductOverview';
 
-const tempProductID = 25167;
+// 25167
+const tempProductID = 25171;
 
 const getData = (callback) => {
   axios.get(`/products/${tempProductID}`)
