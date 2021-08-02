@@ -5,7 +5,6 @@ import RelatedProducts from './relatedProducts';
 // import QuestionsAnswers from './qa';
 // import ReviewsRatings from './rr';
 
-<<<<<<< HEAD
 class App extends React.Component {
   constructor(prop) {
     super(prop);
@@ -14,23 +13,6 @@ class App extends React.Component {
       relatedProductIds: [],
       relatedProductData: [],
     };
-=======
-// When we're want to refactor to hooks
-// This will be the hooks version
-// const [productId, setProductId] = useState('25172');
-
-const app = ({ data }) => (
-  <>
-    <ProductDetails product={data.product} productStyles={data.productStyles} />
-    {/* <RelatedProducts data={data} /> */}
-    <QuestionsAnswers
-      productId="25172"
-      questions={data.questions}
-      answers={data.answers}
-    />
-  </>
-);
->>>>>>> main
 
     this.getProductData = this.getProductData.bind(this);
     this.getRelatedProductData = this.getProductData.bind(this);
