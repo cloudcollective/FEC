@@ -102,5 +102,5 @@ class App extends React.Component {
     );
   }
 }
-
+// Warning, if there are render issues comment out lines 93 to 97 for now.
 export default App;
