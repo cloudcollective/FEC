@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 // import ProductDetails from './productDetails';
-import RelatedProducts from './relatedProducts';
+// import RelatedProducts from './relatedProducts';
 // import QuestionsAnswers from './qa';
 // import ReviewsRatings from './rr';
 
@@ -12,6 +12,8 @@ class App extends React.Component {
       selectedProduct: {},
       relatedProductIds: [],
       relatedProductData: [],
+      reviewsData: [],
+      metaReviewData: [],
       questionsAndAnswersData: {},
     };
 
@@ -20,9 +22,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // example product_id = 25169
-    this.getProductData('25169');
-    this.getQuestionData('25169');
+    const productId = '25169';
+    this.getProductData(productId);
+    this.getQuestionData(productId);
   }
 
   getProductData(id) {
@@ -31,6 +33,8 @@ class App extends React.Component {
         this.setState({
           selectedProduct: data.data[0],
           relatedProductIds: data.data[2],
+          reviewsData: data.data[3],
+          metaReviewData: data.data[4],
         });
       })
       .then(() => {
@@ -56,10 +60,8 @@ class App extends React.Component {
   getQuestionData(id) {
     axios.get(`/qa/questions/${id}`)
       .then((data) => {
-        console.log(data, '1');
-        console.log(data.data, '2');
         this.setState({
-          questionsAndAnswersData: data,
+          questionsAndAnswersData: data.data,
         });
       })
       .catch((error) => {
@@ -69,19 +71,25 @@ class App extends React.Component {
   }
 
   render() {
-    const { selectedProduct, relatedProductData, questionsAndAnswersData } = this.state;
-    console.log(questionsAndAnswersData, 'success?');
+    const {
+      selectedProduct, relatedProductData, questionsAndAnswersData, reviewsData, metaReviewData,
+    } = this.state;
+    // Delete these console.logs later
+    console.log(selectedProduct, 'Product Detail');
+    console.log(relatedProductData, 'Related Products');
+    console.log(questionsAndAnswersData, 'QA');
+    console.log(reviewsData, metaReviewData, 'Ratings and Reviews');
     return (
       <div>
         {/* <div>
           <ProductDetails />
         </div> */}
-        <div>
+        {/* <div>
           <RelatedProducts
             product={selectedProduct}
             products={relatedProductData}
           />
-        </div>
+        </div> */}
         {/* <div>
          <QuestionsAnswers
            questions={data.questions}
