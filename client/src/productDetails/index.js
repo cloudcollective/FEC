@@ -48,6 +48,7 @@ const ProductDetails = (props) => {
   const [productData, setProductData] = useState([]);
   const [styleId, setStyleId] = useState('');
   const [styleIndex, setStyleIndex] = useState('');
+  const [styleSelected, setStyleSelected] = useState(false);
 
   useEffect(() => {
     getData(setProductData);
@@ -56,13 +57,15 @@ const ProductDetails = (props) => {
   const getStyleId = (id, index) => {
     setStyleId(id);
     setStyleIndex(index);
+    setStyleSelected(true);
   };
 
   return (
     < Body >
+      {console.log(productData)}
       <Content>
         <LeftColumn>
-          <ImageGallery productStyle={productData[1]} styleId={styleId} styleIndex={styleIndex} />
+          <ImageGallery productStyle={productData[1]} styleId={styleId} styleIndex={styleIndex} styleSelected={styleSelected} />
         </LeftColumn>
         <RightColumn>
           <ProductInformation product={productData[0]} styles={productData[1]} />

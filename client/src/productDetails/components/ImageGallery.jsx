@@ -30,14 +30,18 @@ const MainImage = styled.img`
   margin: 10px;
 `;
 
-const ImageGallery = ({ productStyle, styleId, styleIndex }) => {
+const ImageGallery = ({ productStyle, styleId, styleIndex, styleSelected }) => {
   const [currImg, setCurrImg] = useState(0);
 
-  if (!productStyle && !styleId && !styleIndex) {
+  if (!productStyle && !styleId && !styleIndex && !styleSelected) {
     return null;
   }
 
-  const { photos } = productStyle.results[0];
+  let { photos } = productStyle.results[0];
+
+  if (styleSelected) {
+    photos = productStyle.results[styleIndex].photos;
+  }
 
   const changeMainPhoto = (index) => {
     setCurrImg(index);
@@ -62,7 +66,7 @@ const ImageGallery = ({ productStyle, styleId, styleIndex }) => {
 
   return (
     <Gallery>
-      {console.log({ productStyle, styleId, styleIndex })}
+      {console.log({ photos })}
       <ThumbContainer>
         {photos.map((photo, index) => (
           <Thumbnails
