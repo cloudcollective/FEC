@@ -1,5 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
 import axios from 'axios';
 // import ProductDetails from './productDetails';
 import RelatedProducts from './relatedProducts';
@@ -11,34 +10,17 @@ class App extends React.Component {
     super(prop);
     this.state = {
       selectedProduct: {},
-      relatedProductIDs: [],
-      reviews: 'placeholder',
+      relatedProductIds: [],
+      relatedProductData: [],
     };
-=======
-import ProductDetails from './productDetails';
-import QuestionsAnswers from './qa';
-// import RelatedProducts from './relatedProducts';
-// import ReviewsRatings from './rr';
-
-const app = ({ data }) => (
-  <>
-    <ProductDetails product={data.product} productStyles={data.productStyles} />
-    {/* <RelatedProducts data={data} /> */}
-    <QuestionsAnswers
-      questions={data.questions}
-      answers={data.answers}
-    />
-  </>
-);
->>>>>>> main
 
     this.getProductData = this.getProductData.bind(this);
     this.getRelatedProductData = this.getProductData.bind(this);
   }
 
   componentDidMount() {
-    // 25167
-    this.getProductData('25167');
+    // example product_id = 25167
+    this.getProductData('25169');
   }
 
   getProductData(id) {
@@ -47,13 +29,21 @@ const app = ({ data }) => (
         this.setState({
           selectedProduct: data.data[0],
           relatedProductIds: data.data[2],
-          // relatedProductIds: [...new Set(data.data[2])],
-          reviews: data.data[3],
         });
       })
-      // .then(() => {
-      //   //
-      // })
+      .then(() => {
+        const { relatedProductIds } = this.state;
+        let arrayOfPromises = [];
+        arrayOfPromises = relatedProductIds.map((relatedId) => axios.get(`/related/${relatedId}`));
+        Promise.all(arrayOfPromises).then((data) => {
+          const temp = data.map((obj) => (
+            obj.data
+          ));
+          this.setState({
+            relatedProductData: temp,
+          });
+        });
+      })
       .catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error);
@@ -61,14 +51,16 @@ const app = ({ data }) => (
   }
 
   render() {
-    const { selectedProduct, relatedProductIds } = this.state;
+    const { selectedProduct, relatedProductData } = this.state;
     return (
       <div>
-        {/* <ProductDetails data={data} /> */}
+        {/* <div>
+          <ProductDetails />
+        </div> */}
         <div>
           <RelatedProducts
             product={selectedProduct}
-            products={relatedProductIds}
+            products={relatedProductData}
           />
         </div>
         {/* <div>
