@@ -107,7 +107,7 @@ app.get('/qa/questions/:id', (req, res) => {
 
   atelier.getQuestions(id)
     .then((data) => {
-      res.status(201).send(data);
+      res.status(200).send(data);
     })
     .catch((error) => {
       res.status(501).send(error);
