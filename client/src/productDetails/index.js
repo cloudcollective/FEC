@@ -36,7 +36,7 @@ const LeftColumn = styled.div`
   display: flex;
   width: 75%;
   border: 10px;
-  height: 300px;
+  height: 100%;
 `;
 
 const RightColumn = styled.div`
@@ -46,7 +46,7 @@ const RightColumn = styled.div`
   border: 10px;
 `;
 
-const ProductDetails = (props) => {
+const ProductDetails = ({ selectedProduct }) => {
   const [productData, setProductData] = useState([]);
   const [styleId, setStyleId] = useState('');
   const [styleIndex, setStyleIndex] = useState('');
@@ -54,6 +54,8 @@ const ProductDetails = (props) => {
 
   useEffect(() => {
     getData(setProductData);
+    // setProductData(selectedProduct);
+    // console.log(selectedProduct);
   }, []);
 
   const getStyleId = (id, index) => {
@@ -63,7 +65,7 @@ const ProductDetails = (props) => {
   };
 
   return (
-    < Body >
+    <Body>
       <Content>
         <LeftColumn>
           <ImageGallery productStyle={productData[1]} styleId={styleId} styleIndex={styleIndex} styleSelected={styleSelected} />
@@ -75,7 +77,7 @@ const ProductDetails = (props) => {
         </RightColumn>
       </Content>
       {/* <ProductOverview product={productData[0]} /> */}
-    </ Body>
+    </Body>
   );
 };
 
