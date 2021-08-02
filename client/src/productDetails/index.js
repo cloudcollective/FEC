@@ -62,13 +62,12 @@ const ProductDetails = (props) => {
 
   return (
     < Body >
-      {console.log(productData)}
       <Content>
         <LeftColumn>
           <ImageGallery productStyle={productData[1]} styleId={styleId} styleIndex={styleIndex} styleSelected={styleSelected} />
         </LeftColumn>
         <RightColumn>
-          <ProductInformation product={productData[0]} styles={productData[1]} />
+          <ProductInformation product={productData[0]} styles={productData[1]} styleId={styleId} styleIndex={styleIndex} styleSelected={styleSelected} />
           <StyleSelector styles={productData[1]} getStyleId={getStyleId} />
           <AddToCart styles={productData[1]} />
         </RightColumn>
