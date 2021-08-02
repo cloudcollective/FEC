@@ -102,6 +102,38 @@ const reportAnswer = (answerId) => {
     });
 };
 
+const getQuestions = (id) => {
+  const options = {
+    method: 'get',
+    url: `${baseURL}/qa/questions?${id}`,
+    headers: {
+      Authorization: config.TOKEN,
+    },
+  };
+
+  return axios(options)
+    .then((response) => response.data)
+    .catch((error) => {
+      throw error;
+    });
+};
+
+const getAnswers = (questionId) => {
+  const options = {
+    method: 'get',
+    url: `${baseURL}/qa/questions/${questionId}/answers?count=50`,
+    headers: {
+      Authorization: config.TOKEN,
+    },
+  };
+
+  return axios(options)
+    .then((response) => response.data)
+    .catch((error) => {
+      throw error;
+    });
+};
+
 module.exports = {
   getProductById,
   getProductStylesById,
@@ -109,4 +141,6 @@ module.exports = {
   getMetaReviewsById,
   getRelatedProductsById,
   reportAnswer,
+  getQuestions,
+  getAnswers,
 };
