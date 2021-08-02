@@ -105,25 +105,12 @@ const reportAnswer = (answerId) => {
 const getQuestions = (id) => {
   const options = {
     method: 'get',
-    url: `${baseURL}/qa/questions?${id}`,
+    url: `${baseURL}/qa/questions`,
     headers: {
       Authorization: config.TOKEN,
     },
-  };
-
-  return axios(options)
-    .then((response) => response.data)
-    .catch((error) => {
-      throw error;
-    });
-};
-
-const getAnswers = (questionId) => {
-  const options = {
-    method: 'get',
-    url: `${baseURL}/qa/questions/${questionId}/answers?count=50`,
-    headers: {
-      Authorization: config.TOKEN,
+    params: {
+      product_id: id,
     },
   };
 
@@ -142,5 +129,4 @@ module.exports = {
   getRelatedProductsById,
   reportAnswer,
   getQuestions,
-  getAnswers,
 };
