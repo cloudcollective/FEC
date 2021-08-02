@@ -34,7 +34,7 @@ const QuestionEntry = ({
 };
 
 const FirstCol = styled.div`
-  grid-column: 1 / span 1
+  grid-column: 1 / span 1;
 `;
 
 const SecondCol = styled.div`
