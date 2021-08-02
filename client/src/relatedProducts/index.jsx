@@ -15,19 +15,26 @@ padding: 10px;
 margin: 0 0 0 5px;
 `;
 const RelatedProductsContainer = ({ product, products }) => {
-  const arrayOfObj = products;
-  // console.log(product, products, 'test')
-  const renderElement = () => {
-    if (products !== undefined) {
-      return (<CardMaker product={product} />);
-    }
-  };
+  let arrayOfCards = [];
+  // let renderElement = () => (
+  //   5
+  // );
+  if (products.length <= 5 && products.length !== 0) {
+    arrayOfCards = products.map((prod) => {
+      const product = {
+        product: prod,
+      };
+      return (
+        CardMaker(product)
+      );
+    });
+  }
   return (
     <RPContainer>
       <div className="list-row-1">
         <h4><em>Related Products</em></h4>
         <CardList>
-          {renderElement()}
+          { arrayOfCards }
         </CardList>
       </div>
       <div className="list-row-2">

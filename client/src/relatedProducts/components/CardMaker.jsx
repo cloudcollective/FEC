@@ -1,11 +1,18 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const CardMaker = ({ products, product }) => {
-  // eslint-disable-next-line no-console
-  console.log(product, 'This here are you temp. Products');
+const Card = styled.div`
+border: solid 1px black;
+height: 400px;
+width: 300px;
+display: inline-block;
+margin-right: 15px;
+`;
+const CardMaker = ({ product }) => {
+  console.log(product, 'Here is a Product');
   return (
-    <div className="card">
-      <img src={`${product.thumbnail}`} alt="Product Img" />
+    <Card>
+      <img src={`${product.url}`} onError={(e) => { e.target.onerror = null; e.target.src = 'https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png'; }} alt="default" width="200px" height="280px" />
       <div className="category">
         {`Category: ${product.category}`}
       </div>
@@ -13,12 +20,12 @@ const CardMaker = ({ products, product }) => {
         {`Product Name: ${product.name}`}
       </div>
       <div className="price">
-        {`Price: $${product.default_price}`}
+        {`Price: $${product.price}`}
       </div>
       <div className="stars">
         ★★★★★
       </div>
-    </div>
+    </Card>
   );
 };
 export default CardMaker;
