@@ -6,8 +6,8 @@ import AnswererInfo from './AnswererInfo';
 const AnswerEntry = ({ answer, first }) => (
   <>
     <FirstCol>{first && <h3>A: </h3>}</FirstCol>
-    <p>{answer.body}</p>
     <SecondCol>
+      <p>{answer.body}</p>
       <AnswererInfo
         answerId={answer.id}
         username={answer.answerer_name}
@@ -19,7 +19,7 @@ const AnswerEntry = ({ answer, first }) => (
 );
 
 const FirstCol = styled.div`
-  grid-column: 1 / span 1
+  grid-column: 1 / span 1;
 `;
 
 const SecondCol = styled.div`
