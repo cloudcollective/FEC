@@ -111,6 +111,7 @@ const getQuestions = (id) => {
     },
     params: {
       product_id: id,
+      count: 50,
     },
   };
 
