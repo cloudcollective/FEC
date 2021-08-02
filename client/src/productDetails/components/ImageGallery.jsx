@@ -79,6 +79,9 @@ const ImageGallery = ({ productStyle, styleId, styleIndex, styleSelected }) => {
   <div className="slide third">
   <img src="3.jpg" alt="">
 </div>
+  <div className="slide fourth">
+  <img src="4.jpg" alt="">
+</div>
 */
 
 export default ImageGallery;

@@ -52,8 +52,8 @@ const AddToCart = ({ styles, styleId, styleIndex, styleSelected }) => {
   return (
     <CartContainer>
       <SizeAndQuantity>
-        {console.log({ quantityAndSize })}
-        {console.log({ size, quantity })}
+        {/* {console.log({ quantityAndSize })}
+        {console.log({ size, quantity })} */}
         <form>
           <select name="size" id="size">
             <option value="default">SELECT SIZE</option>
