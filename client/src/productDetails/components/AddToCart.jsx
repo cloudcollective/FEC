@@ -19,17 +19,27 @@ const AddToCart = ({ styles, styleId, styleIndex, styleSelected }) => {
     return null;
   }
 
-  const quantityAndSize = styles.results[0].skus;
+
+  let quantityAndSize;
   const size = [];
   const quantity = [];
-  for (const [sizeNum, qAndS] of Object.entries(quantityAndSize)) {
-    size.push(qAndS.size);
-    quantity.push(qAndS.quantity);
+  if (styleSelected) {
+    quantityAndSize = styles.results[styleIndex].skus;
+    for (const [sizeNum, qAndS] of Object.entries(quantityAndSize)) {
+      size.push(qAndS.size);
+      quantity.push(qAndS.quantity);
+    }
+  } else {
+    quantityAndSize = styles.results[0].skus;
+    for (const [sizeNum, qAndS] of Object.entries(quantityAndSize)) {
+      size.push(qAndS.size);
+      quantity.push(qAndS.quantity);
+    }
   }
 
   return (
     <CartContainer>
-      {console.log({ styles })}
+      {console.log({ size, quantity })}
       <SizeAndQuantity>
         <form>
           <select name="size" id="size">
