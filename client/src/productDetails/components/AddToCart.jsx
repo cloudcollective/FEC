@@ -14,8 +14,9 @@ const AddBagAndFavorite = styled.div`
   flex-direction: row;
 `;
 
-const AddToCart = ({ styles, styleId, styleIndex, styleSelected }) => {
-  const [selectedSize, setSelectedSize] = useState(0);
+const AddToCart = ({ styles, styleId, styleIndex, styleSelected, }) => {
+  const [selectedSize, setSelectedSize] = useState('');
+  const [availableQty, setAvailableQty] = useState(0);
   /*
   use the selectedSize index (or value but less preferred)
   to assign qtyValue variable to quantity[index]
@@ -49,24 +50,40 @@ const AddToCart = ({ styles, styleId, styleIndex, styleSelected }) => {
     }
   }
 
+  const handleChange = (event) => {
+    setSelectedSize(event.target.value);
+  };
+
+  if (selectedSize) {
+    let qtyIndex = size.indexOf(selectedSize);
+    if (qtyIndex >= 0) {
+      let selectedSizeQty = quantity[qtyIndex];
+      if (selectedSizeQty <= 15 && selectedSizeQty > 0) {
+        for (let i = 0; i <= selectedSizeQty; i++) {
+          <option value={i}>${i}</option>;
+        }
+      }
+    }
+  }
+
   return (
     <CartContainer>
       <SizeAndQuantity>
-        {/* {console.log({ quantityAndSize })}
-        {console.log({ size, quantity })} */}
         <form>
-          <select name="size" id="size">
+          <select name="size" id="size" onChange={handleChange}>
             <option value="default">SELECT SIZE</option>
             {/* set state for selected size and its index,  */}
-            {size.map((size, index) => <option value={size} key={index}>{size}</option>)}
+            {size.map((size, index) => (
+              <option value={size} key={index}>
+                {size}
+              </option>
+            ))}
           </select>
         </form>
         <form>
           <select name="quantity" id="quantity">
-            <option value="default">1</option>
+            <option value="default">SELECT QUANTITY</option>
             <option value="s">2</option>
-            <option value="m">3</option>
-            <option value="l">4</option>
           </select>
         </form>
       </SizeAndQuantity>
