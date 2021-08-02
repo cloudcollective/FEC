@@ -1,40 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import QuestionsAnswersList from './components/QuestionsAnswersList';
 import SearchQuestions from './components/SearchQuestions';
 import AddQuestionBtn from './components/AddQuestionBtn';
 import QuestionModal from './components/QuestionModal';
 import useToggle from './components/common/useToggle';
-import AddAnswerBtn from './components/AddAnswerBtn';
-import AnswerModal from './components/AnswerModal';
 
-const divStyle = {
-  border: '1px solid blue',
-};
+const QuestionsAnswersContainer = ({ productId, questions, answers }) => {
+  const [productName, setProductName] = useState('');
+  const { on, toggle } = useToggle(false);
 
-const QuestionsAnswersContainer = ({ questions, answers }) => {
-  const answerToggle = useToggle();
-  const questionToggle = useToggle();
+  useEffect(() => {
+    axios.get(`single/products/${productId}`)
+      .then((data) => {
+        setProductName(data.data.name);
+      })
+      .catch((error) => {
+        console.log('Error retrieving Product name', error);
+      });
+  }, [productId]);
 
   return (
-    <div style={divStyle}>
+    <div>
       <h3>
         Questions &#38; Answers
       </h3>
       <SearchQuestions />
       <QuestionsAnswersList
+        productName={productName}
         questions={questions}
         answers={answers}
       />
-      <AddAnswerBtn setIsVisible={answerToggle.toggle} />
-      <AnswerModal
-        isVisible={answerToggle.on}
-        setIsVisible={answerToggle.toggle}
-      />
-      <AddQuestionBtn setIsVisible={questionToggle.toggle} />
+      <AddQuestionBtn setIsVisible={toggle} />
       <QuestionModal
-        isVisible={questionToggle.on}
-        setIsVisible={questionToggle.toggle}
+        productName={productName}
+        isVisible={on}
+        setIsVisible={toggle}
       />
     </div>
   );
