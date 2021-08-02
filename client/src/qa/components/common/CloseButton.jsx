@@ -23,7 +23,7 @@ const StyledCloseButton = styled.button`
   font-size: 1.5rem;
   color: darkgrey;
   &:hover {
-    opacity: .3;
+    opacity: .8;
   }
 `;
 
