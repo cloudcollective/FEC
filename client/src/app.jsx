@@ -13,9 +13,7 @@ const app = ({ data }) => (
     <ProductDetails product={data.product} productStyles={data.productStyles} />
     {/* <RelatedProducts data={data} /> */}
     <QuestionsAnswers
-      productId="25172"
-      questions={data.questions}
-      answers={data.answers}
+      productId="25168"
     />
   </>
 );
