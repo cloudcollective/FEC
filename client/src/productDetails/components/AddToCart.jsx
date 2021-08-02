@@ -15,14 +15,26 @@ const AddBagAndFavorite = styled.div`
 `;
 
 const AddToCart = ({ styles, styleId, styleIndex, styleSelected }) => {
+  const [selectedSize, setSelectedSize] = useState(0);
+  /*
+  use the selectedSize index (or value but less preferred)
+  to assign qtyValue variable to quantity[index]
+
+  conditional rendering
+    if qtyValue is more than 15,
+      render 1 to 15
+    else
+      render 1 to qtyValue
+  */
+
   if (!styles && !styleId && !styleIndex && !styleSelected) {
     return null;
   }
 
-
   let quantityAndSize;
   const size = [];
   const quantity = [];
+
   if (styleSelected) {
     quantityAndSize = styles.results[styleIndex].skus;
     for (const [sizeNum, qAndS] of Object.entries(quantityAndSize)) {
@@ -40,6 +52,8 @@ const AddToCart = ({ styles, styleId, styleIndex, styleSelected }) => {
   return (
     <CartContainer>
       <SizeAndQuantity>
+        {console.log({ quantityAndSize })}
+        {console.log({ size, quantity })}
         <form>
           <select name="size" id="size">
             <option value="default">SELECT SIZE</option>

@@ -5,6 +5,7 @@ import ImageGallery from './components/ImageGallery';
 import ProductInformation from './components/ProductInformation';
 import StyleSelector from './components/StyleSelector';
 import AddToCart from './components/AddToCart';
+import ProductOverview from './components/ProductOverview';
 
 const tempProductID = 25167;
 
@@ -72,6 +73,7 @@ const ProductDetails = (props) => {
           <AddToCart styles={productData[1]} styleId={styleId} styleIndex={styleIndex} styleSelected={styleSelected} />
         </RightColumn>
       </Content>
+      {/* <ProductOverview product={productData[0]} /> */}
     </ Body>
   );
 };
