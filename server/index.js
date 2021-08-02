@@ -102,6 +102,18 @@ app.put('/qa/answers/:answerId/report', (req, res) => {
     });
 });
 
+app.get('/qa/questions/:id', (req, res) => {
+  const { id } = req.params;
+
+  atelier.getQuestions(id)
+    .then((data) => {
+      res.status(201).send(data);
+    })
+    .catch((error) => {
+      res.status(501).send(error);
+    });
+});
+
 const port = 3000;
 app.listen(port, () => {
   // eslint-disable-next-line no-console
