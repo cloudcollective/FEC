@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-// import ProductDetails from './productDetails';
+import ProductDetails from './productDetails';
 // import RelatedProducts from './relatedProducts';
-// import QuestionsAnswers from './qa';
+import QuestionsAnswers from './qa';
 // import ReviewsRatings from './rr';
 
 class App extends React.Component {
@@ -81,21 +81,20 @@ class App extends React.Component {
     console.log(reviewsData, metaReviewData, 'Ratings and Reviews');
     return (
       <div>
-        {/* <div>
+        <div>
           <ProductDetails />
-        </div> */}
+        </div>
         {/* <div>
           <RelatedProducts
             product={selectedProduct}
             products={relatedProductData}
           />
         </div> */}
-        {/* <div>
-         <QuestionsAnswers
-           questions={data.questions}
-           answers={data.answers}
-         />
-       </div> */}
+        <div>
+          <QuestionsAnswers
+            questions={questionsAndAnswersData}
+          />
+        </div>
         {/* <div>
          <ReviewsRatings />
          </div> */}
