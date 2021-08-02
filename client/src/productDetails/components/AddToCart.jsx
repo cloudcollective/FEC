@@ -39,7 +39,6 @@ const AddToCart = ({ styles, styleId, styleIndex, styleSelected }) => {
 
   return (
     <CartContainer>
-      {console.log({ size, quantity })}
       <SizeAndQuantity>
         <form>
           <select name="size" id="size">
