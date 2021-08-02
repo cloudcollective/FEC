@@ -16,17 +16,7 @@ const AddBagAndFavorite = styled.div`
 
 const AddToCart = ({ styles, styleId, styleIndex, styleSelected, }) => {
   const [selectedSize, setSelectedSize] = useState('');
-  const [availableQty, setAvailableQty] = useState(0);
-  /*
-  use the selectedSize index (or value but less preferred)
-  to assign qtyValue variable to quantity[index]
-
-  conditional rendering
-    if qtyValue is more than 15,
-      render 1 to 15
-    else
-      render 1 to qtyValue
-  */
+  const [selectedQty, setSelectedQty] = useState(0);
 
   if (!styles && !styleId && !styleIndex && !styleSelected) {
     return null;
@@ -50,17 +40,31 @@ const AddToCart = ({ styles, styleId, styleIndex, styleSelected, }) => {
     }
   }
 
-  const handleChange = (event) => {
+  const sizeSelection = (event) => {
     setSelectedSize(event.target.value);
   };
 
+  const qtySelection = (event) => {
+    setSelectedQty(event.target.value);
+  };
+
+  const addToCart = () => {
+    // Adding to Cart: productName: , productId: , productStyle: , productStyleId: , price: ,
+    console.log(`size: ${selectedSize}, quantity: ${selectedQty}`);
+  };
+
+  const qtyArray = [];
   if (selectedSize) {
     let qtyIndex = size.indexOf(selectedSize);
     if (qtyIndex >= 0) {
-      let selectedSizeQty = quantity[qtyIndex];
+      const selectedSizeQty = quantity[qtyIndex];
       if (selectedSizeQty <= 15 && selectedSizeQty > 0) {
-        for (let i = 0; i <= selectedSizeQty; i++) {
-          <option value={i}>${i}</option>;
+        for (let i = 1; i <= selectedSizeQty; i += 1) {
+          qtyArray.push(i);
+        }
+      } else if (selectedSizeQty > 15) {
+        for (let i = 1; i <= 15; i += 1) {
+          qtyArray.push(i);
         }
       }
     }
@@ -70,7 +74,7 @@ const AddToCart = ({ styles, styleId, styleIndex, styleSelected, }) => {
     <CartContainer>
       <SizeAndQuantity>
         <form>
-          <select name="size" id="size" onChange={handleChange}>
+          <select name="size" id="size" onChange={sizeSelection}>
             <option value="default">SELECT SIZE</option>
             {/* set state for selected size and its index,  */}
             {size.map((size, index) => (
@@ -81,15 +85,19 @@ const AddToCart = ({ styles, styleId, styleIndex, styleSelected, }) => {
           </select>
         </form>
         <form>
-          <select name="quantity" id="quantity">
+          <select name="quantity" id="quantity" onChange={qtySelection}>
             <option value="default">SELECT QUANTITY</option>
-            <option value="s">2</option>
+            {qtyArray.map((qty, index) => (
+              <option value={qty} key={index}>
+                {qty}
+              </option>
+            ))}
           </select>
         </form>
       </SizeAndQuantity>
       <AddBagAndFavorite>
         <div className="btn_addToBag btn">
-          <button>ADD TO BAG +</button>
+          <button onClick={addToCart}>ADD TO BAG +</button>
         </div>
         <div className="btn_favorite btn">
           <button>★</button>
