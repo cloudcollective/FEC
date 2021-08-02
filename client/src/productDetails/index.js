@@ -69,7 +69,7 @@ const ProductDetails = (props) => {
         <RightColumn>
           <ProductInformation product={productData[0]} styles={productData[1]} styleId={styleId} styleIndex={styleIndex} styleSelected={styleSelected} />
           <StyleSelector styles={productData[1]} getStyleId={getStyleId} />
-          <AddToCart styles={productData[1]} />
+          <AddToCart styles={productData[1]} styleId={styleId} styleIndex={styleIndex} styleSelected={styleSelected} />
         </RightColumn>
       </Content>
     </ Body>

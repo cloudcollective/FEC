@@ -14,8 +14,8 @@ const AddBagAndFavorite = styled.div`
   flex-direction: row;
 `;
 
-const AddToCart = ({ styles }) => {
-  if (!styles) {
+const AddToCart = ({ styles, styleId, styleIndex, styleSelected }) => {
+  if (!styles && !styleId && !styleIndex && !styleSelected) {
     return null;
   }
 
@@ -29,6 +29,7 @@ const AddToCart = ({ styles }) => {
 
   return (
     <CartContainer>
+      {console.log({ styles })}
       <SizeAndQuantity>
         <form>
           <select name="size" id="size">
