@@ -30,13 +30,18 @@ const MainImage = styled.img`
   margin: 10px;
 `;
 
-const ImageGallery = ({ productData }) => {
+const ImageGallery = ({ productStyle, styleId, styleIndex, styleSelected }) => {
   const [currImg, setCurrImg] = useState(0);
 
-  if (!productData) {
+  if (!productStyle && !styleId && !styleIndex && !styleSelected) {
     return null;
   }
-  const { photos } = productData.results[0];
+
+  let { photos } = productStyle.results[0];
+
+  if (styleSelected) {
+    photos = productStyle.results[styleIndex].photos;
+  }
 
   const changeMainPhoto = (index) => {
     setCurrImg(index);
@@ -54,10 +59,29 @@ const ImageGallery = ({ productData }) => {
         ))}
       </ThumbContainer>
       <MainImageContainer>
-        <MainImage src={photos[currImg].url} alt={productData.results.name} />
+        <MainImage src={photos[currImg].url} alt={productStyle.results.name} />
       </MainImageContainer>
     </Gallery>
   );
 };
+
+/*
+<input type="radio" name="radio-btn" id="radio1" />
+<input type="radio" name="radio-btn" id="radio2" />
+<input type="radio" name="radio-btn" id="radio3" />
+<input type="radio" name="radio-btn" id="radio4" />
+<div className="slide first">
+  <img src="1.jpg" alt="">
+</div>
+  <div className="slide second">
+  <img src="2.jpg" alt="">
+</div>
+  <div className="slide third">
+  <img src="3.jpg" alt="">
+</div>
+  <div className="slide fourth">
+  <img src="4.jpg" alt="">
+</div>
+*/
 
 export default ImageGallery;
