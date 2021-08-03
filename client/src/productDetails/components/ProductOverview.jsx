@@ -21,8 +21,7 @@ const ProductOverview = ({ product }) => {
         </div>
       </div>
     </>
-  )
-}
-
+  );
+};
 
 export default ProductOverview;

@@ -76,7 +76,7 @@ const ProductDetails = ({ selectedProduct }) => {
           <AddToCart styles={productData[1]} styleId={styleId} styleIndex={styleIndex} styleSelected={styleSelected} />
         </RightColumn>
       </Content>
-      {/* <ProductOverview product={productData[0]} /> */}
+      <ProductOverview product={productData[0]} />
     </Body>
   );
 };
