@@ -12,7 +12,8 @@ import ProductOverview from './components/ProductOverview';
 // 25171
 // 25169
 // 25170
-const tempProductID = 25171;
+// 25174
+const tempProductID = 25174;
 
 const getData = (callback) => {
   axios.get(`/products/${tempProductID}`)

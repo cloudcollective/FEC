@@ -74,13 +74,13 @@ const ProductInformation = ({ product, styles, styleId, styleIndex, styleSelecte
         </p>
       </div>
       <ProductCategory>
-        <h2>{product.category}</h2>
+        <h3>{product.category}</h3>
       </ProductCategory>
       <div className="displayName">
         <h1>{product.name}</h1>
       </div>
       <div className="displayPrice">
-        <h3>{displayPrice}</h3>
+        <h2>{displayPrice}</h2>
       </div>
       <div>
         <h4>
