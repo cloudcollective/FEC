@@ -6,10 +6,10 @@ import AnswererInfo from './AnswererInfo';
 const AnswerEntry = ({ answer, first }) => (
   <>
     <FirstCol>{first && <h3>A: </h3>}</FirstCol>
-    <p>{answer.body}</p>
     <SecondCol>
+      <p>{answer.body}</p>
       <AnswererInfo
-        answerId={answer.answer_id}
+        answerId={answer.id}
         username={answer.answerer_name}
         date={answer.date}
         helpfulness={answer.helpfulness}
@@ -19,7 +19,7 @@ const AnswerEntry = ({ answer, first }) => (
 );
 
 const FirstCol = styled.div`
-  grid-column: 1 / span 1
+  grid-column: 1 / span 1;
 `;
 
 const SecondCol = styled.div`
@@ -28,7 +28,7 @@ const SecondCol = styled.div`
 
 AnswerEntry.propTypes = {
   answer: PropTypes.shape({
-    answer_id: PropTypes.number,
+    id: PropTypes.number,
     body: PropTypes.string,
     date: PropTypes.string,
     answerer_name: PropTypes.string,

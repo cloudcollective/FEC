@@ -86,6 +86,25 @@ const getRelatedProductsById = (id) => {
     });
 };
 
+const getQuestionsById = (id) => {
+  const options = {
+    url: `${baseURL}/qa/questions/`,
+    headers: {
+      Authorization: config.TOKEN,
+    },
+    params: {
+      product_id: id,
+      count: 50,
+    },
+  };
+
+  return axios(options)
+    .then((response) => response.data)
+    .catch((error) => {
+      throw error;
+    });
+};
+
 const reportAnswer = (answerId) => {
   const options = {
     method: 'put',
@@ -128,6 +147,7 @@ module.exports = {
   getReviewsById,
   getMetaReviewsById,
   getRelatedProductsById,
+  getQuestionsById,
   reportAnswer,
   getQuestions,
 };
