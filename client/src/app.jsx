@@ -1,6 +1,7 @@
 import React from 'react';
 import ProductDetails from './productDetails';
 import QuestionsAnswers from './qa';
+import Reviews from './rr';
 
 // import RelatedProducts from './relatedProducts';
 // import ReviewsRatings from './rr';
@@ -18,6 +19,8 @@ const app = ({ data }) => (
       questions={data.questions}
       answers={data.answers}
     />
+    <br />
+    <Reviews />
   </>
 );
 

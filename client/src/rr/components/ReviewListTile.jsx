@@ -5,42 +5,71 @@ import { FaCheckCircle } from 'react-icons/fa';
 import styled from 'styled-components';
 
 const Tile = styled.div`
-  paddingBottom: "20px";
-  paddingTop: "20px";
-  borderBottom: "3px    solid lightGrey";
+  padding-bottom: 20px;
+  padding-top: 20px;
+  border-bottom: 3px solid lightGrey;
+  font-family: Arial;
 `;
 
 const CornerContent = styled.div`
-  display: "flex";
-  justifyContent: "space-between";
+  display: flex;
+  justify-content: space-between;
 `;
 
+const Username = styled.div`
+  color: "black";
+  font-family: Courier New;
+  font-size: 1em;
+  display: inline-block;
+  margin-bottom: 20px
+`;
 
+const RecommendBox = styled.div`
+  display: inline-block;
+  font-size: 1em;
+  font-family: Arial;
+  border: 1px dotted black;
+  margin: 10px;
+  padding: 10px;
+  background-color: HoneyDew;
+`;
 
+const ReviewSummary = styled.div`
+  font-size: 1.75em;
+`;
 
+const ReviewBody = styled.div`
+  margin-left: 20px;
+`;
 
-const ReviewListTile = (props) => {
-  console.log(props);
+const Helpful = styled.div`
+  font-size: .75em;
+  color: grey;
+  margin: 20px;
+`;
 
-
-  return (
-
-    <Tile >
-      <CornerContent>
-        <div>
-          <StarRatingBar rating={props.result.rating} />
-        </div>
-        <div style={{color: "black", fontFamily: "Courier New", fontSize: 15, display: "inline-block", marginBottom: "20px" }}>
-          <FaUser /> {props.result.reviewer_name} @ {props.result.date.slice(0, 10)}
-        </div>
-      </CornerContent>
-      {props.result.recommend === true && <div style={{ display: "inline-block", fontSize: 15, fontFamily: "Arial", border: "1px dotted black", margin: "10px", padding: "10px", backgroundColor: "HoneyDew"}}> <FaCheckCircle color="green" /> I recommend this product! </div>}
-      <div style={{fontSize: 25, fontFamily: "Arial"}}> {props.result.summary}</div>
-      <div style={{marginLeft: "20px"}}><div style={{fontFamily: "Arial"}}><br />{props.result.body}</div></div>
-      <div style={{fontSize: 10, fontFamily: "Arial", color: "grey", margin: "20px"}}> Was this review helpful? <u>Yes (10)</u></div>
-    </Tile>
-  )
-};
+const ReviewListTile = (props) => (
+  <Tile>
+    <CornerContent>
+      <div>
+        <StarRatingBar rating={props.result.rating} />
+      </div>
+      <Username>
+        <FaUser /> {props.result.reviewer_name} @ {props.result.date.slice(0, 10)}
+      </Username>
+    </CornerContent>
+    {props.result.recommend &&
+      (
+      <RecommendBox>
+        <FaCheckCircle color="green" />
+        { ' I recommend this product!' }
+      </RecommendBox>
+      )}
+    <ReviewSummary> {props.result.summary}</ReviewSummary>
+    <ReviewBody><br />{props.result.body}</ReviewBody>
+    <Helpful> Was this review helpful? <u>Yes (10)</u></Helpful>
+  </Tile>
+);
 
 export default ReviewListTile;
 
