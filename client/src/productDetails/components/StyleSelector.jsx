@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const ThumbContainer = styled.div`
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
 `;
 
 const Thumbnails = styled.img`

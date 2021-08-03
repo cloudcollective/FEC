@@ -74,10 +74,10 @@ class App extends React.Component {
       selectedProduct, relatedProductData, questionsAndAnswersData, reviewsData, metaReviewData,
     } = this.state;
     // Delete these console.logs later
-    console.log(selectedProduct, 'Product Detail');
-    console.log(relatedProductData, 'Related Products');
-    console.log(questionsAndAnswersData, 'QA');
-    console.log(reviewsData, metaReviewData, 'Ratings and Reviews');
+    // console.log(selectedProduct, 'Product Detail');
+    // console.log(relatedProductData, 'Related Products');
+    // console.log(questionsAndAnswersData, 'QA');
+    // console.log(reviewsData, metaReviewData, 'Ratings and Reviews');
     return (
       <div>
         <div>
@@ -97,7 +97,6 @@ class App extends React.Component {
         {/* <div>
          <ReviewsRatings />
          </div> */}
-        <div>TESTING</div>
       </div>
     );
   }
