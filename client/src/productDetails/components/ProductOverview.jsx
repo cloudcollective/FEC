@@ -1,15 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const OverviewBody = styled.div`
+padding: 20px;
+`;
+
 const ProductOverview = ({ product }) => {
   if (!product) {
     return null;
   }
-
-  const OverviewBody = styled.div`
-    /* display: flex;
-    justify-content: center; */
-  `;
 
   return (
     <OverviewBody>

@@ -2,16 +2,51 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const CartContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
 `;
 
 const SizeAndQuantity = styled.div`
-  flex-directon: row;
+  grid-template-columns: 30% 30%;
 `;
 
 const AddBagAndFavorite = styled.div`
-  flex-direction: row;
+
+`;
+
+const AddtoBagBtn = styled.button`
+  border: 1px solid black;
+  background-color: #363636;
+  color: #F8F8F8;
+  cursor: pointer;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  &:hover {
+    background-color: #F8F8F8;
+    color: #363636;
+    text-decoration: bold;
+  }
+`;
+
+const FavoriteBtn = styled.button`
+  border: 1px solid black;
+  background-color: #363636;
+  color: #F8F8F8;
+  cursor: pointer;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  &:hover {
+    background-color: #F8F8F8;
+    color: #DC2F2F;
+    text-decoration: bold;
+  }
 `;
 
 const AddToCart = ({ styles, styleId, styleIndex, styleSelected, }) => {
@@ -70,6 +105,10 @@ const AddToCart = ({ styles, styleId, styleIndex, styleSelected, }) => {
     }
   }
 
+  const saveFavorite = () => {
+    console.log(`saving productId ____ as favorite`);
+  };
+
   return (
     <CartContainer>
       <SizeAndQuantity>
@@ -97,10 +136,10 @@ const AddToCart = ({ styles, styleId, styleIndex, styleSelected, }) => {
       </SizeAndQuantity>
       <AddBagAndFavorite>
         <div className="btn_addToBag btn">
-          <button onClick={addToCart}>ADD TO BAG +</button>
+          <AddtoBagBtn onClick={addToCart} type="submit">ADD TO BAG +</AddtoBagBtn>
         </div>
         <div className="btn_favorite btn">
-          <button>★</button>
+          <FavoriteBtn onClick={() => saveFavorite} type="button">★</FavoriteBtn>
         </div>
       </AddBagAndFavorite>
     </CartContainer>

@@ -6,8 +6,20 @@ const OriginalPrice = styled.span`
 `;
 
 const SalePrice = styled.span`
-  color: red;
+  color: #DC2F2F;
   text-decoration: bold;
+`;
+
+const ProductCategory = styled.div`
+
+`;
+
+const ProductName = styled.div`
+
+`;
+
+const ProductStyleName = styled.div`
+
 `;
 
 const ProductInformation = ({ product, styles, styleId, styleIndex, styleSelected }) => {
@@ -61,19 +73,19 @@ const ProductInformation = ({ product, styles, styleId, styleIndex, styleSelecte
           </span>
         </p>
       </div>
-      <div className="displayCategory">
-        <p>{product.category}</p>
-      </div>
+      <ProductCategory>
+        <h2>{product.category}</h2>
+      </ProductCategory>
       <div className="displayName">
         <h1>{product.name}</h1>
       </div>
       <div className="displayPrice">
-        {displayPrice}
+        <h3>{displayPrice}</h3>
       </div>
       <div>
-        <p>
+        <h4>
           STYLE: {styleName}
-        </p>
+        </h4>
       </div>
     </>
   );

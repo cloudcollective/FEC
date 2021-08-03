@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import Header from './components/Header';
 import ImageGallery from './components/ImageGallery';
 import ProductInformation from './components/ProductInformation';
 import StyleSelector from './components/StyleSelector';
@@ -8,6 +9,9 @@ import AddToCart from './components/AddToCart';
 import ProductOverview from './components/ProductOverview';
 
 // 25167
+// 25171
+// 25169
+// 25170
 const tempProductID = 25171;
 
 const getData = (callback) => {
@@ -21,13 +25,15 @@ const getData = (callback) => {
 };
 
 const Body = styled.div`
+  font-family: 'Spectral SC', serif;
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  margin:  0 150px;
+  background-color: #F8F8F8;
 `;
 
 const Content = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
   padding: 15px;
 `;
@@ -66,6 +72,7 @@ const ProductDetails = ({ selectedProduct }) => {
 
   return (
     <Body>
+      <Header />
       <Content>
         <LeftColumn>
           <ImageGallery productStyle={productData[1]} styleId={styleId} styleIndex={styleIndex} styleSelected={styleSelected} />
