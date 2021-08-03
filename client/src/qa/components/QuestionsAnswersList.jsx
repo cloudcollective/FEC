@@ -26,11 +26,12 @@ const QuestionsAnswersList = ({ productName, questions }) => {
   }, [sortedQuestions]);
 
   useEffect(() => {
-    if (questions.length) {
-      setCurrentQuestions(sortedQuestions.slice(0, slicer));
-      setNumOfQuestionsLeft(sortedQuestions.length - currentQuestions.length);
+    if (sortedQuestions !== null) {
+      const newSortedQuestions = sortedQuestions.slice(0, slicer);
+      setCurrentQuestions(newSortedQuestions);
+      setNumOfQuestionsLeft(sortedQuestions.length - newSortedQuestions.length);
     }
-  }, [slicer]);
+  }, [slicer, sortedQuestions]);
 
   if (!currentQuestions) {
     return (
@@ -39,7 +40,7 @@ const QuestionsAnswersList = ({ productName, questions }) => {
   }
 
   return (
-    <div data-testid="qa-list" style={{ height: '100vh', overflowY: 'auto' }}>
+    <div data-testid="qa-list" style={{ maxHeight: '100vh', overflowY: 'auto' }}>
       {currentQuestions.map((question) => (
         <QuestionAndAnswerEntry
           productName={productName}
@@ -60,30 +61,30 @@ const QuestionsAnswersList = ({ productName, questions }) => {
   );
 };
 
-QuestionsAnswersList.propTypes = {
-  questions: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(
-    PropTypes.shape({
-      answers: PropTypes.shape({
-        answer_id: PropTypes.number,
-        body: PropTypes.string,
-        date: PropTypes.string,
-        answerer_name: PropTypes.string,
-        helpfulness: PropTypes.number,
-        photos: PropTypes.arrayOf(PropTypes.string),
-      }),
-      question_id: PropTypes.number,
-      question_body: PropTypes.string,
-      question_date: PropTypes.string,
-      asker_name: PropTypes.string,
-      question_helpfulness: PropTypes.number,
-      reported: PropTypes.bool,
-    }),
-  )]),
-  productName: PropTypes.string.isRequired,
-};
+// QuestionsAnswersList.propTypes = {
+//   questions: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(
+//     PropTypes.shape({
+//       answers: PropTypes.shape({
+//         answer_id: PropTypes.number,
+//         body: PropTypes.string,
+//         date: PropTypes.string,
+//         answerer_name: PropTypes.string,
+//         helpfulness: PropTypes.number,
+//         photos: PropTypes.arrayOf(PropTypes.string),
+//       }),
+//       question_id: PropTypes.number,
+//       question_body: PropTypes.string,
+//       question_date: PropTypes.string,
+//       asker_name: PropTypes.string,
+//       question_helpfulness: PropTypes.number,
+//       reported: PropTypes.bool,
+//     }),
+//   )]),
+//   productName: PropTypes.string.isRequired,
+// };
 
-QuestionsAnswersList.defaultProps = {
-  questions: PropTypes.object,
-};
+// QuestionsAnswersList.defaultProps = {
+//   questions: [],
+// };
 
 export default QuestionsAnswersList;
