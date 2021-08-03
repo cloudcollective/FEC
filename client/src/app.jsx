@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import ProductDetails from './productDetails';
+// import QuestionsAnswers from './qa';
 // import RelatedProducts from './relatedProducts';
-import QuestionsAnswers from './qa';
+// import QuestionsAnswers from './qa';
 // import ReviewsRatings from './rr';
 
 class App extends React.Component {
@@ -18,13 +19,13 @@ class App extends React.Component {
     };
 
     this.getProductData = this.getProductData.bind(this);
-    this.getQuestionData = this.getQuestionData.bind(this);
+    // this.getQuestionData = this.getQuestionData.bind(this);
   }
 
   componentDidMount() {
     const productId = '25169';
     this.getProductData(productId);
-    this.getQuestionData(productId);
+    // this.getQuestionData(productId);
   }
 
   getProductData(id) {
@@ -57,18 +58,16 @@ class App extends React.Component {
       });
   }
 
-  getQuestionData(id) {
-    axios.get(`/qa/questions/${id}`)
-      .then((data) => {
-        this.setState({
-          questionsAndAnswersData: data.data,
-        });
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error);
-      });
-  }
+  // const app = ({ data }) => (
+  //   <>
+  //     <ProductDetails product={data.product} productStyles={data.productStyles} />
+  //     {/* <RelatedProducts data={data} /> */}
+  //     {/* <QuestionsAnswers
+  //     questions={data.questions}
+  //     answers={data.answers}
+  //   /> */}
+  //   </>
+  // );
 
   render() {
     const {
@@ -90,14 +89,15 @@ class App extends React.Component {
             products={relatedProductData}
           />
         </div> */}
-        <div>
+        {/* <div>
           <QuestionsAnswers
             questions={questionsAndAnswersData}
           />
-        </div>
+        </div> */}
         {/* <div>
          <ReviewsRatings />
          </div> */}
+        <div>TESTING</div>
       </div>
     );
   }
