@@ -91,18 +91,6 @@ app.get('/reviews/meta', (req, res) => {
     });
 });
 
-app.get('/qa/questions', (req, res) => {
-  const productId = req.query.product_id;
-
-  atelier.getQuestionsById(productId)
-    .then((data) => {
-      res.status(200).send(data);
-    })
-    .catch((error) => {
-      res.status(500).send(error);
-    });
-});
-
 app.put('/qa/answers/:answerId/report', (req, res) => {
   const { answerId } = req.params;
 
@@ -115,8 +103,8 @@ app.put('/qa/answers/:answerId/report', (req, res) => {
     });
 });
 
-app.get('/qa/questions/:id', (req, res) => {
-  const { id } = req.params;
+app.get('/qa/questions', (req, res) => {
+  const { id } = req.query;
 
   atelier.getQuestions(id)
     .then((data) => {
