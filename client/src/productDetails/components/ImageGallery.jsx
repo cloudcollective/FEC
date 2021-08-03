@@ -137,23 +137,4 @@ const ImageGallery = ({
   );
 };
 
-/*
-<input type="radio" name="radio-btn" id="radio1" />
-<input type="radio" name="radio-btn" id="radio2" />
-<input type="radio" name="radio-btn" id="radio3" />
-<input type="radio" name="radio-btn" id="radio4" />
-<div className="slide first">
-  <img src="1.jpg" alt="">
-</div>
-  <div className="slide second">
-  <img src="2.jpg" alt="">
-</div>
-  <div className="slide third">
-  <img src="3.jpg" alt="">
-</div>
-  <div className="slide fourth">
-  <img src="4.jpg" alt="">
-</div>
-*/
-
 export default ImageGallery;
