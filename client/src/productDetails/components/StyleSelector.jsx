@@ -16,21 +16,16 @@ const Thumbnails = styled.img`
   border-radius: 45%;
 `;
 
-const StyleSelector = ({ styles }) => {
+const StyleSelector = ({ styles, getStyleId }) => {
   if (!styles) {
     return null;
   }
 
   return (
     <>
-      {console.log(styles)}
-      <div>
-        {/* change the style name dynamically when clicked */}
-        <p>STYLE: {styles.results[0].name}</p>
-      </div>
       <ThumbContainer>
         {styles.results.map((style, index) =>
-          <Thumbnails src={style.photos[0].thumbnail_url} key={index} alt="thumbnails" onClick={() => console.log(style.style_id)} />)}
+          <Thumbnails src={style.photos[0].thumbnail_url} key={index} alt="thumbnails" onClick={() => getStyleId(style.style_id, index)} />)}
       </ThumbContainer>
     </>
   );
