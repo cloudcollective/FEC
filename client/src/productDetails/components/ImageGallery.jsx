@@ -1,36 +1,75 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+// import arrowLeft from '../ArrowImages/arrow-left.png';
+// import arrowRight from '../ArrowImages/arrow-right.png';
 
 const Gallery = styled.div`
   display: flex;
-  flex-direction: row;
-`;
-
-const ThumbContainer = styled.div`
   flex-direction: column;
 `;
 
-const Thumbnails = styled.img`
-  height: 80px;
-  width: 60px;
-  object-fit: cover;
-  margin: 10px;
-  cursor: pointer;
-  display: block;
+const ThumbContainer = styled.div`
+  max-width: 700px; // same as width of MainImage
+  display: flex;
+  min-height: 100px;
+  align-items: center;
 `;
 
-const MainImageContainer = styled.div`
+const Slider = styled.div`
+  width: 450px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: hidden;
+`;
+
+const Thumbnails = styled.img`
+  display: block;
+  object-fit: cover;
+  max-width: 180px;
+  max-height: 100px;
+  cursor: pointer;
+  opacity: 0.5;
+  margin: 5px;
+  border: 2px solid black;
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+const ActiveThumbnail = styled.img`
+  display: block;
+  object-fit: cover;
+  max-width: 180px;
+  max-height: 100px;
+  cursor: pointer;
+  opacity: 1;
+  margin: 5px;
+  border: 2px solid black;
 `;
 
 const MainImage = styled.img`
-  justify-content: center;
-  max-height: 700px;
   max-width: 700px;
+  max-height: 800px;
+  object-fit: cover;
   cursor: pointer;
-  margin: 10px;
+  border: 2px solid black;
 `;
 
-const ImageGallery = ({ productStyle, styleId, styleIndex, styleSelected }) => {
+const Arrows = styled.div`
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: .3s;
+  &:hover {
+    opacity: 0.5;
+    width: 35px;
+    height: 35px;
+  }
+`;
+
+const ImageGallery = ({
+  productStyle, styleId, styleIndex, styleSelected,
+}) => {
   const [currImg, setCurrImg] = useState(0);
 
   if (!productStyle && !styleId && !styleIndex && !styleSelected) {
@@ -49,18 +88,34 @@ const ImageGallery = ({ productStyle, styleId, styleIndex, styleSelected }) => {
 
   return (
     <Gallery>
+      <MainImage src={photos[currImg].url} alt={productStyle.results.name} />
       <ThumbContainer>
-        {photos.map((photo, index) => (
-          <Thumbnails
-            src={photo.thumbnail_url}
-            key={index} alt="thumbnails"
-            onClick={() => changeMainPhoto(index)}
-          />
-        ))}
+        {/* <Arrows src={arrowLeft} alt="left arrow" /> */}
+        <Arrows>LEFT</Arrows>
+        <Slider>
+          {photos.map((photo, index) => {
+            if (index === currImg) {
+              return (
+                <ActiveThumbnail
+                  src={photo.thumbnail_url}
+                  key={index}
+                  alt="thumbnails"
+                />
+              );
+            }
+            return (
+              <Thumbnails
+                src={photo.thumbnail_url}
+                key={index}
+                alt="thumbnails"
+                onClick={() => changeMainPhoto(index)}
+              />
+            );
+          })}
+        </Slider>
+        {/* <Arrows src={arrowRight} alt="right arrow" /> */}
+        <Arrows>RIGHT</Arrows>
       </ThumbContainer>
-      <MainImageContainer>
-        <MainImage src={photos[currImg].url} alt={productStyle.results.name} />
-      </MainImageContainer>
     </Gallery>
   );
 };
