@@ -61,6 +61,8 @@ const AddToCart = ({ styles, styleId, styleIndex, styleSelected, }) => {
   const size = [];
   const quantity = [];
 
+
+  // let sizeAndQuantityObj = Object.entries(quantityAndSize);
   if (styleSelected) {
     quantityAndSize = styles.results[styleIndex].skus;
     for (const [sizeNum, qAndS] of Object.entries(quantityAndSize)) {
