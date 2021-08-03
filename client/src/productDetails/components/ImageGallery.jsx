@@ -9,14 +9,14 @@ const Gallery = styled.div`
 `;
 
 const ThumbContainer = styled.div`
-  max-width: 700px; // same as width of MainImage
+  max-width: 1000px; // same as width of MainImage
   display: flex;
   min-height: 100px;
   align-items: center;
 `;
 
 const Slider = styled.div`
-  width: 700px;
+  width: 1000px;
   display: flex;
   /* flex-wrap: nowrap;
   overflow-x: hidden; */
@@ -50,7 +50,7 @@ const ActiveThumbnail = styled.img`
 `;
 
 const MainImage = styled.img`
-  max-width: 700px;
+  max-width: 1000px;
   max-height: 600px;
   object-fit: cover;
   cursor: pointer;
