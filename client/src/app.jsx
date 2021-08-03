@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import ProductDetails from './productDetails';
-// import QuestionsAnswers from './qa';
+import QuestionsAnswers from './qa';
 // import RelatedProducts from './relatedProducts';
 // import QuestionsAnswers from './qa';
 // import ReviewsRatings from './rr';
@@ -18,14 +18,13 @@ class App extends React.Component {
       questionsAndAnswersData: {},
     };
     this.getProductData = this.getProductData.bind(this);
-    // this.getQuestionData = this.getQuestionData.bind(this);
+    this.getQuestionData = this.getQuestionData.bind(this);
   }
-
 
   componentDidMount() {
     const productId = '25169';
     this.getProductData(productId);
-    // this.getQuestionData(productId);
+    this.getQuestionData(productId);
   }
 
   getProductData(id) {
@@ -55,6 +54,22 @@ class App extends React.Component {
       .catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error);
+      });
+  }
+
+  getQuestionData(id) {
+    axios.get(('/qa/questions'), {
+      params: {
+        id,
+      },
+    })
+      .then((data) => {
+        this.setState({
+          questionsAndAnswersData: data.data,
+        });
+      })
+      .catch((error) => {
+        console.log('Error retrieving questions via product ID', error);
       });
   }
 
@@ -89,15 +104,14 @@ class App extends React.Component {
             products={relatedProductData}
           />
         </div> */}
-        {/* <div>
-          <QuestionsAnswers
-            questions={questionsAndAnswersData}
-          />
-        </div> */}
+        { /* TODO Fix Product ID implementation */ }
+        <QuestionsAnswers
+          questions={questionsAndAnswersData.results}
+          productId={questionsAndAnswersData.product_id}
+        />
         {/* <div>
          <ReviewsRatings />
          </div> */}
-        <div>TESTING</div>
       </div>
     );
   }
