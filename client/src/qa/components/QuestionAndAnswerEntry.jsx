@@ -6,18 +6,22 @@ import AnswerEntry from './AnswerEntry';
 
 const QuestionAndAnswerEntry = ({ productName, question, answers }) => {
   const [slicer, setSlicer] = useState(2);
-  const initialAnswers = answers.slice(0, slicer);
+
+  // Sort answers and then slice
+  const sortedAnswers = [...answers].sort((a, b) => b.helpfulness - a.helpfulness);
+  const initialAnswers = sortedAnswers.slice(0, slicer);
   const [currentAnswers, setCurrentAnswers] = useState(initialAnswers);
-  const numOfAnswersLeft = answers.length - currentAnswers.length;
+  const numOfAnswersLeft = sortedAnswers.length - currentAnswers.length;
   const showMoreAnswers = () => numOfAnswersLeft > 0;
 
   useEffect(() => {
-    setCurrentAnswers(answers.slice(0, slicer));
+    setCurrentAnswers(sortedAnswers.slice(0, slicer));
   }, [slicer]);
 
   return (
-    <StyledContainer>
+    <StyledContainer key={question.question_id}>
       <QuestionEntry
+        key={question.question_id}
         question={question.question_body}
         helpfulness={question.question_helpfulness}
         questionId={question.question_id}
@@ -26,7 +30,7 @@ const QuestionAndAnswerEntry = ({ productName, question, answers }) => {
       {currentAnswers.map((answer, index) => (
         <AnswerEntry
           first={index === 0}
-          key={answer.answer_id}
+          key={answer.id}
           answer={answer}
         />
       ))}
@@ -57,6 +61,14 @@ const SecondCol = styled.div`
 
 QuestionAndAnswerEntry.propTypes = {
   question: PropTypes.shape({
+    answers: PropTypes.shape({
+      answer_id: PropTypes.number,
+      body: PropTypes.string,
+      date: PropTypes.string,
+      answerer_name: PropTypes.string,
+      helpfulness: PropTypes.number,
+      photos: PropTypes.arrayOf(PropTypes.string),
+    }),
     question_id: PropTypes.number,
     question_body: PropTypes.string,
     question_date: PropTypes.string,

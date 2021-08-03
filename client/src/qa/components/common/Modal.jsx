@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Button from './Button';
+import CloseButton from './CloseButton';
 
 const Modal = ({ isVisible, setIsVisible, children }) => (
   <>
@@ -12,7 +12,6 @@ const Modal = ({ isVisible, setIsVisible, children }) => (
             <CloseButton
               type="button"
               onClick={() => setIsVisible(false)}
-              label="Close"
             />
             <div>{children}</div>
           </ModalCard>
@@ -23,7 +22,7 @@ const Modal = ({ isVisible, setIsVisible, children }) => (
 );
 
 const ModalWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -41,12 +40,6 @@ const ModalCard = styled.div`
   z-index: 10;
   min-width: 400px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-`;
-
-const CloseButton = styled(Button)`
-  position: absolute;
-  top: 0;
-  right: 0;
 `;
 
 const Background = styled.div`

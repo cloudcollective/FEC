@@ -17,10 +17,10 @@ class App extends React.Component {
       metaReviewData: [],
       questionsAndAnswersData: {},
     };
-
     this.getProductData = this.getProductData.bind(this);
     // this.getQuestionData = this.getQuestionData.bind(this);
   }
+
 
   componentDidMount() {
     const productId = '25169';

@@ -13,12 +13,12 @@ const formatDate = (date) => {
 };
 
 const AnswererInfo = ({ answerId, username, date, helpfulness }) => (
-  <p>
+  <small>
     {` by ${username}, ${formatDate(date)} | `}
     <Helpful id={answerId} helpfulness={helpfulness} />
     {' | '}
     <Report id={answerId} />
-  </p>
+  </small>
 );
 
 export default AnswererInfo;
