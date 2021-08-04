@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const ThumbContainer = styled.div`
@@ -13,10 +13,23 @@ const Thumbnails = styled.img`
   margin: 5px;
   cursor: pointer;
   display: block;
-  border-radius: 45%;
+  border-radius: 50%;
+  opacity: 50%;
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 const StyleSelector = ({ styles, getStyleId }) => {
+  const [selectedStyle, setSeletedStyle] = useState('');
+
+  const clickHandler = (id, index) => {
+    getStyleId(id, index);
+    setSeletedStyle(index);
+    console.log({ id, index });
+    console.log(selectedStyle);
+  };
+
   if (!styles) {
     return null;
   }
@@ -25,7 +38,7 @@ const StyleSelector = ({ styles, getStyleId }) => {
     <>
       <ThumbContainer>
         {styles.results.map((style, index) =>
-          <Thumbnails src={style.photos[0].thumbnail_url} key={index} alt="thumbnails" onClick={() => getStyleId(style.style_id, index)} />)}
+          <Thumbnails src={style.photos[0].thumbnail_url} key={index} alt="thumbnails" onClick={() => clickHandler(style.style_id, index)} />)}
       </ThumbContainer>
     </>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import ProductDetails from './productDetails';
-// import QuestionsAnswers from './qa';
+import QuestionsAnswers from './qa';
 // import RelatedProducts from './relatedProducts';
 // import QuestionsAnswers from './qa';
 // import ReviewsRatings from './rr';
@@ -106,10 +106,10 @@ class App extends React.Component {
           />
         </div> */}
         { /* TODO Fix Product ID implementation */}
-        {/* <QuestionsAnswers
+        <QuestionsAnswers
           questions={questionsAndAnswersData.results}
           productId={questionsAndAnswersData.product_id}
-        /> */}
+        />
         {/* <div>
          <ReviewsRatings />
          </div> */}
