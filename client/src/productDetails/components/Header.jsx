@@ -9,12 +9,13 @@ const Head = styled.div`
 
 const HeaderTitle = styled.h2`
   color: #F8F8F8;
+  text-transform: uppercase;
 `;
 
 const Header = () => {
   return (
     <Head>
-      <HeaderTitle>Cloud Collective</HeaderTitle>
+      <HeaderTitle className="title">Cloud Collective</HeaderTitle>
     </Head>
   )
 }

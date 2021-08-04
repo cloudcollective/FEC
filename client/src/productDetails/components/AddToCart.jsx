@@ -3,14 +3,15 @@ import styled from 'styled-components';
 
 const CartContainer = styled.div`
   display: grid;
+  grid-template-rows: 30% 30%;
 `;
 
 const SizeAndQuantity = styled.div`
-  grid-template-columns: 30% 30%;
+  display: inline-block;
 `;
 
 const AddBagAndFavorite = styled.div`
-
+  display: inline-block;
 `;
 
 const AddtoBagBtn = styled.button`
@@ -124,8 +125,6 @@ const AddToCart = ({ styles, styleId, styleIndex, styleSelected, }) => {
               </option>
             ))}
           </select>
-        </form>
-        <form>
           <select name="quantity" id="quantity" onChange={qtySelection}>
             <option value="default">SELECT QUANTITY</option>
             {qtyArray.map((qty, index) => (
@@ -137,12 +136,8 @@ const AddToCart = ({ styles, styleId, styleIndex, styleSelected, }) => {
         </form>
       </SizeAndQuantity>
       <AddBagAndFavorite>
-        <div className="btn_addToBag btn">
-          <AddtoBagBtn onClick={addToCart} type="submit">ADD TO BAG +</AddtoBagBtn>
-        </div>
-        <div className="btn_favorite btn">
-          <FavoriteBtn onClick={() => saveFavorite} type="button">★</FavoriteBtn>
-        </div>
+        <AddtoBagBtn onClick={addToCart} type="submit">ADD TO BAG +</AddtoBagBtn>
+        <FavoriteBtn onClick={() => saveFavorite} type="button">★</FavoriteBtn>
       </AddBagAndFavorite>
     </CartContainer>
   );
