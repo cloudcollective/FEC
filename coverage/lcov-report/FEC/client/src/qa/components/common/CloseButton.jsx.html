@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for FEC/client/src/qa/components/common/TextareaInput.jsx</title>
+    <title>Code coverage report for FEC/client/src/qa/components/common/CloseButton.jsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../../../../prettify.css" />
     <link rel="stylesheet" href="../../../../../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../../../../index.html">All files</a> / <a href="index.html">FEC/client/src/qa/components/common</a> TextareaInput.jsx</h1>
+        <h1><a href="../../../../../../index.html">All files</a> / <a href="index.html">FEC/client/src/qa/components/common</a> CloseButton.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
@@ -131,40 +131,40 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 &nbsp;
-const TextareaInput = ({ name, label, maxLength, value, onChange, afterInput }) =&gt; (
-  &lt;&gt;
-    &lt;label htmlFor={name}&gt;
-      {label}
-      &lt;StyledTextarea
-        id={name}
-        name={name}
-        type="text"
-        rows="8"
-        cols="40"
-        maxLength={maxLength}
-        value={value}
-        onChange={onChange}
-      /&gt;
-    &lt;/label&gt;
-    {afterInput<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; &lt;p&gt;&lt;</span>small&gt;{afterInput}&lt;/small&gt;&lt;/p&gt;}
-  &lt;/&gt;
+const CloseButton = ({ type, onClick }) =&gt; (
+  &lt;StyledCloseButton
+    type={type}
+    onClick={onClick}
+    aria-label="Close"
+  &gt;
+    &lt;span&gt;&amp;times;&lt;/span&gt;
+  &lt;/StyledCloseButton&gt;
 );
 &nbsp;
-const StyledTextarea = styled.textarea`
-  display: block;
-  box-sizing: border-box;
-  width: 100%;
-  padding: .375rem .75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #495057;
-  background-color: #fff;
-  border: 1px solid #ced4da;
-  border-radius: .25rem;
+const StyledCloseButton = styled.button`
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-top: 5px;
+  padding-right: 10px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  font-size: 1.5rem;
+  color: darkgrey;
+  &amp;:hover {
+    opacity: .8;
+  }
 `;
 &nbsp;
-export default TextareaInput;
+CloseButton.propTypes = {
+  type: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+&nbsp;
+export default CloseButton;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
