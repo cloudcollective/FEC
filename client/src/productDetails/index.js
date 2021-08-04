@@ -26,29 +26,23 @@ const getData = (callback) => {
 };
 
 const Body = styled.div`
-  /* font-family: 'Spectral SC', serif; */
-  box-sizing: border-box;
-  margin:  0 150px;
-  background-color: #F8F8F8;
 `;
 
 const Content = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  padding: 15px;
+  margin-top: 15px;
 `;
 
 const LeftColumn = styled.div`
   width: 75%;
-  border: 10px;
   height: 100%;
 `;
 
 const RightColumn = styled.div`
   flex-direction: column;
   width: 25%;
-  /* border: 10px; */
 `;
 
 const ProductDetails = ({ selectedProduct }) => {

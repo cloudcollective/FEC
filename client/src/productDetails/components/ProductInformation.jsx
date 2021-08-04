@@ -11,15 +11,12 @@ const SalePrice = styled.span`
 `;
 
 const ProductCategory = styled.div`
-
 `;
 
 const ProductName = styled.div`
-
 `;
 
 const ProductStyleName = styled.div`
-
 `;
 
 const ProductInformation = ({ product, styles, styleId, styleIndex, styleSelected }) => {
