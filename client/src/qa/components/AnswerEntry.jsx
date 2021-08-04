@@ -4,43 +4,40 @@ import styled from 'styled-components';
 import AnswererInfo from './AnswererInfo';
 import Modal from './common/Modal';
 import useToggle from './common/useToggle';
+import PhotoModal from './PhotoModal';
 
-const AnswerEntry = ({ answer, first }) => {
-  const photoToggle = useToggle();
-
-  return (
+const AnswerEntry = ({ answer, first }) => (
   <>
-    <FirstCol>{first && <h3>A: </h3>}</FirstCol>
+    <FirstCol>{first && <h4>A: </h4>}</FirstCol>
     <SecondCol>
       <p>{answer.body}</p>
     </SecondCol>
-    <SecondCol>
-      <AnswererInfo
-        answerId={answer.id}
-        username={answer.answerer_name}
-        date={answer.date}
-        helpfulness={answer.helpfulness}
-      />
-    </SecondCol>
     {answer.photos
-    &&
-      (<SecondCol>
-        {answer.photos.map((photoUrl) => (
-          <>
-          <Modal
-            isVisible={photoToggle.on}
-            setIsVisible={photoToggle.toggle}
-          >
-            <img style={{height: '200px'}} src={photoUrl}/>
-          </Modal>
-          <Thumbnail src={photoUrl} onClick={photoToggle.toggle}/>
-          </>
+    && (
+      <SecondCol>
+        {answer.photos.map((photoUrl, index) => (
+          <PhotoModal
+            key={`${photoUrl}-${index}`}
+            url={photoUrl}
+            description={answer.body}
+            index={index}
+          />
         ))}
-
-       </SecondCol>)}
+      </SecondCol>
+    )}
+    <SecondCol>
+      <Row>
+        <AnswererInfo
+          className="user-info"
+          answerId={answer.id}
+          username={answer.answerer_name}
+          date={answer.date}
+          helpfulness={answer.helpfulness}
+        />
+      </Row>
+    </SecondCol>
   </>
-  )
-};
+);
 
 const FirstCol = styled.div`
   grid-column: 1 / span 1;
@@ -51,12 +48,16 @@ const SecondCol = styled.div`
 `;
 
 const Thumbnail = styled.img`
-  ${'' /* object-fit: cover; */}
   max-width: 180px;
   max-height: 100px;
   cursor: pointer;
   margin: 5px;
   border: 2px solid black;
+`;
+
+const Row = styled.div`
+  display: flex;
+  align-items: baseline;
 `;
 
 AnswerEntry.propTypes = {
