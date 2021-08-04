@@ -19,7 +19,10 @@ text-decoration: underline;
 display: inline;
 margin: 0;
 padding: 0;
-font: inherit;
+&:hover {
+  color: #767676;
+  border: none;
+}
 `;
 
 ButtonLink.propTypes = {
