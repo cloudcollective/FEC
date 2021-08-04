@@ -104,7 +104,7 @@ class App extends React.Component {
             products={relatedProductData}
           />
         </div> */}
-        { /* TODO Fix Product ID implementation */ }
+        { /* TODO Fix Product ID implementation */}
         <QuestionsAnswers
           questions={questionsAndAnswersData.results}
           productId={questionsAndAnswersData.product_id}
