@@ -9,6 +9,7 @@ const Tile = styled.div`
   padding-top: 20px;
   border-bottom: 3px solid lightGrey;
   font-family: Arial;
+  width: 600px;
 `;
 
 const CornerContent = styled.div`
@@ -18,8 +19,7 @@ const CornerContent = styled.div`
 
 const Username = styled.div`
   color: "black";
-  font-family: Courier New;
-  font-size: 1em;
+  font-size: .75em;
   display: inline-block;
   margin-bottom: 20px
 `;
