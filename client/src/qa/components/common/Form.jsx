@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Input from './Input';
 import TextareaInput from './TextareaInput';
-import Button from './Button';
 
 const StyledFormGroup = styled.div`
   margin-bottom: 1rem;
@@ -14,9 +13,9 @@ const WarningText = styled.div`
 `;
 
 // Helper functions
-const capitalizeFirst = (string) => (string[0].toUpperCase() + string.slice(1));
+export const capitalizeFirst = (string) => (string[0].toUpperCase() + string.slice(1));
 
-const validateEmail = (email) => {
+export const validateEmail = (email) => {
   const pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
 
   return pattern.test(email);
@@ -118,11 +117,12 @@ const Form = ({ formFields, buttonLabel, doSubmit }) => {
             </ul>
           </WarningText>
         )}
-      <Button
+      <button
         type="submit"
-        label={buttonLabel}
         onClick={handleSubmit}
-      />
+      >
+        {buttonLabel}
+      </button>
     </form>
   );
 };
