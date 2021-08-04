@@ -13,17 +13,19 @@ const Helpful = ({ id, helpfulness }) => {
 
   return (
     <>
-      {'Helpful? '}
-      {isClickable
-        ? (
-          <ButtonLink
-            type="button"
-            label="Yes"
-            onClick={markHelpful}
-          />
-        )
-        : 'Yes'}
-      {` (${helpfulness})`}
+      <p className="qa-meta">
+        Helpful?&nbsp;&nbsp;
+        {isClickable
+          ? (
+            <ButtonLink
+              type="button"
+              label="Yes"
+              onClick={markHelpful}
+            />
+          )
+          : 'Yes'}
+        {` (${helpfulness})`}
+      </p>
     </>
   );
 };

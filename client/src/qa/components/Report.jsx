@@ -13,7 +13,7 @@ const Report = ({ id }) => {
         .catch(() => {
           setIsReportable(true);
         });
-    };
+    }
   };
 
   return (
@@ -26,7 +26,9 @@ const Report = ({ id }) => {
             onClick={reportAnswer}
           />
         )
-        : 'Reported'}
+        : (
+          <p className="qa-meta">Reported</p>
+        )}
     </>
   );
 };
