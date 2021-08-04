@@ -5,7 +5,11 @@ import '@testing-library/jest-dom';
 import SearchQuestions from './SearchQuestions';
 
 beforeEach(() => {
-  render(<SearchQuestions />);
+  render(
+    <SearchQuestions
+      handleSearchQuestions={()=>{}}
+      doReset={()=>{}}
+    />);
 });
 
 test('renders searchInput of type search', () => {
