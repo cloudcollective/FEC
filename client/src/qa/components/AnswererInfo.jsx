@@ -1,6 +1,7 @@
 import React from 'react';
 import Report from './Report';
 import Helpful from './Helpful';
+import Divider from './Divider';
 
 const formatDate = (date) => {
   const d = new Date(date);
@@ -13,12 +14,13 @@ const formatDate = (date) => {
 };
 
 const AnswererInfo = ({ answerId, username, date, helpfulness }) => (
-  <small>
-    {` by ${username}, ${formatDate(date)} | `}
+  <>
+    <p className="user-info">{` by ${username}, ${formatDate(date)}`}</p>
+    <Divider />
     <Helpful id={answerId} helpfulness={helpfulness} />
-    {' | '}
+    <Divider />
     <Report id={answerId} />
-  </small>
+  </>
 );
 
 export default AnswererInfo;
