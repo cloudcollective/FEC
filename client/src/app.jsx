@@ -5,6 +5,7 @@ import QuestionsAnswers from './qa';
 // import RelatedProducts from './relatedProducts';
 // import QuestionsAnswers from './qa';
 // import ReviewsRatings from './rr';
+import './style.css';
 
 class App extends React.Component {
   constructor(prop) {
