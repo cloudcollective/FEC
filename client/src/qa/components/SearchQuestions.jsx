@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-const SearchQuestions = () => {
+const SearchQuestions = ({ handleSearchQuestions, doReset }) => {
   const [filter, setFilter] = useState('');
 
-  // if (filter.length >= 3) {
-  //   //doFilter(filter)
-  //   console.log('greater than 3 - start searching...');
-  // }
   const changeAndFilter = (e) => {
     const text = e.target.value;
     setFilter(text);
     if (text.length >= 3) {
-      //do other function searchandupdate here
-      // console.log('this is the other way')
+      handleSearchQuestions(text);
+    }
+    if (text === '') {
+      doReset(true);
     }
   };
 
@@ -27,9 +26,9 @@ const SearchQuestions = () => {
   );
 };
 
-// const doFilter = (text) => {
-//   //makeAPIcall or justsearches
-//   //returns answers
-// }
+SearchQuestions.propTypes = {
+  handleSearchQuestions: PropTypes.func.isRequired,
+  doReset: PropTypes.func.isRequired,
+};
 
 export default SearchQuestions;

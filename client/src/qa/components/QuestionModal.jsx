@@ -36,8 +36,7 @@ const QuestionModal = ({ productName, isVisible, setIsVisible }) => (
   >
     <h3>Ask Your Question</h3>
     <h4>
-      About the
-      {productName}
+      {`About the ${productName}`}
     </h4>
     <Form
       formFields={formFields}

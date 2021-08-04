@@ -6,7 +6,9 @@ import AddAnswerBtn from './AddAnswerBtn';
 import useToggle from './common/useToggle';
 import AnswerModal from './AnswerModal';
 
-const QuestionEntry = ({ productName, question, helpfulness, questionId }) => {
+const QuestionEntry = ({
+  productName, question, helpfulness, questionId,
+}) => {
   const answerToggle = useToggle();
 
   return (
@@ -32,7 +34,7 @@ const QuestionEntry = ({ productName, question, helpfulness, questionId }) => {
 };
 
 const FirstCol = styled.div`
-  grid-column: 1 / span 1
+  grid-column: 1 / span 1;
 `;
 
 const SecondCol = styled.div`
@@ -47,6 +49,7 @@ QuestionEntry.propTypes = {
   question: PropTypes.string.isRequired,
   helpfulness: PropTypes.number.isRequired,
   questionId: PropTypes.number.isRequired,
+  productName: PropTypes.string.isRequired,
 };
 
 export default QuestionEntry;
