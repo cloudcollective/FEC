@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import QuestionAndAnswerEntry from './QuestionAndAnswerEntry';
-import Button from './common/Button';
 
 const QuestionsAnswersList = ({ productName, questions }) => {
   const [slicer, setSlicer] = useState(2);
@@ -51,11 +50,12 @@ const QuestionsAnswersList = ({ productName, questions }) => {
       ))}
       {numOfQuestionsLeft > 0
         && (
-          <Button
+          <button
             type="button"
-            label="See More Questions"
             onClick={() => setSlicer(slicer + 2)}
-          />
+          >
+            See More Questions
+          </button>
         )}
     </div>
   );
