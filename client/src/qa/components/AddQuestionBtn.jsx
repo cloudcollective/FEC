@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from './common/Button';
 
 const AddQuestionBtn = ({ setIsVisible }) => (
-  <Button
+  <button
     type="button"
     onClick={() => setIsVisible(true)}
-    label="Add Question"
-  />
+  >
+    Add Question
+  </button>
 );
 
 AddQuestionBtn.propTypes = {
