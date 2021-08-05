@@ -6,7 +6,7 @@ const AddQuestionBtn = ({ setIsVisible }) => (
     type="button"
     onClick={() => setIsVisible(true)}
   >
-    Add Question
+    Add a Question +
   </button>
 );
 
