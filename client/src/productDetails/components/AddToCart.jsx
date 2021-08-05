@@ -74,7 +74,31 @@ const CustomSelector = styled.select`
   }
 `;
 
-const AddToCart = ({ styles, styleId, styleIndex, styleSelected, }) => {
+const DisabledSelector = styled.select`
+  box-sizing: border-box;
+  appearance: none;
+  background-color: transparent;
+  margin: 0;
+  width: 100%;
+  line-height: 1.3;
+  cursor: default;
+  padding: 5px 10px 5px 8px;
+  border: 1px solid #999;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='292.4' height='292.4'%3E%3Cpath fill='%23333' d='M287 69.4a17.6 17.6 0 0 0-13-5.4H18.4c-5 0-9.3 1.8-12.9 5.4A17.6 17.6 0 0 0 0 82.2c0 5 1.8 9.3 5.4 12.9l128 127.9c3.6 3.6 7.8 5.4 12.8 5.4s9.2-1.8 12.8-5.4L287 95c3.5-3.5 5.4-7.8 5.4-12.8 0-5-1.9-9.2-5.5-12.8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 9px;
+  color: #333;
+  cursor: not-allowed;
+  background-color: rgba(211, 211, 211, .75);
+  &:hover {
+    border-color: #999;
+  }
+`;
+
+const AddToCart = ({
+  styles, styleId, styleIndex, styleSelected,
+}) => {
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedQty, setSelectedQty] = useState(0);
 
@@ -85,7 +109,6 @@ const AddToCart = ({ styles, styleId, styleIndex, styleSelected, }) => {
   let quantityAndSize;
   const size = [];
   const quantity = [];
-
 
   // let sizeAndQuantityObj = Object.entries(quantityAndSize);
   if (styleSelected) {
@@ -117,7 +140,7 @@ const AddToCart = ({ styles, styleId, styleIndex, styleSelected, }) => {
 
   const qtyArray = [];
   if (selectedSize) {
-    let qtyIndex = size.indexOf(selectedSize);
+    const qtyIndex = size.indexOf(selectedSize);
     if (qtyIndex >= 0) {
       const selectedSizeQty = quantity[qtyIndex];
       if (selectedSizeQty <= 15 && selectedSizeQty > 0) {
@@ -133,8 +156,30 @@ const AddToCart = ({ styles, styleId, styleIndex, styleSelected, }) => {
   }
 
   const saveFavorite = () => {
-    console.log(`saving productId ____ as favorite`);
+    console.log('saving productId ____ as favorite');
   };
+
+  let qtyDropdown;
+  if (qtyArray.length === 0) {
+    qtyDropdown = (
+      <DisabledSelector disabled>
+        <option>QUANTITY</option>
+      </DisabledSelector>
+    );
+  } else {
+    qtyDropdown = (
+      <CustomSelector name="quantity" id="quantity" onChange={qtySelection}>
+        <option value="default">QUANTITY</option>
+        {
+          qtyArray.map((qty, index) => (
+            <option value={qty} key={index}>
+              {qty}
+            </option>
+          ))
+        }
+      </CustomSelector>
+    );
+  }
 
   return (
     <CartContainer>
@@ -152,14 +197,7 @@ const AddToCart = ({ styles, styleId, styleIndex, styleSelected, }) => {
             </CustomSelector>
           </SizeSelector>
           <QuantitySelector>
-            <CustomSelector name="quantity" id="quantity" onChange={qtySelection}>
-              <option value="default">QUANTITY</option>
-              {qtyArray.map((qty, index) => (
-                <option value={qty} key={index}>
-                  {qty}
-                </option>
-              ))}
-            </CustomSelector>
+            {qtyDropdown}
           </QuantitySelector>
         </form>
       </SizeAndQuantity>
