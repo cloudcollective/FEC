@@ -116,7 +116,6 @@ class App extends React.Component {
             product={selectedProductData}
             products={relatedProductData}
           />
-<<<<<<< HEAD
         </div>
         <div>
           <QuestionsAnswers
@@ -124,14 +123,6 @@ class App extends React.Component {
             productId={questionsAndAnswersData.product_id}
           />
         </div>
-=======
-        </div> */}
-        { /* TODO Fix Product ID implementation */}
-        <QuestionsAnswers
-          questions={questionsAndAnswersData.results}
-          productId={questionsAndAnswersData.product_id}
-        />
->>>>>>> main
         {/* <div>
          <ReviewsRatings />
          </div> */}
