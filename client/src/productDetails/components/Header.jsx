@@ -12,12 +12,10 @@ const HeaderTitle = styled.h1`
   text-transform: uppercase;
 `;
 
-const Header = () => {
-  return (
-    <Head>
-      <HeaderTitle className="title">Cloud Collective</HeaderTitle>
-    </Head>
-  )
-}
+const Header = () => (
+  <Head>
+    <HeaderTitle className="title">Cloud Collective</HeaderTitle>
+  </Head>
+);
 
 export default Header;

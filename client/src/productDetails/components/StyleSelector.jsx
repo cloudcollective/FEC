@@ -45,9 +45,14 @@ const StyleSelector = ({ styles, getStyleId }) => {
   return (
     <>
       <ThumbContainer>
-        {styles.results.map((style, index) =>
-          <Thumbnails src={style.photos[0].thumbnail_url} key={index} alt="thumbnails" onClick={() => clickHandler(style.style_id, index)} />
-        )}
+        {styles.results.map((style, index) => (
+          <Thumbnails
+            src={style.photos[0].thumbnail_url}
+            key={index}
+            alt="thumbnails"
+            onClick={() => clickHandler(style.style_id, index)}
+          />
+        ))}
       </ThumbContainer>
     </>
   );
