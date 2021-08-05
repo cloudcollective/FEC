@@ -77,8 +77,14 @@ const Form = ({ formFields, buttonLabel, doSubmit }) => {
     if (errorsFound) {
       return;
     }
-    doSubmit();
-    clearState();
+
+    doSubmit(input)
+      .then(() => {
+        clearState();
+      })
+      .catch((error) => {
+        console.log('An error was received from the API', error);
+      });
   };
 
   return (
