@@ -43,6 +43,7 @@ const ActiveThumbnail = styled.img`
   opacity: 1;
   margin: 5px;
   border: 2px solid black;
+  box-shadow: 5px 5px 10px;
 `;
 
 const MainImage = styled.img`
@@ -51,6 +52,7 @@ const MainImage = styled.img`
   object-fit: cover;
   cursor: pointer;
   border: 2px solid black;
+  box-shadow: 3px 3px 7px;
 `;
 
 const ImageGallery = ({

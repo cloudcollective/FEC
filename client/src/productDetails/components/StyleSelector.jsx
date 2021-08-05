@@ -16,7 +16,6 @@ const Thumbnails = styled.img`
   border-radius: 50%;
   opacity: 0.6;
   &:hover {
-    border: 1px solid black;
     opacity: 0.8;
   }
 `;
@@ -29,7 +28,7 @@ const SelectedThumbnails = styled.img`
   cursor: pointer;
   display: block;
   border-radius: 50%;
-  border: 1px solid black;
+  box-shadow: 3px 3px 7px;
 `;
 
 const StyleSelector = ({ styles, getStyleId }) => {
