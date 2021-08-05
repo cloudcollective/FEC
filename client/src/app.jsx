@@ -10,23 +10,27 @@ class App extends React.Component {
   constructor(prop) {
     super(prop);
     this.state = {
+      productId: '25171',
       selectedProduct: {},
       relatedProductIds: [],
       relatedProductData: [],
       reviewsData: [],
       metaReviewData: [],
       questionsAndAnswersData: {},
+      selectedProductData: {},
     };
 
     this.getProductData = this.getProductData.bind(this);
     this.getQuestionData = this.getQuestionData.bind(this);
+    this.getCurrentProductData = this.getCurrentProductData.bind(this);
   }
 
   componentDidMount() {
     // 25169, 25171
-    const productId = '25171';
+    const { productId } = this.state;
     this.getProductData(productId);
     this.getQuestionData(productId);
+    this.getCurrentProductData(productId);
   }
 
   getProductData(id) {
@@ -75,6 +79,17 @@ class App extends React.Component {
       });
   }
 
+  getCurrentProductData(id) {
+    axios.get(`/related/${id}`)
+      .then((data) => {
+        this.setState({
+          selectedProductData: data.data,
+        });
+      })
+      .catch((error) => {
+        console.log('Error retrieving questions via product ID', error);
+      });
+  }
   // const app = ({ data }) => (
   //   <>
   //     <ProductDetails product={data.product} productStyles={data.productStyles} />
@@ -88,13 +103,9 @@ class App extends React.Component {
 
   render() {
     const {
-      selectedProduct, relatedProductData, questionsAndAnswersData, reviewsData, metaReviewData,
+      // eslint-disable-next-line max-len
+      selectedProduct, relatedProductData, questionsAndAnswersData, reviewsData, metaReviewData, selectedProductData,
     } = this.state;
-    // Delete these console.logs later
-    // console.log(selectedProduct, 'Product Detail');
-    // console.log(relatedProductData, 'Related Products');
-    // console.log(questionsAndAnswersData, 'QA');
-    // console.log(reviewsData, metaReviewData, 'Ratings and Reviews');
     return (
       <div>
         {/* <div>
@@ -102,7 +113,7 @@ class App extends React.Component {
         </div> */}
         <div>
           <RelatedProducts
-            product={selectedProduct}
+            product={selectedProductData}
             products={relatedProductData}
           />
         </div>
