@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-// import ProductDetails from './productDetails';
+import ProductDetails from './productDetails';
 import RelatedProducts from './relatedProducts';
-// import QuestionsAnswers from './qa';
+import QuestionsAnswers from './qa';
 // import ReviewsRatings from './rr';
 import './style.css';
 
@@ -108,21 +108,24 @@ class App extends React.Component {
     } = this.state;
     return (
       <div>
-        {/* <div>
+        <div>
           <ProductDetails />
-        </div> */}
+        </div>
         <div>
           <RelatedProducts
             product={selectedProductData}
             products={relatedProductData}
           />
         </div>
+        <div>
+          <QuestionsAnswers
+            questions={questionsAndAnswersData.results}
+            productId={questionsAndAnswersData.product_id}
+          />
+        </div>
         {/* <div>
-         <QuestionsAnswers
-           questions={data.questions}
-           answers={data.answers}
-         />
-       </div> */}
+         <ReviewsRatings />
+         </div> */}
       </div>
     );
   }
