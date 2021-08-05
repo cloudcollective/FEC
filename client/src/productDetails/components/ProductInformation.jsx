@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const OriginalPrice = styled.span`
@@ -11,15 +11,12 @@ const SalePrice = styled.span`
 `;
 
 const ProductCategory = styled.div`
-
 `;
 
 const ProductName = styled.div`
-
 `;
 
 const ProductStyleName = styled.div`
-
 `;
 
 const ProductInformation = ({ product, styles, styleId, styleIndex, styleSelected }) => {
@@ -66,7 +63,7 @@ const ProductInformation = ({ product, styles, styleId, styleIndex, styleSelecte
       <div className="ratingAndReview">
         <p>
           {/* Need rating function */}
-          <span>★★★★★</span>
+          <span>★★★★★  </span>
           <span>
             {/* anchor tag to Reviews and Rating */}
             <a>Read all reviews</a>
