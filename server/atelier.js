@@ -86,10 +86,43 @@ const getRelatedProductsById = (id) => {
     });
 };
 
+// For Questions & Answers
 const reportAnswer = (answerId) => {
   const options = {
     method: 'put',
     url: `${baseURL}/qa/answers/${answerId}/report`,
+    headers: {
+      Authorization: config.TOKEN,
+    },
+  };
+
+  return axios(options)
+    .then((response) => response.data)
+    .catch((error) => {
+      throw error;
+    });
+};
+
+const markAnswerHelpful = (answerId) => {
+  const options = {
+    method: 'put',
+    url: `${baseURL}/qa/answers/${answerId}/helpful`,
+    headers: {
+      Authorization: config.TOKEN,
+    },
+  };
+
+  return axios(options)
+    .then((response) => response.data)
+    .catch((error) => {
+      throw error;
+    });
+};
+
+const markQuestionHelpful = (questionId) => {
+  const options = {
+    method: 'put',
+    url: `${baseURL}/qa/questions/${questionId}/helpful`,
     headers: {
       Authorization: config.TOKEN,
     },
@@ -129,5 +162,7 @@ module.exports = {
   getMetaReviewsById,
   getRelatedProductsById,
   reportAnswer,
+  markAnswerHelpful,
+  markQuestionHelpful,
   getQuestions,
 };

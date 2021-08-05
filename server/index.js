@@ -103,6 +103,30 @@ app.put('/qa/answers/:answerId/report', (req, res) => {
     });
 });
 
+app.put('/qa/answers/:answerId/helpful', (req, res) => {
+  const { answerId } = req.params;
+
+  atelier.markAnswerHelpful(answerId)
+    .then(() => {
+      res.sendStatus(204);
+    })
+    .catch((error) => {
+      res.status(501).send(error);
+    });
+});
+
+app.put('/qa/questions/:questionId/helpful', (req, res) => {
+  const { questionId } = req.params;
+
+  atelier.markQuestionHelpful(questionId)
+    .then(() => {
+      res.sendStatus(204);
+    })
+    .catch((error) => {
+      res.status(501).send(error);
+    });
+});
+
 app.get('/qa/questions', (req, res) => {
   const { id } = req.query;
 
