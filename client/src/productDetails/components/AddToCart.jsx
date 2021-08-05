@@ -2,16 +2,52 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const CartContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 30% 30%;
 `;
 
 const SizeAndQuantity = styled.div`
-  flex-directon: row;
+  display: inline-block;
 `;
 
 const AddBagAndFavorite = styled.div`
-  flex-direction: row;
+  display: inline-block;
+`;
+
+const AddtoBagBtn = styled.button`
+  border: 1px solid black;
+  background-color: #363636;
+  color: #F8F8F8;
+  cursor: pointer;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  &:hover {
+    background-color: #F8F8F8;
+    color: #363636;
+    text-decoration: bold;
+  }
+`;
+
+const FavoriteBtn = styled.button`
+  border: 1px solid black;
+  background-color: #363636;
+  color: #F8F8F8;
+  cursor: pointer;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  &:hover {
+    background-color: #F8F8F8;
+    color: #DC2F2F;
+    text-decoration: bold;
+  }
 `;
 
 const AddToCart = ({ styles, styleId, styleIndex, styleSelected, }) => {
@@ -26,6 +62,8 @@ const AddToCart = ({ styles, styleId, styleIndex, styleSelected, }) => {
   const size = [];
   const quantity = [];
 
+
+  // let sizeAndQuantityObj = Object.entries(quantityAndSize);
   if (styleSelected) {
     quantityAndSize = styles.results[styleIndex].skus;
     for (const [sizeNum, qAndS] of Object.entries(quantityAndSize)) {
@@ -70,6 +108,10 @@ const AddToCart = ({ styles, styleId, styleIndex, styleSelected, }) => {
     }
   }
 
+  const saveFavorite = () => {
+    console.log(`saving productId ____ as favorite`);
+  };
+
   return (
     <CartContainer>
       <SizeAndQuantity>
@@ -83,8 +125,6 @@ const AddToCart = ({ styles, styleId, styleIndex, styleSelected, }) => {
               </option>
             ))}
           </select>
-        </form>
-        <form>
           <select name="quantity" id="quantity" onChange={qtySelection}>
             <option value="default">SELECT QUANTITY</option>
             {qtyArray.map((qty, index) => (
@@ -96,12 +136,8 @@ const AddToCart = ({ styles, styleId, styleIndex, styleSelected, }) => {
         </form>
       </SizeAndQuantity>
       <AddBagAndFavorite>
-        <div className="btn_addToBag btn">
-          <button onClick={addToCart}>ADD TO BAG +</button>
-        </div>
-        <div className="btn_favorite btn">
-          <button>★</button>
-        </div>
+        <AddtoBagBtn onClick={addToCart} type="submit">ADD TO BAG +</AddtoBagBtn>
+        <FavoriteBtn onClick={() => saveFavorite} type="button">★</FavoriteBtn>
       </AddBagAndFavorite>
     </CartContainer>
   );

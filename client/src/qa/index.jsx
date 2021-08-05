@@ -7,40 +7,44 @@ import AddQuestionBtn from './components/AddQuestionBtn';
 import QuestionModal from './components/QuestionModal';
 import useToggle from './components/common/useToggle';
 
-const QuestionsAnswersContainer = ({ productId }) => {
+const QuestionsAnswersContainer = ({ productId, questions }) => {
   const [productName, setProductName] = useState('');
-  const [questions, setQuestions] = useState({});
+  const [currentQuestions, setCurrentQuestions] = useState([]);
   const [resetDisplay, setResetDisplay] = useState(false);
   const { on, toggle } = useToggle(false);
 
   useEffect(() => {
-    axios.get(`qa/questions?product_id=${productId}`)
-      .then((data) => {
-        setQuestions(data.data.results);
-      })
-      .catch((error) => {
-        console.log('Error retrieving questions via product ID', error);
-      });
-  }, []);
+    if (questions) {
+      setCurrentQuestions(questions);
+    }
+  }, [questions]);
 
   useEffect(() => {
-    axios.get(`qa/questions?product_id=${productId}`)
-      .then((data) => {
-        setQuestions(data.data.results);
+    if (productId) {
+      axios.get('qa/questions', {
+        params: {
+          id: productId,
+        },
       })
-      .catch((error) => {
-        console.log('Error retrieving questions via product ID', error);
-      });
+        .then((data) => {
+          setCurrentQuestions(data.data.results);
+        })
+        .catch((error) => {
+          console.log('Error retrieving questions via product ID', error);
+        });
+    }
   }, [resetDisplay]);
 
   useEffect(() => {
-    axios.get(`single/products/${productId}`)
-      .then((data) => {
-        setProductName(data.data.name);
-      })
-      .catch((error) => {
-        console.log('Error retrieving Product name', error);
-      });
+    if (productId) {
+      axios.get(`single/products/${productId}`)
+        .then((data) => {
+          setProductName(data.data.name);
+        })
+        .catch((error) => {
+          console.log('Error retrieving Product name', error);
+        });
+    }
   }, [productId]);
 
   const doFilter = (filterText, text) => (
@@ -71,7 +75,8 @@ const QuestionsAnswersContainer = ({ productId }) => {
         results.push(question);
       }
     });
-    setQuestions(results);
+    console.log('here are the results', results);
+    setCurrentQuestions(results);
   };
 
   return (
@@ -80,13 +85,12 @@ const QuestionsAnswersContainer = ({ productId }) => {
         Questions &#38; Answers
       </h3>
       <SearchQuestions
-        questions={questions}
         handleSearchQuestions={handleSearchQuestions}
         doReset={setResetDisplay}
       />
       <QuestionsAnswersList
         productName={productName}
-        questions={questions}
+        questions={currentQuestions}
       />
       <AddQuestionBtn setIsVisible={toggle} />
       <QuestionModal
@@ -99,7 +103,29 @@ const QuestionsAnswersContainer = ({ productId }) => {
 };
 
 QuestionsAnswersContainer.propTypes = {
-  productId: PropTypes.string.isRequired,
+  productId: PropTypes.string,
+};
+
+QuestionsAnswersContainer.propTypes = {
+  questions: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(
+    PropTypes.shape({
+      answers: PropTypes.shape({
+        answer_id: PropTypes.number,
+        body: PropTypes.string,
+        date: PropTypes.string,
+        answerer_name: PropTypes.string,
+        helpfulness: PropTypes.number,
+        photos: PropTypes.arrayOf(PropTypes.string),
+      }),
+      question_id: PropTypes.number,
+      question_body: PropTypes.string,
+      question_date: PropTypes.string,
+      asker_name: PropTypes.string,
+      question_helpfulness: PropTypes.number,
+      reported: PropTypes.bool,
+    }),
+  )]),
+  productId: PropTypes.string,
 };
 
 export default QuestionsAnswersContainer;

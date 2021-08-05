@@ -4,6 +4,7 @@ import axios from 'axios';
 import RelatedProducts from './relatedProducts';
 // import QuestionsAnswers from './qa';
 // import ReviewsRatings from './rr';
+import './style.css';
 
 class App extends React.Component {
   constructor(prop) {
@@ -18,14 +19,14 @@ class App extends React.Component {
     };
 
     this.getProductData = this.getProductData.bind(this);
-    // this.getQuestionData = this.getQuestionData.bind(this);
+    this.getQuestionData = this.getQuestionData.bind(this);
   }
 
   componentDidMount() {
     // 25169, 25171
     const productId = '25171';
     this.getProductData(productId);
-    // this.getQuestionData(productId);
+    this.getQuestionData(productId);
   }
 
   getProductData(id) {
@@ -55,6 +56,22 @@ class App extends React.Component {
       .catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error);
+      });
+  }
+
+  getQuestionData(id) {
+    axios.get(('/qa/questions'), {
+      params: {
+        id,
+      },
+    })
+      .then((data) => {
+        this.setState({
+          questionsAndAnswersData: data.data,
+        });
+      })
+      .catch((error) => {
+        console.log('Error retrieving questions via product ID', error);
       });
   }
 
