@@ -9,7 +9,9 @@ const StyledFormGroup = styled.div`
 `;
 
 const WarningText = styled.div`
-  color: red;
+  p, ul li {
+    color: #DC2F2F;
+  }
 `;
 
 // Helper functions
