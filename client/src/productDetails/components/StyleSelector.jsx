@@ -14,10 +14,20 @@ const Thumbnails = styled.img`
   cursor: pointer;
   display: block;
   border-radius: 50%;
-  opacity: 50%;
   &:hover {
-    opacity: 0.8;
+    border: 1px solid black;
   }
+`;
+
+const SelectedThumbnails = styled.img`
+  height: 80px;
+  width: 60px;
+  object-fit: cover;
+  margin: 5px;
+  cursor: pointer;
+  display: block;
+  border-radius: 50%;
+  border: 2px solid black;
 `;
 
 const StyleSelector = ({ styles, getStyleId }) => {
@@ -25,9 +35,7 @@ const StyleSelector = ({ styles, getStyleId }) => {
 
   const clickHandler = (id, index) => {
     getStyleId(id, index);
-    setSeletedStyle(index);
-    console.log({ id, index });
-    console.log(selectedStyle);
+    setSeletedStyle(id);
   };
 
   if (!styles) {
@@ -38,7 +46,8 @@ const StyleSelector = ({ styles, getStyleId }) => {
     <>
       <ThumbContainer>
         {styles.results.map((style, index) =>
-          <Thumbnails src={style.photos[0].thumbnail_url} key={index} alt="thumbnails" onClick={() => clickHandler(style.style_id, index)} />)}
+          <Thumbnails src={style.photos[0].thumbnail_url} key={index} alt="thumbnails" onClick={() => clickHandler(style.style_id, index)} />
+        )}
       </ThumbContainer>
     </>
   );
