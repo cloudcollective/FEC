@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import styled from 'styled-components';
 import Helpful from './Helpful';
 import AddAnswerBtn from './AddAnswerBtn';
 import useToggle from './common/useToggle';
 import AnswerModal from './AnswerModal';
 import Divider from './Divider';
+
+const sendPutReqForHelpful = (questionId) => axios.put(`/qa/questions/${questionId}/helpful`);
 
 const QuestionEntry = ({
   productName, question, helpfulness, questionId,
@@ -20,10 +23,12 @@ const QuestionEntry = ({
         <Helpful
           helpfulness={helpfulness}
           id={questionId}
+          handleHelpful={sendPutReqForHelpful}
         />
         <Divider />
         <AddAnswerBtn className="qa-meta" setIsVisible={answerToggle.toggle} />
         <AnswerModal
+          questionId={questionId}
           productName={productName}
           question={question}
           isVisible={answerToggle.on}
