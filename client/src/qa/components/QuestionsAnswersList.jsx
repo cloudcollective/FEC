@@ -54,7 +54,7 @@ const QuestionsAnswersList = ({ productName, questions }) => {
             type="button"
             onClick={() => setSlicer(slicer + 2)}
           >
-            See More Questions
+            More Answered Questions
           </button>
         )}
     </div>
