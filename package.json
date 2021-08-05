@@ -38,13 +38,9 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "install": "^0.13.0",
     "jest": "^27.0.6",
-<<<<<<< HEAD
-    "webpack": "^5.47.0",
-=======
     "npm": "^7.20.3",
     "style-loader": "^3.2.1",
     "webpack": "^5.45.1",
->>>>>>> 1323fdaa3268b16c48548e3b2e81b9ebc84c9f51
     "webpack-cli": "^4.7.2"
   },
   "dependencies": {

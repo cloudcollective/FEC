@@ -1,8 +1,9 @@
 import React from 'react';
 import ReviewListTile from './ReviewListTile.jsx';
 import styled from 'styled-components';
+import Modal from './ModalWindow.jsx';
 
-const AddReviews = styled.div(props => ({
+const MoreReviews = styled.div(props => ({
   display: props.display,
   border: '1px solid black',
   height: '3em',
@@ -20,14 +21,29 @@ const Container = styled.div`
 
 `;
 
+const AddReview = styled.div`
+  display: block;
+  border: 1px solid black;
+  height: 3em;
+  font-family: Arial;
+  text-align: center;
+  vertical-align: center;
+  z-index: 1000;
+  margin-bottom: 20px;
+  margin-top: 10px;
+`;
+
 class ReviewList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showing: 2,
       buttonDisplay: "block",
+      open: false,
     };
     this.moreReview = this.moreReview.bind(this);
+    this.onOpen = this.onOpen.bind(this);
+    this.onClose = this.onClose.bind(this);
   }
 
   moreReview() {
@@ -37,9 +53,17 @@ class ReviewList extends React.Component {
     }
   }
 
+  onOpen() {
+    this.setState({open: true});
+  }
+
+  onClose() {
+    this.setState({open: false}, () => {console.log(this.state.open)});
+  }
+
   render() {
     return (
-      <div> 200 reviews sorted by relevance
+      <div>
       <Container>
         {this.props.results.map((result, i) => {
           if (i < this.state.showing) {
@@ -50,7 +74,17 @@ class ReviewList extends React.Component {
           return null;
         })}
       </Container>
-        <AddReviews display={this.state.buttonDisplay} onClick={this.moreReview}><br />More Reviews <br /></AddReviews>
+        <MoreReviews display={this.state.buttonDisplay} onClick={this.moreReview}>
+          <br />
+          More Reviews
+          <br />
+        </MoreReviews>
+        <AddReview onClick={this.onOpen}>
+          <br />
+          Add A Review
+          <br />
+        </AddReview>
+        <Modal open={this.state.open} close={this.onClose} />
       </div>
     );
   }

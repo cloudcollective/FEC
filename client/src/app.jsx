@@ -112,9 +112,9 @@ class App extends React.Component {
           questions={questionsAndAnswersData.results}
           productId={questionsAndAnswersData.product_id}
         />
-        {/* <div>
-         <ReviewsRatings />
-         </div> */}
+        <div>
+         <Reviews />
+         </div>
       </div>
     );
   }

@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaStar } from 'react-icons/fa';
 import styled from 'styled-components';
 
 const FullStar = styled.div`
@@ -47,21 +46,22 @@ const EmptyStar = styled.div`
 `;
 
 const StarRatingBar = ({ rating }) => (
-  <>
+  <div>
     {[...Array(5)].map((star, i) => {
       const num = i + 1;
+
       if (num <= rating) {
-        return (<FullStar>★</FullStar>);
+        return (<FullStar key={i}>★</FullStar>);
       } if (rating !== num && Math.ceil(rating) === num && (num - rating < 0.25)) {
-        return (<QuarterStar>★</QuarterStar>);
+        return (<QuarterStar key={i}>★</QuarterStar>);
       } if (rating !== num && Math.ceil(rating) === num && (num - rating < 0.5)) {
-        return (<HalfStar>★</HalfStar>);
+        return (<HalfStar key={i}>★</HalfStar>);
       } if (rating !== num && Math.ceil(rating) === num) {
-        return (<ThreeQuarterStar>★</ThreeQuarterStar>);
+        return (<ThreeQuarterStar key={i}>★</ThreeQuarterStar>);
       }
-      return (<EmptyStar>★</EmptyStar>);
+      return (<EmptyStar key={i}>★</EmptyStar>);
     })}
-  </>
+  </div>
 );
 
 export default StarRatingBar;

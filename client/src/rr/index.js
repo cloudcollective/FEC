@@ -10,6 +10,18 @@ justify-content: space-between;
 margin-left: 15%;
 margin-right: 15%;
 font-family: Arial;
+
+`;
+
+const FullComponent = styled.div`
+margin-top: 50px;
+`;
+
+const Title = styled.div`
+text-align: center;
+font-family: Arial;
+font-size: 2.5em;
+margin-bottom: 30px;
 `;
 
 
@@ -40,7 +52,9 @@ class Reviews extends React.Component {
         id: 25171,
       },
     })
-      .then((res) => (this.setState({ meta: res.data }, () => { console.log('metadata received and set on state', this.state.meta); this.setState({ average: this.getAverageRating() }, () => {console.log(this.state.average)}); })))
+      .then((res) => (this.setState({ meta: res.data }, () => { console.log('metadata received and set on state', this.state.meta);
+        this.setState({ average: this.getAverageRating() },
+          () => {console.log(this.state.average)}); })))
       .catch((err) => (console.log('what metadata', err)));
   }
 
@@ -65,10 +79,13 @@ class Reviews extends React.Component {
       );
     }
     return (
+    <FullComponent>
+      <Title>Ratings &#38; Reviews</Title>
       <Container>
         <Overview ratings={this.state.meta.ratings} average={this.state.average} numberOfRatings={this.state.numberOfRatings}/>
         <ReviewList results={this.state.results} />
       </Container>
+    </FullComponent>
     );
   }
 }
