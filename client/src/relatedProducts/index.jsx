@@ -6,10 +6,10 @@ import CardMaker from './components/CardMaker';
 import AddOutfit from './components/AddOutfit';
 
 const RPContainer = styled.div`
-border: solid 1px black;
+border: hidden 1px;
 `;
 const CardList = styled.div`
-border: solid 1px black;
+border: hidden 1px ;
 padding: 10px;
 margin: 0 0 0 5px;
 display:flex;
