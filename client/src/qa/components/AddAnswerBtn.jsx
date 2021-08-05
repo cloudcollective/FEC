@@ -4,6 +4,7 @@ import ButtonLink from './common/ButtonLink';
 
 const AddAnswerBtn = ({ setIsVisible }) => (
   <ButtonLink
+    small
     type="button"
     label="Add Answer"
     onClick={() => setIsVisible(true)}
