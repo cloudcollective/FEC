@@ -13,7 +13,7 @@ import ProductOverview from './components/ProductOverview';
 // 25169
 // 25170
 // 25174
-const tempProductID = 25174;
+const tempProductID = 25171;
 
 const getData = (callback) => {
   axios.get(`/products/${tempProductID}`)
@@ -69,12 +69,31 @@ const ProductDetails = ({ selectedProduct }) => {
       <Header />
       <Content>
         <LeftColumn>
-          <ImageGallery productStyle={productData[1]} styleId={styleId} styleIndex={styleIndex} styleSelected={styleSelected} />
+          <ImageGallery
+            productStyle={productData[1]}
+            styleId={styleId}
+            styleIndex={styleIndex}
+            styleSelected={styleSelected}
+          />
         </LeftColumn>
         <RightColumn>
-          <ProductInformation product={productData[0]} styles={productData[1]} styleId={styleId} styleIndex={styleIndex} styleSelected={styleSelected} />
-          <StyleSelector styles={productData[1]} getStyleId={getStyleId} />
-          <AddToCart styles={productData[1]} styleId={styleId} styleIndex={styleIndex} styleSelected={styleSelected} />
+          <ProductInformation
+            product={productData[0]}
+            styles={productData[1]}
+            styleId={styleId}
+            styleIndex={styleIndex}
+            styleSelected={styleSelected}
+          />
+          <StyleSelector
+            styles={productData[1]}
+            getStyleId={getStyleId}
+          />
+          <AddToCart
+            styles={productData[1]}
+            styleId={styleId}
+            styleIndex={styleIndex}
+            styleSelected={styleSelected}
+          />
         </RightColumn>
       </Content>
       <ProductOverview product={productData[0]} />
