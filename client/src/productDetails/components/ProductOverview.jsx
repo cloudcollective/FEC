@@ -5,6 +5,10 @@ const OverviewBody = styled.div`
 padding: 20px;
 `;
 
+const ProductSlogan = styled.h1`
+  text-transform: uppercase;
+`;
+
 const ProductOverview = ({ product }) => {
   if (!product) {
     return null;
@@ -14,7 +18,7 @@ const ProductOverview = ({ product }) => {
     <OverviewBody>
       <div className="sloganAndDescription">
         <div>
-          <h1>{product.slogan}</h1>
+          <ProductSlogan>{product.slogan}</ProductSlogan>
         </div>
         <div>
           <h3>{product.description}</h3>
