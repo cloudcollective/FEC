@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const ThumbContainer = styled.div`
@@ -13,10 +13,32 @@ const Thumbnails = styled.img`
   margin: 5px;
   cursor: pointer;
   display: block;
-  border-radius: 45%;
+  border-radius: 50%;
+  opacity: 0.7;
+  &:hover {
+    opacity: 0.9;
+  }
+`;
+
+const SelectedThumbnails = styled.img`
+  height: 80px;
+  width: 60px;
+  object-fit: cover;
+  margin: 5px;
+  cursor: pointer;
+  display: block;
+  border-radius: 50%;
+  box-shadow: 3px 3px 7px;
 `;
 
 const StyleSelector = ({ styles, getStyleId }) => {
+  const [selectedStyle, setSeletedStyle] = useState('');
+
+  const clickHandler = (id, index) => {
+    getStyleId(id, index);
+    setSeletedStyle(id);
+  };
+
   if (!styles) {
     return null;
   }
@@ -24,8 +46,26 @@ const StyleSelector = ({ styles, getStyleId }) => {
   return (
     <>
       <ThumbContainer>
-        {styles.results.map((style, index) =>
-          <Thumbnails src={style.photos[0].thumbnail_url} key={index} alt="thumbnails" onClick={() => getStyleId(style.style_id, index)} />)}
+        {styles.results.map((style, index) => {
+          if (style.style_id === selectedStyle) {
+            return (
+              <SelectedThumbnails
+                src={style.photos[0].thumbnail_url}
+                key={style.style_id}
+                alt="thumbnails"
+                onClick={() => clickHandler(style.style_id, index)}
+              />
+            );
+          }
+          return (
+            <Thumbnails
+              src={style.photos[0].thumbnail_url}
+              key={style.style_id}
+              alt="thumbnails"
+              onClick={() => clickHandler(style.style_id, index)}
+            />
+          );
+        })}
       </ThumbContainer>
     </>
   );

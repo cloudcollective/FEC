@@ -26,10 +26,6 @@ const getData = (callback) => {
 };
 
 const Body = styled.div`
-  ${'' /* font-family: 'Spectral SC', serif; */}
-  ${'' /* box-sizing: border-box; */}
-  ${'' /* margin:  0 150px; */}
-  ${'' /* background-color: #F8F8F8; */}
 `;
 
 const Content = styled.div`
@@ -37,19 +33,16 @@ const Content = styled.div`
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-top: 15px;
-  ${'' /* padding: 15px; */}
 `;
 
 const LeftColumn = styled.div`
   width: 75%;
-  ${'' /* border: 10px; */}
   height: 100%;
 `;
 
 const RightColumn = styled.div`
   flex-direction: column;
   width: 25%;
-  ${'' /* border: 10px; */}
 `;
 
 const ProductDetails = ({ selectedProduct }) => {
@@ -57,6 +50,7 @@ const ProductDetails = ({ selectedProduct }) => {
   const [styleId, setStyleId] = useState('');
   const [styleIndex, setStyleIndex] = useState('');
   const [styleSelected, setStyleSelected] = useState(false);
+
 
   useEffect(() => {
     getData(setProductData);
