@@ -9,6 +9,8 @@ const AverageRating = styled.div`
 
 const Container = styled.div`
   text-align: center;
+  margin-top: 50px;
+  margin-right: 50px;
 `;
 
 const Meter = styled.meter`
