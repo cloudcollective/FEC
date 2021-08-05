@@ -1,7 +1,5 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
-// import arrowLeft from '../ArrowImages/arrow-left.png';
-// import arrowRight from '../ArrowImages/arrow-right.png';
 
 const Gallery = styled.div`
   display: flex;
@@ -9,7 +7,7 @@ const Gallery = styled.div`
 `;
 
 const ThumbContainer = styled.div`
-  max-width: 1000px; // same as width of MainImage
+  max-width: 1000px;
   display: flex;
   min-height: 100px;
   align-items: center;
@@ -18,8 +16,6 @@ const ThumbContainer = styled.div`
 const Slider = styled.div`
   width: 1000px;
   display: flex;
-  /* flex-wrap: nowrap;
-  overflow-x: hidden; */
   overflow: auto;
   white-space: nowrap;
 `;
@@ -57,18 +53,6 @@ const MainImage = styled.img`
   border: 2px solid black;
 `;
 
-const Arrows = styled.div`
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  transition: .3s;
-  &:hover {
-    opacity: 0.5;
-    width: 35px;
-    height: 35px;
-  }
-`;
-
 const ImageGallery = ({
   productStyle, styleId, styleIndex, styleSelected,
 }) => {
@@ -89,24 +73,10 @@ const ImageGallery = ({
     setCurrImg(index);
   };
 
-  const leftArrowOnClick = () => {
-    // scrollDirection ? (scrollDirection.current.scrollLeft -= 180) : null;
-    console.log(`left clicked`);
-  };
-
-  const rightArrowOnClick = () => {
-    // scrollDirection ? (scrollDirection.current.scrollLeft -= 180) : null;
-    console.log(`right clicked`);
-  };
-
   return (
     <Gallery>
       <MainImage src={photos[currImg].url} alt={productStyle.results.name} />
       <ThumbContainer>
-        {/* <Arrows src={arrowLeft} alt="left arrow" /> */}
-        {/* <div>
-          <Arrows className="leftArrow" onClick={() => leftArrowOnClick}>LEFT</Arrows>
-        </div> */}
         <Slider id="slider">
           {photos.map((photo, index) => {
             if (index === currImg) {
@@ -128,10 +98,6 @@ const ImageGallery = ({
             );
           })}
         </Slider>
-        {/* <Arrows src={arrowRight} alt="right arrow" /> */}
-        {/* <div>
-          <Arrows className="rightArrow" onClick={() => rightArrowOnClick}>RIGHT</Arrows>
-        </div> */}
       </ThumbContainer>
     </Gallery>
   );

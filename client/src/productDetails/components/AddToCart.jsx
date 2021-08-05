@@ -163,7 +163,7 @@ const AddToCart = ({
   if (qtyArray.length === 0) {
     qtyDropdown = (
       <DisabledSelector disabled>
-        <option>QUANTITY</option>
+        <option>SELECT SIZE</option>
       </DisabledSelector>
     );
   } else {
