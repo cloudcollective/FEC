@@ -38,7 +38,6 @@ const ModalCard = styled.div`
   border-radius: 5px;
   padding: 15px;
   z-index: 10;
-  min-width: 400px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
 `;
 
@@ -55,6 +54,7 @@ const Background = styled.div`
 Modal.propTypes = {
   isVisible: PropTypes.bool.isRequired,
   setIsVisible: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default Modal;
