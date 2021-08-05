@@ -12,10 +12,12 @@ const PhotoModal = ({ url, description, index }) => {
         isVisible={on}
         setIsVisible={toggle}
       >
-        <ModalImage
-          src={url}
-          alt={`${description}-img${index}`}
-        />
+        <ImageBox>
+          <ModalImage
+            src={url}
+            alt={`${description}-img${index}`}
+          />
+        </ImageBox>
       </Modal>
       <Thumbnail
         src={url}
@@ -34,8 +36,14 @@ const Thumbnail = styled.img`
   border: 2px solid black;
 `;
 
+const ImageBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const ModalImage = styled.img`
-  height: 400px;
+  max-height: 600px;
   margin: 10px;
 `;
 
