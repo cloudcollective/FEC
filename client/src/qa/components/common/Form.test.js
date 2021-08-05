@@ -2,19 +2,46 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import Form from './Form';
+import Form, { validateEmail, capitalizeFirst } from './Form';
+
+const formFields = {
+  textareas: [
+    { name: 'question', label: 'Your Question*', maxLength: '1000' },
+  ],
+  inputs: [
+    {
+      name: 'nickname',
+      label: 'What is your nickname*',
+      placeholder: 'Example: jackson11!',
+      maxLength: '60',
+      afterInput: 'For privacy reasons, do not use your full name or email address',
+    },
+    {
+      name: 'email',
+      label: 'What is your email*',
+      placeholder: 'Example: jack@email.com',
+      maxLength: '60',
+      afterInput: 'For authentication reasons, you will not be emailed',
+    },
+  ],
+};
+
+beforeEach(() => {
+  render(<Form
+    formFields={formFields}
+    buttonLabel="Submit question"
+    doSubmit={() => {}}
+  />);
+});
 
 test('should render a form to the page', () => {
-  render(<Form />);
   expect(screen.getByRole('form')).toBeInTheDocument();
 });
 
 test('should render input typed by user', () => {
-  render(<Form />);
-
   const questionInput = screen.getByLabelText('Your Question*');
   const nicknameInput = screen.getByLabelText('What is your nickname*');
-  const emailInput = screen.getByLabelText('Your email*');
+  const emailInput = screen.getByLabelText('What is your email*');
 
   userEvent.type(questionInput, 'I have a test question');
   expect(questionInput).toHaveValue('I have a test question');
@@ -27,10 +54,8 @@ test('should render input typed by user', () => {
 });
 
 test('should render an error message if question left blank', () => {
-  render(<Form />);
-
   const nicknameInput = screen.getByLabelText('What is your nickname*');
-  const emailInput = screen.getByLabelText('Your email*');
+  const emailInput = screen.getByLabelText('What is your email*');
 
   userEvent.type(emailInput, 'test@test.com');
   userEvent.type(nicknameInput, 'test user!');
@@ -40,8 +65,6 @@ test('should render an error message if question left blank', () => {
 });
 
 test('should render an error message if email left blank', () => {
-  render(<Form />);
-
   const questionInput = screen.getByLabelText('Your Question*');
   const nicknameInput = screen.getByLabelText('What is your nickname*');
 
@@ -53,10 +76,8 @@ test('should render an error message if email left blank', () => {
 });
 
 test('should render an error message if nickname left blank', () => {
-  render(<Form />);
-
   const questionInput = screen.getByLabelText('Your Question*');
-  const emailInput = screen.getByLabelText('Your email*');
+  const emailInput = screen.getByLabelText('What is your email*');
 
   userEvent.type(questionInput, 'I have a test question');
   userEvent.type(emailInput, 'test@test.com');
@@ -66,11 +87,9 @@ test('should render an error message if nickname left blank', () => {
 });
 
 test('should clear input fields upon successful submission', () => {
-  render(<Form />);
-
   const questionInput = screen.getByLabelText('Your Question*');
   const nicknameInput = screen.getByLabelText('What is your nickname*');
-  const emailInput = screen.getByLabelText('Your email*');
+  const emailInput = screen.getByLabelText('What is your email*');
 
   userEvent.type(questionInput, 'I have a test question');
   userEvent.type(emailInput, 'test@test.com');
@@ -80,4 +99,27 @@ test('should clear input fields upon successful submission', () => {
   expect(questionInput).toHaveValue('');
   expect(nicknameInput).toHaveValue('');
   expect(emailInput).toHaveValue('');
+});
+
+test('should return false for an improperly formatted email', () => {
+  var result1 = validateEmail('test@te.x');
+  var result2 = validateEmail('aw48@@com')
+  expect(result1).toBe(false);
+  expect(result2).toBe(false);
+});
+
+test('should return true for an improperly formatted email', () => {
+  var result1 = validateEmail('test@test.com');
+  var result2 = validateEmail('julie@harvard.edu')
+  expect(result1).toBe(true);
+  expect(result2).toBe(true);
+});
+
+test('should capitalize first letter of a word only', () => {
+  var result1 = capitalizeFirst('aABBbb');
+  var result2 = capitalizeFirst('qwerty')
+  var result3 = capitalizeFirst('ABC')
+  expect(result1).toBe('AABBbb');
+  expect(result2).toBe('Qwerty');
+  expect(result3).toBe('ABC');
 });

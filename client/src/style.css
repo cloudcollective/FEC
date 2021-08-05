@@ -4,12 +4,20 @@ body {
   margin: 0 auto;
 }
 
+/* uncomment if you want to see all those divs! */
+/* * {
+  background: #000 !important;
+  color: #0f0 !important;
+  outline: solid #f00 1px !important;
+} */
+
 * {
   box-sizing: border-box;
   font-family: 'PT Sans', sans-serif;
   color: #272727;
 }
 
+/* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'PT Serif', serif;
 }
@@ -20,12 +28,29 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 2em;
 }
 
+.user-info {
+  font-size: 0.8em;
+  color: #767676;
+}
+
+.qa-meta {
+  font-size: 0.8em;
+}
+
+.widget-title {
+  font-size: 1.15em;
+  text-transform: uppercase;
+  letter-spacing: 0.075em;
+}
+
+/* Buttons */
 button {
   padding: 10px 20px;
   border: 1px solid #272727;
   display: block;
   cursor: pointer;
   background-color: #fff;
+  font-size: 1em;
 }
 
 button:hover {

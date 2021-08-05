@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import Form from './common/Form';
 import Modal from './common/Modal';
 
@@ -25,31 +26,45 @@ const formFields = {
   ],
 };
 
-const fakeApi = () => {
-  // TODO
-};
+const QuestionModal = ({
+  productName, isVisible, setIsVisible, productId,
+}) => {
+  const postQuestion = (inputs) => {
+    const options = {
+      method: 'post',
+      url: '/qa/questions',
+      data: {
+        inputs,
+        productId,
+      },
+    };
 
-const QuestionModal = ({ productName, isVisible, setIsVisible }) => (
-  <Modal
-    isVisible={isVisible}
-    setIsVisible={setIsVisible}
-  >
-    <h3>Ask Your Question</h3>
-    <h4>
-      {`About the ${productName}`}
-    </h4>
-    <Form
-      formFields={formFields}
-      buttonLabel="Submit question"
-      doSubmit={fakeApi}
-    />
-  </Modal>
-);
+    return axios(options);
+  };
+
+  return (
+    <Modal
+      isVisible={isVisible}
+      setIsVisible={setIsVisible}
+    >
+      <h3>Ask Your Question</h3>
+      <h4>
+        {`About the ${productName}`}
+      </h4>
+      <Form
+        formFields={formFields}
+        buttonLabel="Submit question"
+        doSubmit={postQuestion}
+      />
+    </Modal>
+  );
+};
 
 QuestionModal.propTypes = {
   productName: PropTypes.string.isRequired,
   isVisible: PropTypes.bool.isRequired,
   setIsVisible: PropTypes.func.isRequired,
+  productId: PropTypes.string,
 };
 
 export default QuestionModal;

@@ -51,8 +51,16 @@ const QuestionAndAnswerEntry = ({ productName, question, answers }) => {
 
 const StyledContainer = styled.div`
   display: grid;
-  grid-template-columns: 0.5fr 8fr 2fr;
+  grid-template-columns: 0.5fr 8fr 3fr;
   align-items: center;
+
+  & p {
+    margin: 0.75em 0;
+  }
+
+  & h4 {
+    margin: 0.75em 0;
+  }
 `;
 
 const SecondCol = styled.div`

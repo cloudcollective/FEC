@@ -1,7 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Input = ({ name, label, maxLength, placeholder, value, onChange, afterInput }) => (
+const Input = ({
+  name, label, maxLength, placeholder, value, onChange, afterInput,
+}) => (
   <>
     <label htmlFor={name}>
       {label}
@@ -15,21 +18,43 @@ const Input = ({ name, label, maxLength, placeholder, value, onChange, afterInpu
         onChange={onChange}
       />
     </label>
-    {afterInput && <p><small>{afterInput}</small></p>}
+    {afterInput && <DisclaimerText>{afterInput}</DisclaimerText>}
   </>
 );
 
 const StyledInput = styled.input`
   display: block;
-  box-sizing: border-box;
   width: 100%;
   padding: .375rem .75rem;
   font-size: 1rem;
   line-height: 1.5;
-  color: #495057;
+  color: #272727;
   background-color: #fff;
-  border: 1px solid #ced4da;
-  border-radius: .25rem;
+  border: 1px solid #767676;
+  &:focus {
+    outline: none;
+    border: 1px solid #272727;
+  }
 `;
+
+const DisclaimerText = styled.p`
+  font-size: 0.7em;
+  font-style: italic;
+  margin-top: 2px !important;
+`;
+
+Input.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  maxLength: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  afterInput: PropTypes.string,
+};
+
+Input.defaultProps = {
+  afterInput: null,
+};
 
 export default Input;
