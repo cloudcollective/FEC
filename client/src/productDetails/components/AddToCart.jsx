@@ -134,8 +134,15 @@ const AddToCart = ({
   };
 
   const addToCart = () => {
-    // Adding to Cart: productName: , productId: , productStyle: , productStyleId: , price: ,
-    console.log(`size: ${selectedSize}, quantity: ${selectedQty}`);
+    const product = styles.product_id;
+    let style;
+    if (!styleIndex) {
+      style = styles.results[0].style_id
+    } else {
+      style = styles.results[styleIndex].style_id
+    }
+    console.log(`Following product has been added to bag:
+    product_id: ${product}, style_id: ${style}, size: ${selectedSize}, quantity: ${selectedQty}`);
   };
 
   const qtyArray = [];
@@ -156,7 +163,14 @@ const AddToCart = ({
   }
 
   const saveFavorite = () => {
-    console.log('saving productId ____ as favorite');
+    const productIdForRR = styles.product_id;
+    let styleIdForRR;
+    if (!styleIndex) {
+      styleIdForRR = styles.results[0].style_id
+    } else {
+      styleIdForRR = styles.results[styleIndex].style_id
+    }
+    console.log(`Saving productId: ${productIdForRR} and styleId: ${styleIdForRR} as favorite`);
   };
 
   let qtyDropdown;
@@ -203,7 +217,7 @@ const AddToCart = ({
       </SizeAndQuantity>
       <AddBagAndFavorite>
         <AddtoBagBtn onClick={addToCart} type="submit">ADD TO BAG +</AddtoBagBtn>
-        <FavoriteBtn onClick={() => saveFavorite} type="button">★</FavoriteBtn>
+        <FavoriteBtn onClick={saveFavorite} type="button">★</FavoriteBtn>
       </AddBagAndFavorite>
     </CartContainer>
   );

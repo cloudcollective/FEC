@@ -57,7 +57,6 @@ const ImageGallery = ({
   productStyle, styleId, styleIndex, styleSelected,
 }) => {
   const [currImg, setCurrImg] = useState(0);
-  const scrollDirection = useRef(null);
 
   if (!productStyle && !styleId && !styleIndex && !styleSelected) {
     return null;
