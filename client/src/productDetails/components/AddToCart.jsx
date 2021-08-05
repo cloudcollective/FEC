@@ -27,7 +27,7 @@ const AddtoBagBtn = styled.button`
 
 const FavoriteBtn = styled.button`
   transition-duration: 0.3s;
-  width: 40%;
+  width: 20%;
   float: left;
   margin: 0 10px;
   &:hover {
@@ -57,7 +57,7 @@ const CustomSelector = styled.select`
   width: 100%;
   line-height: 1.3;
   cursor: default;
-  padding: 5px 10px 5px 8px;
+  padding: 10px 15px 10px 13px;
   border: 1px solid #999;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='292.4' height='292.4'%3E%3Cpath fill='%23333' d='M287 69.4a17.6 17.6 0 0 0-13-5.4H18.4c-5 0-9.3 1.8-12.9 5.4A17.6 17.6 0 0 0 0 82.2c0 5 1.8 9.3 5.4 12.9l128 127.9c3.6 3.6 7.8 5.4 12.8 5.4s9.2-1.8 12.8-5.4L287 95c3.5-3.5 5.4-7.8 5.4-12.8 0-5-1.9-9.2-5.5-12.8z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
@@ -82,7 +82,7 @@ const DisabledSelector = styled.select`
   width: 100%;
   line-height: 1.3;
   cursor: default;
-  padding: 5px 10px 5px 8px;
+  padding: 10px 15px 10px 13px;
   border: 1px solid #999;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='292.4' height='292.4'%3E%3Cpath fill='%23333' d='M287 69.4a17.6 17.6 0 0 0-13-5.4H18.4c-5 0-9.3 1.8-12.9 5.4A17.6 17.6 0 0 0 0 82.2c0 5 1.8 9.3 5.4 12.9l128 127.9c3.6 3.6 7.8 5.4 12.8 5.4s9.2-1.8 12.8-5.4L287 95c3.5-3.5 5.4-7.8 5.4-12.8 0-5-1.9-9.2-5.5-12.8z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
