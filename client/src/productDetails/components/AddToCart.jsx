@@ -191,7 +191,7 @@ const AddToCart = ({
             </option>
           ))
         }
-      </CustomSelector>
+      </CustomSelector >
     );
   }
 
@@ -203,9 +203,9 @@ const AddToCart = ({
             <CustomSelector name="size" id="size" onChange={sizeSelection}>
               <option value="default">SIZE</option>
               {/* set state for selected size and its index,  */}
-              {size.map((size, index) => (
-                <option value={size} key={index}>
-                  {size}
+              {size.map((sizeOption) => (
+                <option value={sizeOption} key={`${sizeOption}`}>
+                  {sizeOption}
                 </option>
               ))}
             </CustomSelector>

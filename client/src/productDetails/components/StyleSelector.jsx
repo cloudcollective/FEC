@@ -51,7 +51,7 @@ const StyleSelector = ({ styles, getStyleId }) => {
             return (
               <SelectedThumbnails
                 src={style.photos[0].thumbnail_url}
-                key={index}
+                key={style.style_id}
                 alt="thumbnails"
                 onClick={() => clickHandler(style.style_id, index)}
               />
@@ -60,7 +60,7 @@ const StyleSelector = ({ styles, getStyleId }) => {
           return (
             <Thumbnails
               src={style.photos[0].thumbnail_url}
-              key={index}
+              key={style.style_id}
               alt="thumbnails"
               onClick={() => clickHandler(style.style_id, index)}
             />

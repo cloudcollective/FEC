@@ -63,7 +63,7 @@ const ProductInformation = ({ product, styles, styleId, styleIndex, styleSelecte
       <div className="ratingAndReview">
         <p>
           {/* Need rating function */}
-          <span>★★★★★</span>
+          <span>★★★★★  </span>
           <span>
             {/* anchor tag to Reviews and Rating */}
             <a>Read all reviews</a>
