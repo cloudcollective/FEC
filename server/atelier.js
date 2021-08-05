@@ -155,6 +155,52 @@ const getQuestions = (id) => {
     });
 };
 
+const postQuestion = (question, nickname, email, productId) => {
+  const numProductId = Number(productId);
+
+  const options = {
+    method: 'post',
+    url: `${baseURL}/qa/questions`,
+    headers: {
+      Authorization: config.TOKEN,
+    },
+    data: {
+      body: question,
+      name: nickname,
+      email,
+      product_id: numProductId,
+    },
+  };
+
+  return axios(options)
+    .then((response) => response.data)
+    .catch((error) => {
+      throw error;
+    });
+};
+
+const postAnswer = (answer, nickname, email, questionId) => {
+  const options = {
+    method: 'post',
+    url: `${baseURL}/qa/questions/${questionId}/answers`,
+    headers: {
+      Authorization: config.TOKEN,
+    },
+    data: {
+      body: answer,
+      name: nickname,
+      email,
+      photos: [],
+    },
+  };
+
+  return axios(options)
+    .then((response) => response.data)
+    .catch((error) => {
+      throw error;
+    });
+};
+
 module.exports = {
   getProductById,
   getProductStylesById,
@@ -165,4 +211,6 @@ module.exports = {
   markAnswerHelpful,
   markQuestionHelpful,
   getQuestions,
+  postQuestion,
+  postAnswer,
 };

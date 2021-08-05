@@ -139,6 +139,32 @@ app.get('/qa/questions', (req, res) => {
     });
 });
 
+app.post('/qa/questions/', (req, res) => {
+  const { question, nickname, email } = req.body.inputs;
+  const { productId } = req.body;
+
+  atelier.postQuestion(question, nickname, email, productId)
+    .then((data) => {
+      res.status(201).send(data);
+    })
+    .catch((error) => {
+      res.status(501).send(error);
+    });
+});
+
+app.post('/qa/questions/:questionId/answers', (req, res) => {
+  const { answer, nickname, email } = req.body.inputs;
+  const { questionId } = req.params;
+
+  atelier.postAnswer(answer, nickname, email, questionId)
+    .then((data) => {
+      res.status(201).send(data);
+    })
+    .catch((error) => {
+      res.status(501).send(error);
+    });
+});
+
 const port = 3000;
 app.listen(port, () => {
   // eslint-disable-next-line no-console
