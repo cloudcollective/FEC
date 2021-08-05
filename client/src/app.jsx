@@ -16,13 +16,14 @@ class App extends React.Component {
       metaReviewData: [],
       questionsAndAnswersData: {},
     };
+
     this.getProductData = this.getProductData.bind(this);
     // this.getQuestionData = this.getQuestionData.bind(this);
   }
 
-
   componentDidMount() {
-    const productId = '25169';
+    // 25169, 25171
+    const productId = '25171';
     this.getProductData(productId);
     // this.getQuestionData(productId);
   }
@@ -73,10 +74,10 @@ class App extends React.Component {
       selectedProduct, relatedProductData, questionsAndAnswersData, reviewsData, metaReviewData,
     } = this.state;
     // Delete these console.logs later
-    console.log(selectedProduct, 'Product Detail');
-    console.log(relatedProductData, 'Related Products');
-    console.log(questionsAndAnswersData, 'QA');
-    console.log(reviewsData, metaReviewData, 'Ratings and Reviews');
+    // console.log(selectedProduct, 'Product Detail');
+    // console.log(relatedProductData, 'Related Products');
+    // console.log(questionsAndAnswersData, 'QA');
+    // console.log(reviewsData, metaReviewData, 'Ratings and Reviews');
     return (
       <div>
         {/* <div>
