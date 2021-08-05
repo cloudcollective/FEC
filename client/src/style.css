@@ -4,6 +4,13 @@ body {
   margin: 0 auto;
 }
 
+/* uncomment if you want to see all those divs! */
+/* * {
+  background: #000 !important;
+  color: #0f0 !important;
+  outline: solid #f00 1px !important;
+} */
+
 * {
   box-sizing: border-box;
   font-family: 'PT Sans', sans-serif;
