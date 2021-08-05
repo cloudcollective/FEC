@@ -94,6 +94,7 @@ const QuestionsAnswersContainer = ({ productId, questions }) => {
       />
       <AddQuestionBtn setIsVisible={toggle} />
       <QuestionModal
+        productId={productId}
         productName={productName}
         isVisible={on}
         setIsVisible={toggle}
