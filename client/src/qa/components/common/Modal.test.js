@@ -10,5 +10,5 @@ test('should render', () => {
 
 test('should render a close button', () => {
   render(<Modal isVisible setIsVisible={()=> {}} />);
-  expect(screen.getByText('Close')).toBeInTheDocument();
+  expect(screen.getByLabelText('Close')).toBeInTheDocument();
 });

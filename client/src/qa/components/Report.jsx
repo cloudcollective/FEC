@@ -9,11 +9,15 @@ const Report = ({ id }) => {
   const reportAnswer = () => {
     if (isReportable) {
       axios.put(`/qa/answers/${id}/report`)
-        .then(setIsReportable(false))
-        .catch(() => {
+        .then((data) => {
+          console.log('reported answer id', id, data);
+          setIsReportable(false);
+        })
+        .catch((error) => {
+          console.log('there was an error reporting answer id', id, error);
           setIsReportable(true);
         });
-    };
+    }
   };
 
   return (
@@ -21,12 +25,15 @@ const Report = ({ id }) => {
       {isReportable
         ? (
           <ButtonLink
+            small
             type="button"
             label="Report"
             onClick={reportAnswer}
           />
         )
-        : 'Reported'}
+        : (
+          <p className="qa-meta">Reported</p>
+        )}
     </>
   );
 };

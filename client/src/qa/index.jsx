@@ -81,7 +81,7 @@ const QuestionsAnswersContainer = ({ productId, questions }) => {
 
   return (
     <div>
-      <h3>
+      <h3 className="widget-title">
         Questions &#38; Answers
       </h3>
       <SearchQuestions
@@ -94,6 +94,7 @@ const QuestionsAnswersContainer = ({ productId, questions }) => {
       />
       <AddQuestionBtn setIsVisible={toggle} />
       <QuestionModal
+        productId={productId}
         productName={productName}
         isVisible={on}
         setIsVisible={toggle}

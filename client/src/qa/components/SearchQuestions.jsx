@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const SearchQuestions = ({ handleSearchQuestions, doReset }) => {
   const [filter, setFilter] = useState('');
@@ -16,7 +17,7 @@ const SearchQuestions = ({ handleSearchQuestions, doReset }) => {
   };
 
   return (
-    <input
+    <StyledInput
       className="search-question"
       type="search"
       placeholder="Have a question? Search for Answers..."
@@ -25,6 +26,21 @@ const SearchQuestions = ({ handleSearchQuestions, doReset }) => {
     />
   );
 };
+
+const StyledInput = styled.input`
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 2;
+  color: #272727;
+  background-color: #fff;
+  border: 1px solid #767676;
+  &:focus {
+    outline: none;
+    border: 1px solid #272727;
+  }
+`;
 
 SearchQuestions.propTypes = {
   handleSearchQuestions: PropTypes.func.isRequired,

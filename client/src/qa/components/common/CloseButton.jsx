@@ -6,6 +6,7 @@ const CloseButton = ({ type, onClick }) => (
   <StyledCloseButton
     type={type}
     onClick={onClick}
+    aria-label="Close"
   >
     <span>&times;</span>
   </StyledCloseButton>
@@ -21,9 +22,11 @@ const StyledCloseButton = styled.button`
   background-color: transparent;
   border: 0;
   font-size: 1.5rem;
-  color: darkgrey;
+  color: #272727;
   &:hover {
     opacity: .8;
+    color: #767676;
+    border: none;
   }
 `;
 

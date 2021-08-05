@@ -7,17 +7,15 @@ const Head = styled.div`
   justify-content: flex-start;
 `;
 
-const HeaderTitle = styled.h2`
+const HeaderTitle = styled.h1`
   color: #F8F8F8;
   text-transform: uppercase;
 `;
 
-const Header = () => {
-  return (
-    <Head>
-      <HeaderTitle className="title">Cloud Collective</HeaderTitle>
-    </Head>
-  )
-}
+const Header = () => (
+  <Head>
+    <HeaderTitle className="title">Cloud Collective</HeaderTitle>
+  </Head>
+);
 
 export default Header;

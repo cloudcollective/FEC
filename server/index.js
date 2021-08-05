@@ -100,12 +100,62 @@ app.put('/qa/answers/:answerId/report', (req, res) => {
     });
 });
 
+app.put('/qa/answers/:answerId/helpful', (req, res) => {
+  const { answerId } = req.params;
+
+  atelier.markAnswerHelpful(answerId)
+    .then(() => {
+      res.sendStatus(204);
+    })
+    .catch((error) => {
+      res.status(501).send(error);
+    });
+});
+
+app.put('/qa/questions/:questionId/helpful', (req, res) => {
+  const { questionId } = req.params;
+
+  atelier.markQuestionHelpful(questionId)
+    .then(() => {
+      res.sendStatus(204);
+    })
+    .catch((error) => {
+      res.status(501).send(error);
+    });
+});
+
 app.get('/qa/questions', (req, res) => {
   const { id } = req.query;
 
   atelier.getQuestions(id)
     .then((data) => {
       res.status(200).send(data);
+    })
+    .catch((error) => {
+      res.status(501).send(error);
+    });
+});
+
+app.post('/qa/questions/', (req, res) => {
+  const { question, nickname, email } = req.body.inputs;
+  const { productId } = req.body;
+
+  atelier.postQuestion(question, nickname, email, productId)
+    .then((data) => {
+      res.status(201).send(data);
+    })
+    .catch((error) => {
+      res.status(501).send(error);
+    });
+});
+
+app.post('/qa/questions/:questionId/answers', (req, res) => {
+  const { answer, nickname, email } = req.body.inputs;
+  const { questionId } = req.params;
+
+  atelier.postAnswer(answer, nickname, email, questionId)
+    .then((data) => {
+      res.status(201).send(data);
     })
     .catch((error) => {
       res.status(501).send(error);
