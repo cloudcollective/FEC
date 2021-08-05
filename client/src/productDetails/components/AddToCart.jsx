@@ -50,7 +50,6 @@ const QuantitySelector = styled.div`
 `;
 
 const CustomSelector = styled.select`
-  box-sizing: border-box;
   appearance: none;
   background-color: transparent;
   margin: 0;
@@ -137,9 +136,9 @@ const AddToCart = ({
     const product = styles.product_id;
     let style;
     if (!styleIndex) {
-      style = styles.results[0].style_id
+      style = styles.results[0].style_id;
     } else {
-      style = styles.results[styleIndex].style_id
+      style = styles.results[styleIndex].style_id;
     }
     console.log(`Following product has been added to bag:
     product_id: ${product}, style_id: ${style}, size: ${selectedSize}, quantity: ${selectedQty}`);
