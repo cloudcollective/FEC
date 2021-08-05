@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // 'prop-types' should be listed in the project's dependencies. Run 'npm i -S prop-types' to add it
 import CardMaker from './components/CardMaker';
 import AddOutfit from './components/AddOutfit';
@@ -106,6 +106,10 @@ const RelatedProductsContainer = ({ product, products }) => {
     </RPContainer>
   );
 };
+// RelatedProductsContainer.propTypes = {
+//   product: PropTypes.shape,
+//   products: PropTypes.arrayOf,
+// };
 export default RelatedProductsContainer;
 /*
  note to self
