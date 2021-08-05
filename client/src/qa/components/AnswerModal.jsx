@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import Form from './common/Form';
 import Modal from './common/Modal';
 
@@ -25,34 +26,45 @@ const formFields = {
   ],
 };
 
-const fakeApi = () => {
-  // TODO
-};
-
 const AnswerModal = ({
-  productName, question, isVisible, setIsVisible,
-}) => (
-  <Modal
-    isVisible={isVisible}
-    setIsVisible={setIsVisible}
-  >
-    <h3>Add an Answer</h3>
-    <h4>
-      {`${productName}: ${question}`}
-    </h4>
-    <Form
-      formFields={formFields}
-      buttonLabel="Submit answer"
-      doSubmit={fakeApi}
-    />
-  </Modal>
-);
+  productName, question, isVisible, setIsVisible, questionId,
+}) => {
+  const postAnswer = (inputs) => {
+    const options = {
+      method: 'post',
+      url: `/qa/questions/${questionId}/answers`,
+      data: {
+        inputs,
+        questionId,
+      },
+    };
+
+    return axios(options);
+  };
+  return (
+    <Modal
+      isVisible={isVisible}
+      setIsVisible={setIsVisible}
+    >
+      <h3>Add an Answer</h3>
+      <h4>
+        {`${productName}: ${question}`}
+      </h4>
+      <Form
+        formFields={formFields}
+        buttonLabel="Submit answer"
+        doSubmit={postAnswer}
+      />
+    </Modal>
+  );
+};
 
 AnswerModal.propTypes = {
   productName: PropTypes.string.isRequired,
   question: PropTypes.string.isRequired,
   isVisible: PropTypes.bool.isRequired,
   setIsVisible: PropTypes.func.isRequired,
+  questionId: PropTypes.number.isRequired,
 };
 
 export default AnswerModal;
