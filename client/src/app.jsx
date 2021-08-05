@@ -3,14 +3,7 @@ import axios from 'axios';
 import ProductDetails from './productDetails';
 import RelatedProducts from './relatedProducts';
 import QuestionsAnswers from './qa';
-<<<<<<< HEAD
-import Reviews from './rr';
-
-// import RelatedProducts from './relatedProducts';
-// import QuestionsAnswers from './qa';
-=======
->>>>>>> ca0536fafc9862938ee24daf31870004928d0c5c
-// import ReviewsRatings from './rr';
+import ReviewsRatings from './rr';
 import './style.css';
 
 class App extends React.Component {
@@ -123,17 +116,6 @@ class App extends React.Component {
             product={selectedProductData}
             products={relatedProductData}
           />
-<<<<<<< HEAD
-        </div> */}
-        { /* TODO Fix Product ID implementation */}
-        <QuestionsAnswers
-          questions={questionsAndAnswersData.results}
-          productId={questionsAndAnswersData.product_id}
-        />
-        <div>
-         <Reviews />
-         </div>
-=======
         </div>
         <div>
           <QuestionsAnswers
@@ -141,10 +123,9 @@ class App extends React.Component {
             productId={questionsAndAnswersData.product_id}
           />
         </div>
-        {/* <div>
+        <div>
          <ReviewsRatings />
-         </div> */}
->>>>>>> ca0536fafc9862938ee24daf31870004928d0c5c
+         </div>
       </div>
     );
   }
