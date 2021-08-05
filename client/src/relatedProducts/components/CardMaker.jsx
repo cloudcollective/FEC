@@ -9,7 +9,8 @@ display: inline-block;
 margin-right: 15px;
 `;
 const CardMaker = ({ product }) => {
-  console.log(product, 'Here is a Product');
+  // console.log(product, 'Here is a Product');
+  const ten = '10';
   return (
     <Card>
       <img src={`${product.url}`} onError={(e) => { e.target.onerror = null; e.target.src = 'https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png'; }} alt="default" width="200px" height="280px" />
@@ -17,7 +18,7 @@ const CardMaker = ({ product }) => {
         {`Category: ${product.category}`}
       </div>
       <div className="product-name">
-        {`Product Name: ${product.name}`}
+        {`Name: ${product.name}`}
       </div>
       <div className="price">
         {`Price: $${product.price}`}
