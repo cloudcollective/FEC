@@ -17,20 +17,18 @@ const QuestionEntry = ({
       <FirstCol><h4>Q: </h4></FirstCol>
       <SecondCol><h4>{question}</h4></SecondCol>
       <ThirdCol>
-        <Row>
-          <Helpful
-            helpfulness={helpfulness}
-            id={questionId}
-          />
-          <Divider />
-          <AddAnswerBtn className="qa-meta" setIsVisible={answerToggle.toggle} />
-          <AnswerModal
-            productName={productName}
-            question={question}
-            isVisible={answerToggle.on}
-            setIsVisible={answerToggle.toggle}
-          />
-        </Row>
+        <Helpful
+          helpfulness={helpfulness}
+          id={questionId}
+        />
+        <Divider />
+        <AddAnswerBtn className="qa-meta" setIsVisible={answerToggle.toggle} />
+        <AnswerModal
+          productName={productName}
+          question={question}
+          isVisible={answerToggle.on}
+          setIsVisible={answerToggle.toggle}
+        />
       </ThirdCol>
     </>
   );
@@ -46,9 +44,6 @@ const SecondCol = styled.div`
 
 const ThirdCol = styled.div`
   grid-column: 3 / span 1;
-`;
-
-const Row = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
