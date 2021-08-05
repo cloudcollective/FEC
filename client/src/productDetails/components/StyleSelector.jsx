@@ -14,9 +14,9 @@ const Thumbnails = styled.img`
   cursor: pointer;
   display: block;
   border-radius: 50%;
-  opacity: 0.6;
+  opacity: 0.7;
   &:hover {
-    opacity: 0.8;
+    opacity: 0.9;
   }
 `;
 
