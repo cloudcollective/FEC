@@ -38,11 +38,13 @@ const Content = styled.div`
 const LeftColumn = styled.div`
   width: 75%;
   height: 100%;
+  margin: 0 10;
 `;
 
 const RightColumn = styled.div`
   flex-direction: column;
   width: 25%;
+  padding: 20px;
 `;
 
 const ProductDetails = ({ selectedProduct }) => {
