@@ -64,13 +64,9 @@ app.get('/related/:id', (req, res) => {
     });
 });
 
-app.get('/reviews/:id', (req, res) => {
+app.get('/reviews/id', (req, res) => {
   const { id, sort } = req.query;
-
-  Promise.all([
-    atelier.getReviewsById(id, sort),
-    atelier.getMetaReviewsById(id),
-  ])
+  atelier.getReviewsById(id, sort)
     .then((data) => {
       res.status(201).send(data);
     })
@@ -80,8 +76,9 @@ app.get('/reviews/:id', (req, res) => {
 });
 
 app.get('/reviews/meta', (req, res) => {
-  const { id } = req.params;
-
+  console.log(req.query);
+  const { id } = req.query;
+  console.log('look here', id);
   atelier.getMetaReviewsById(id)
     .then((data) => {
       res.status(201).send(data);

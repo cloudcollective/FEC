@@ -3,7 +3,7 @@ import axios from 'axios';
 import ProductDetails from './productDetails';
 import RelatedProducts from './relatedProducts';
 import QuestionsAnswers from './qa';
-// import ReviewsRatings from './rr';
+import ReviewsRatings from './rr';
 import './style.css';
 
 class App extends React.Component {
@@ -123,9 +123,9 @@ class App extends React.Component {
             productId={questionsAndAnswersData.product_id}
           />
         </div>
-        {/* <div>
+        <div>
          <ReviewsRatings />
-         </div> */}
+         </div>
       </div>
     );
   }
