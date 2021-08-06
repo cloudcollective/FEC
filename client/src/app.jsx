@@ -10,7 +10,7 @@ class App extends React.Component {
   constructor(prop) {
     super(prop);
     this.state = {
-      productId: '25171',
+      productId: '25169',
       selectedProduct: {},
       relatedProductIds: [],
       relatedProductData: [],
@@ -108,24 +108,24 @@ class App extends React.Component {
     } = this.state;
     return (
       <div>
-        <div>
+        {/* <div>
           <ProductDetails />
-        </div>
+        </div> */}
         <div>
           <RelatedProducts
             product={selectedProductData}
             products={relatedProductData}
           />
         </div>
-        <div>
+        {/* <div>
           <QuestionsAnswers
             questions={questionsAndAnswersData.results}
             productId={questionsAndAnswersData.product_id}
           />
         </div>
         <div>
-         <ReviewsRatings />
-         </div>
+          <ReviewsRatings />
+        </div> */}
       </div>
     );
   }
