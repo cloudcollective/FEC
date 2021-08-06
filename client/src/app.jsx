@@ -95,7 +95,7 @@ class App extends React.Component {
   render() {
     const {
       // eslint-disable-next-line max-len
-      selectedProduct, relatedProductData, questionsAndAnswersData, reviewsData, metaReviewData, selectedProductData, seansData
+      selectedProduct, relatedProductData, questionsAndAnswersData, reviewsData, metaReviewData, selectedProductData, seansData, productId
     } = this.state;
     return (
       <main>
@@ -106,16 +106,17 @@ class App extends React.Component {
           <ProductDetails selectedProduct={seansData} />
         </section>
         <div className="related-info">
-          <section>
+          {/* <section>
             <RelatedProducts
               product={selectedProductData}
               products={relatedProductData}
             />
-          </section>
+          </section> */}
           <section>
             <QuestionsAnswers
               questions={questionsAndAnswersData.results}
-              productId={questionsAndAnswersData.product_id}
+              productId={productId}
+              productN={selectedProductData.name}
             />
           </section>
           <section>
