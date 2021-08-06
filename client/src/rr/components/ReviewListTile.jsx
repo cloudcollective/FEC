@@ -61,7 +61,7 @@ const ReviewListTile = (props) => (
     {props.result.recommend &&
       (
       <RecommendBox>
-        <FaCheckCircle color="green" />
+        <FaCheckCircle color="red" />
         { ' I recommend this product!' }
       </RecommendBox>
       )}

@@ -18,7 +18,6 @@ const Container = styled.div`
   width: 600px;
   height: 600px;
   overflow-y: scroll;
-
 `;
 
 const AddReview = styled.div`
