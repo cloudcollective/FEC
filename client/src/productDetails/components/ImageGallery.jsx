@@ -27,7 +27,7 @@ const Thumbnails = styled.img`
   max-height: 100px;
   cursor: pointer;
   opacity: 0.5;
-  margin: 5px;
+  margin: 7px;
   border: 2px solid black;
   &:hover {
     opacity: 0.8;

@@ -13,7 +13,7 @@ import ProductOverview from './components/ProductOverview';
 // 25169
 // 25170
 // 25174
-const tempProductID = 25171;
+const tempProductID = 25174;
 
 const getData = (callback) => {
   axios.get(`/products/${tempProductID}`)
@@ -38,11 +38,13 @@ const Content = styled.div`
 const LeftColumn = styled.div`
   width: 75%;
   height: 100%;
+  margin: 0 10;
 `;
 
 const RightColumn = styled.div`
   flex-direction: column;
   width: 25%;
+  padding: 20px;
 `;
 
 const ProductDetails = ({ selectedProduct }) => {
