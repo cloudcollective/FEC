@@ -23,5 +23,5 @@ test('It should render a button', () => {
       productName="some fakey product"
     />,
   );
-  expect(screen.getByText('See More Questions')).toBeInTheDocument();
+  expect(screen.getByText('More Answered Questions')).toBeInTheDocument();
 });
