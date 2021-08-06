@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import FeaturesButton from './FeaturesButton';
+import DeleteButton from './DeleteButton';
 
 const Card = styled.div`
 border: solid 1px black;
@@ -8,12 +10,16 @@ width: 250px;
 display: inline-block;
 margin-right: 15px;
 `;
-const CardMaker = ({ product }) => {
-  // console.log(product, 'Here is a Product');
-  const ten = '10';
+const CardMaker = ({ product, buttonType, features }) => {
+  const placeholderImage = 'https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png';
+
   return (
     <Card>
-      <img src={`${product.url}`} onError={(e) => { e.target.onerror = null; e.target.src = 'https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png'; }} alt="default" width="200px" height="280px" />
+      <div>
+        {buttonType === 'modal' && (<FeaturesButton />)}
+        {buttonType === 'delete' && (<DeleteButton />)}
+        <img src={`${product.url}`} onError={(e) => { e.target.onerror = null; e.target.src = placeholderImage; }} alt="default" width="200px" height="280px" />
+      </div>
       <div className="category">
         {`Category: ${product.category}`}
       </div>
