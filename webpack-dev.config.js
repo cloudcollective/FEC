@@ -2,10 +2,6 @@ const path = require('path');
 
 module.exports = {
   entry: path.join(__dirname, 'client', 'src', 'index.js'),
-  output: {
-    path: path.resolve(__dirname, 'client', 'dist'),
-    filename: 'bundle.js',
-  },
   module: {
     rules: [
       {
@@ -26,4 +22,8 @@ module.exports = {
   },
   mode: 'development',
   resolve: { extensions: ['*', '.js', '.jsx'] },
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'client', 'dist'),
+  },
 };
