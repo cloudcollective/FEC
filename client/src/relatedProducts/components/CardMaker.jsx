@@ -27,7 +27,7 @@ const CardMaker = ({ product, currentProduct, buttonType }) => {
     setCurrentProductFeatures([name, features]);
   }, [currentProduct]);
   useEffect(() => {
-    const { name, features} = product;
+    const { name, features } = product;
     setRelatedProductedFeatures([name, features]);
   }, [product]);
 

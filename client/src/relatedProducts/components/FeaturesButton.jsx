@@ -1,19 +1,32 @@
 import React from 'react';
-// import styled from 'styled-components';
+import ModalWindow from './ModalWindow';
+import useToggle from '../../qa/components/common/useToggle';
 
-const FeaturesButton = () => (
-  <>
-    {/* <button className="buttontype" type="button">★</button> */}
-    <div
-      className="buttontype"
-      role="button"
-      onKeyUp={() => { console.log('secretMessage'); }}
-      onClick={() => { console.log('hi'); }}
-      tabIndex={0}
-    >
-      ★
-    </div>
-  </>
-);
+// eslint-disable-next-line react/prop-types
+const FeaturesButton = ({ currentFeatures, relatedFeatures }) => {
+  const { on, toggle } = useToggle(false);
+  return (
+    <>
+      <div
+        className="buttontype"
+        role="button"
+        // eslint-disable-next-line no-console
+        onKeyUp={() => { console.log('secretMessage'); }}
+        onClick={() => {
+          toggle(true);
+        }}
+        tabIndex={0}
+      >
+        ★
+      </div>
+      <ModalWindow
+        currentFeatures={currentFeatures}
+        relatedFeatures={relatedFeatures}
+        isVisible={on}
+        setIsVisible={toggle}
+      />
+    </>
+  );
+};
 
 export default FeaturesButton;

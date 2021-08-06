@@ -90,16 +90,6 @@ class App extends React.Component {
         console.log('Error retrieving questions via product ID', error);
       });
   }
-  // const app = ({ data }) => (
-  //   <>
-  //     <ProductDetails product={data.product} productStyles={data.productStyles} />
-  //     {/* <RelatedProducts data={data} /> */}
-  //     {/* <QuestionsAnswers
-  //     questions={data.questions}
-  //     answers={data.answers}
-  //   /> */}
-  //   </>
-  // );
 
   render() {
     const {
@@ -117,13 +107,13 @@ class App extends React.Component {
             products={relatedProductData}
           />
         </div>
-        {/* <div>
+        <div>
           <QuestionsAnswers
             questions={questionsAndAnswersData.results}
             productId={questionsAndAnswersData.product_id}
           />
         </div>
-        <div>
+        {/* <div>
           <ReviewsRatings />
         </div> */}
       </div>
