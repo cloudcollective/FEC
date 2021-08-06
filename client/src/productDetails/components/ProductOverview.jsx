@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const OverviewBody = styled.div`
-padding: 20px;
+  padding: 20px;
 `;
 
 const ProductSlogan = styled.h1`

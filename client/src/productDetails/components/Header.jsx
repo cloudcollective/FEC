@@ -8,7 +8,7 @@ const Head = styled.div`
 `;
 
 const HeaderTitle = styled.h1`
-  color: #F8F8F8;
+  color: #f1f0f5;
   text-transform: uppercase;
 `;
 

@@ -1,7 +1,9 @@
 body {
-  padding-left: 60px;
-  padding-right: 60px;
+  padding-left: 80px;
+  padding-right: 80px;
   margin: 0 auto;
+  color:#272727;
+  background-color: #f1f0f5;
 }
 
 /* uncomment if you want to see all those divs! */
@@ -14,12 +16,13 @@ body {
 * {
   box-sizing: border-box;
   font-family: 'PT Sans', sans-serif;
-  color: #272727;
+  /* color: #272727; */
 }
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'PT Serif', serif;
+  color: #272727;
 }
 
 .title {
@@ -51,6 +54,7 @@ button {
   cursor: pointer;
   background-color: #fff;
   font-size: 1em;
+  color: #272727;
 }
 
 button:hover {
@@ -71,4 +75,11 @@ button:hover {
   display:flex;
   justify-content: center;
   border-bottom: solid 1px gainsboro;
+}
+input {
+  background-color: transparent;
+}
+
+.related-info {
+  padding: 0 100px;
 }

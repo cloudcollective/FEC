@@ -1,29 +1,26 @@
 import React from 'react';
-import ReviewList from './components/ReviewList.jsx';
-import axios from 'axios';
-import Overview from './components/Overview.jsx';
 import styled from 'styled-components';
+import axios from 'axios';
+import ReviewList from './components/ReviewList';
+import Overview from './components/Overview';
 
 const Container = styled.div`
 display: flex;
-justify-content: space-between;
-margin-left: 15%;
-margin-right: 15%;
-font-family: Arial;
-
+justify-content: flex-start;
+${'' /* margin-left: 15%;
+margin-right: 15%; */}
 `;
 
 const FullComponent = styled.div`
 margin-top: 50px;
 `;
 
+// Todo - need to apply or not
 const Title = styled.div`
 text-align: center;
-font-family: Arial;
 font-size: 2.5em;
 margin-bottom: 30px;
 `;
-
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -80,7 +77,7 @@ class Reviews extends React.Component {
     }
     return (
     <FullComponent>
-      <Title>Ratings &#38; Reviews</Title>
+      <h3 className="widget-title">Ratings &#38; Reviews</h3>
       <Container>
         <Overview ratings={this.state.meta.ratings} average={this.state.average} numberOfRatings={this.state.numberOfRatings}/>
         <ReviewList results={this.state.results} />

@@ -6,7 +6,6 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: space-around;
-font-family: arial;
 text-align: center;
 `;
 
