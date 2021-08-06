@@ -11,12 +11,11 @@ class App extends React.Component {
   constructor(prop) {
     super(prop);
     this.state = {
-      productId: '25169',
-      selectedProduct: {},
+      productId: '25171',
       relatedProductIds: [],
       relatedProductData: [],
       reviewsData: [],
-      metaReviewData: [],
+      ratings: [],
       questionsAndAnswersData: {},
       selectedProductData: {},
       seansData: {},
@@ -39,10 +38,9 @@ class App extends React.Component {
     axios.get(`/products/${id}`)
       .then((data) => {
         this.setState({
-          selectedProduct: data.data[0],
           relatedProductIds: data.data[2],
-          reviewsData: data.data[3],
-          metaReviewData: data.data[4],
+          reviewsData: data.data[3].results,
+          ratings: data.data[4].ratings,
           seansData: data.data,
         });
       })
@@ -95,7 +93,7 @@ class App extends React.Component {
   render() {
     const {
       // eslint-disable-next-line max-len
-      selectedProduct, relatedProductData, questionsAndAnswersData, reviewsData, metaReviewData, selectedProductData, seansData, productId
+      relatedProductData, questionsAndAnswersData, reviewsData, ratings, selectedProductData, seansData, productId,
     } = this.state;
     return (
       <main>
@@ -106,12 +104,12 @@ class App extends React.Component {
           <ProductDetails selectedProduct={seansData} />
         </section>
         <div className="related-info">
-          {/* <section>
+          <section>
             <RelatedProducts
               product={selectedProductData}
               products={relatedProductData}
             />
-          </section> */}
+          </section>
           <section>
             <QuestionsAnswers
               questions={questionsAndAnswersData.results}
@@ -120,12 +118,14 @@ class App extends React.Component {
             />
           </section>
           <section>
-            <ReviewsRatings />
+            <ReviewsRatings
+              reviews={reviewsData}
+              rating={ratings}
+            />
           </section>
         </div>
       </main>
     );
   }
 }
-// Warning, if there are render issues comment out lines 93 to 97 for now.
 export default App;
