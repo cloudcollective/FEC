@@ -12,7 +12,6 @@ const ModalContent = styled.div`
   transform: translate(-50%, -50%);
   border: 1px solid black;
   background-color: white;
-  font-family: Arial;
   vertical-align: center;
   z-index: 1000;
   padding: 20px;

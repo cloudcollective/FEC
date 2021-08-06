@@ -53,6 +53,7 @@ const MainImage = styled.img`
   cursor: pointer;
   border: 2px solid black;
   box-shadow: 3px 3px 7px;
+  margin-bottom: 10px;
 `;
 
 const ImageGallery = ({
