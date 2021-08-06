@@ -15,7 +15,7 @@ display:flex;
 
 const RelatedProductsContainer = ({ product, products }) => {
   let arrayOfProductCards = [];
-  const [relatedProdcutData, setRelatedProdcutData] = useState([]);
+  const [relatedProductData, setrelatedProductData] = useState([]);
   const [productCards, setproductCards] = useState([]);
   const [displayCards, setDisplayCards] = useState([]);
   // const [navCardList, setNavCardList] = useState([0, 5]);
@@ -25,12 +25,12 @@ const RelatedProductsContainer = ({ product, products }) => {
   const [rightButtonVisibility, setRightButtonVisibility] = useState(false);
 
   useEffect(() => {
-    setRelatedProdcutData(products);
+    setrelatedProductData(products);
   }, [products]);
 
   useEffect(() => {
     setproductCards(arrayOfProductCards);
-  }, [relatedProdcutData]);
+  }, [relatedProductData]);
 
   useEffect(() => {
     if (productCards.length === 0) {
@@ -58,9 +58,10 @@ const RelatedProductsContainer = ({ product, products }) => {
     }
   }, [productCards, end]);
 
-  arrayOfProductCards = relatedProdcutData.map((prod) => (
+  arrayOfProductCards = relatedProductData.map((prod) => (
     <CardMaker
       product={prod}
+      currentProduct={product}
       key={prod.id}
       buttonType="modal"
     />
