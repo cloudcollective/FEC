@@ -19,20 +19,24 @@ const QuestionsAnswersContainer = ({ productId, questions }) => {
     }
   }, [questions]);
 
+  // useEffect(() => {
+  //   if (productId) {
+  //     axios.get('qa/questions', {
+  //       params: {
+  //         id: productId,
+  //       },
+  //     })
+  //       .then((data) => {
+  //         setCurrentQuestions(data.data.results);
+  //       })
+  //       .catch((error) => {
+  //         console.log('Error retrieving questions via product ID', error);
+  //       });
+  //   }
+  // }, [resetDisplay]);
+
   useEffect(() => {
-    if (productId) {
-      axios.get('qa/questions', {
-        params: {
-          id: productId,
-        },
-      })
-        .then((data) => {
-          setCurrentQuestions(data.data.results);
-        })
-        .catch((error) => {
-          console.log('Error retrieving questions via product ID', error);
-        });
-    }
+    if (resetDisplay) { setCurrentQuestions(questions); }
   }, [resetDisplay]);
 
   useEffect(() => {
