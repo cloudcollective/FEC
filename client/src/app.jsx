@@ -95,7 +95,7 @@ class App extends React.Component {
   render() {
     const {
       // eslint-disable-next-line max-len
-      selectedProduct, relatedProductData, questionsAndAnswersData, reviewsData, metaReviewData, selectedProductData, seansData, productId
+      selectedProduct, relatedProductData, questionsAndAnswersData, reviewsData, metaReviewData, selectedProductData, seansData, productId,
     } = this.state;
     return (
       <main>
@@ -106,12 +106,12 @@ class App extends React.Component {
           <ProductDetails selectedProduct={seansData} />
         </section>
         <div className="related-info">
-          {/* <section>
+          <section>
             <RelatedProducts
               product={selectedProductData}
               products={relatedProductData}
             />
-          </section> */}
+          </section>
           <section>
             <QuestionsAnswers
               questions={questionsAndAnswersData.results}
@@ -127,5 +127,4 @@ class App extends React.Component {
     );
   }
 }
-// Warning, if there are render issues comment out lines 93 to 97 for now.
 export default App;
