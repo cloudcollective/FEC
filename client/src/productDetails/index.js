@@ -36,14 +36,14 @@ const Content = styled.div`
 `;
 
 const LeftColumn = styled.div`
-  width: 75%;
+  width: 70%;
   height: 100%;
   margin: 0 10;
 `;
 
 const RightColumn = styled.div`
   flex-direction: column;
-  width: 25%;
+  width: 30%;
   padding: 20px;
 `;
 
