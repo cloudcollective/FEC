@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import Header from './components/Header';
 import ImageGallery from './components/ImageGallery';
 import ProductInformation from './components/ProductInformation';
 import StyleSelector from './components/StyleSelector';
@@ -66,7 +65,6 @@ const ProductDetails = ({ selectedProduct }) => {
 
   return (
     <Body>
-      <Header />
       <Content>
         <LeftColumn>
           <ImageGallery

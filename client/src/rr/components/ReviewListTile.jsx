@@ -16,7 +16,6 @@ const CornerContent = styled.div`
 `;
 
 const Username = styled.div`
-  color: "black";
   font-size: .75em;
   display: inline-block;
   margin-bottom: 20px
@@ -40,8 +39,8 @@ const ReviewBody = styled.div`
 `;
 
 const Helpful = styled.div`
-  font-size: .75em;
-  color: grey;
+  font-size: .8em;
+  color: #767676;
   margin: 20px;
 `;
 
