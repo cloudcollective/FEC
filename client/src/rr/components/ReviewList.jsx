@@ -7,16 +7,15 @@ const MoreReviews = styled.div(props => ({
   display: props.display,
   border: '1px solid black',
   height: '3em',
-  fontFamily: 'Arial',
   textAlign: 'center',
   verticalAlign: 'center',
 }));
 
+// Change to TileContainer and make a separate Container for flex-grow: 2
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 600px;
-  height: 600px;
+  max-height: 100vh;
   overflow-y: scroll;
 `;
 
@@ -24,7 +23,6 @@ const AddReview = styled.div`
   display: block;
   border: 1px solid black;
   height: 3em;
-  font-family: Arial;
   text-align: center;
   vertical-align: center;
   z-index: 1000;
@@ -62,7 +60,7 @@ class ReviewList extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{ flexGrow: '4' }}>
       <Container>
         {this.props.results.map((result, i) => {
           if (i < this.state.showing) {
