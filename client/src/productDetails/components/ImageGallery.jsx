@@ -27,7 +27,7 @@ const Thumbnails = styled.img`
   max-height: 100px;
   cursor: pointer;
   opacity: 0.5;
-  margin: 5px;
+  margin: 7px;
   border: 2px solid black;
   &:hover {
     opacity: 0.8;
@@ -53,6 +53,7 @@ const MainImage = styled.img`
   cursor: pointer;
   border: 2px solid black;
   box-shadow: 3px 3px 7px;
+  margin-bottom: 10px;
 `;
 
 const ImageGallery = ({

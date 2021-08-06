@@ -1,15 +1,13 @@
 import React from 'react';
-import StarRatingBar from './StarRatingBar.jsx';
-import { FaUser } from 'react-icons/fa';
-import { FaCheckCircle } from 'react-icons/fa';
+import { FaUser, FaCheckCircle } from 'react-icons/fa';
 import styled from 'styled-components';
+import StarRatingBar from './StarRatingBar';
 
 const Tile = styled.div`
   padding-bottom: 20px;
   padding-top: 20px;
   border-bottom: 3px solid lightGrey;
-  font-family: Arial;
-  width: 600px;
+  ${'' /* width: 600px; */}
 `;
 
 const CornerContent = styled.div`
@@ -27,7 +25,6 @@ const Username = styled.div`
 const RecommendBox = styled.div`
   display: inline-block;
   font-size: 1em;
-  font-family: Arial;
   border: 1px dotted black;
   margin: 10px;
   padding: 10px;
