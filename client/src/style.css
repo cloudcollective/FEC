@@ -57,3 +57,8 @@ button:hover {
   border: 1px solid #767676;
   color: #767676;
 }
+
+.buttontype {
+  position: absolute;
+  z-index: 1;
+}
