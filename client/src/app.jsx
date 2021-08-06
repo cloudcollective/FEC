@@ -124,8 +124,8 @@ class App extends React.Component {
           />
         </div>
         <div>
-         <ReviewsRatings />
-         </div>
+          <ReviewsRatings />
+        </div>
       </div>
     );
   }

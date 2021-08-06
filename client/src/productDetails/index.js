@@ -56,8 +56,6 @@ const ProductDetails = ({ selectedProduct }) => {
 
   useEffect(() => {
     getData(setProductData);
-    // setProductData(selectedProduct);
-    // console.log(selectedProduct);
   }, []);
 
   const getStyleId = (id, index) => {

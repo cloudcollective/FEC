@@ -109,7 +109,6 @@ const AddToCart = ({
   const size = [];
   const quantity = [];
 
-  // let sizeAndQuantityObj = Object.entries(quantityAndSize);
   if (styleSelected) {
     quantityAndSize = styles.results[styleIndex].skus;
     for (const [sizeNum, qAndS] of Object.entries(quantityAndSize)) {
@@ -190,7 +189,7 @@ const AddToCart = ({
             </option>
           ))
         }
-      </CustomSelector >
+      </CustomSelector>
     );
   }
 
