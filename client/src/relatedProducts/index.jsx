@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
-// 'prop-types' should be listed in the project's dependencies. Run 'npm i -S prop-types' to add it
 import CardMaker from './components/CardMaker';
 import AddOutfit from './components/AddOutfit';
 
@@ -64,6 +62,7 @@ const RelatedProductsContainer = ({ product, products }) => {
     <CardMaker
       product={prod}
       key={prod.id}
+      buttonType="modal"
     />
   ));
   return (

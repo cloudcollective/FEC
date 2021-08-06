@@ -30,6 +30,7 @@ const AddOutfit = ({ product }) => {
     <CardMaker
       product={prod}
       key={prod.id}
+      buttonType="delete"
     />
   ))(productData);
 
