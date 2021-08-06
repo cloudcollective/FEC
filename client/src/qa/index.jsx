@@ -6,7 +6,8 @@ import AddQuestionBtn from './components/AddQuestionBtn';
 import QuestionModal from './components/QuestionModal';
 import useToggle from './components/common/useToggle';
 
-const QuestionsAnswersContainer = ({ productId, questions, productName }) => {
+const QuestionsAnswersContainer = ({ productId, questions, productN }) => {
+  const [productName, setProductName] = useState('');
   const [currentQuestions, setCurrentQuestions] = useState([]);
   const [resetDisplay, setResetDisplay] = useState(false);
   const { on, toggle } = useToggle(false);
@@ -20,6 +21,10 @@ const QuestionsAnswersContainer = ({ productId, questions, productName }) => {
   useEffect(() => {
     if (resetDisplay) { setCurrentQuestions(questions); }
   }, [resetDisplay]);
+
+  useEffect(() => {
+    if (productN) { setProductName(productN); }
+  }, [productN]);
 
   const doFilter = (filterText, text) => (
     text.toLowerCase().includes(filterText.toLowerCase())
@@ -101,6 +106,7 @@ QuestionsAnswersContainer.propTypes = {
     }),
   )]),
   productId: PropTypes.string,
+  productN: PropTypes.string,
 };
 
 export default QuestionsAnswersContainer;
