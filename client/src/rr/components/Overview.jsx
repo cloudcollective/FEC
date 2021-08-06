@@ -1,16 +1,16 @@
 import React from 'react';
-import StarRatingBar from './StarRatingBar.jsx';
 import styled from 'styled-components';
+import StarRatingBar from './StarRatingBar.jsx';
 
 const AverageRating = styled.div`
   font-size: 50px;
-  font-family: Arial;
 `;
 
 const Container = styled.div`
   text-align: center;
   margin-top: 50px;
   margin-right: 50px;
+  flex-grow: 1;
 `;
 
 const Meter = styled.meter`
