@@ -19,6 +19,7 @@ class App extends React.Component {
       metaReviewData: [],
       questionsAndAnswersData: {},
       selectedProductData: {},
+      seansData: {},
     };
 
     this.getProductData = this.getProductData.bind(this);
@@ -42,6 +43,7 @@ class App extends React.Component {
           relatedProductIds: data.data[2],
           reviewsData: data.data[3],
           metaReviewData: data.data[4],
+          seansData: data.data,
         });
       })
       .then(() => {
@@ -56,11 +58,9 @@ class App extends React.Component {
           this.setState({
             relatedProductData: temp,
           });
+        }).catch((err) => {
+          console.log(`Failed to fetch data from the server: ${err}`);
         });
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error);
       });
   }
 
@@ -95,7 +95,7 @@ class App extends React.Component {
   render() {
     const {
       // eslint-disable-next-line max-len
-      selectedProduct, relatedProductData, questionsAndAnswersData, reviewsData, metaReviewData, selectedProductData,
+      selectedProduct, relatedProductData, questionsAndAnswersData, reviewsData, metaReviewData, selectedProductData, seansData
     } = this.state;
     return (
       <main>
@@ -103,7 +103,7 @@ class App extends React.Component {
           <Header />
         </header>
         <section>
-          <ProductDetails />
+          <ProductDetails selectedProduct={seansData} />
         </section>
         <div className="related-info">
           <section>
