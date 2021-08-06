@@ -4,6 +4,7 @@ import ProductDetails from './productDetails';
 import RelatedProducts from './relatedProducts';
 import QuestionsAnswers from './qa';
 import ReviewsRatings from './rr';
+import Header from './productDetails/components/Header';
 import './style.css';
 
 class App extends React.Component {
@@ -107,28 +108,31 @@ class App extends React.Component {
       selectedProduct, relatedProductData, questionsAndAnswersData, reviewsData, metaReviewData, selectedProductData,
     } = this.state;
     return (
-      <div>
-        <div>
+      <main>
+        <header>
+          <Header />
+        </header>
+        <section>
           <ProductDetails />
-        </div>
+        </section>
         <div className="related-info">
-          <div>
+          <section>
             <RelatedProducts
               product={selectedProductData}
               products={relatedProductData}
             />
-          </div>
-          <div>
+          </section>
+          <section>
             <QuestionsAnswers
               questions={questionsAndAnswersData.results}
               productId={questionsAndAnswersData.product_id}
             />
-          </div>
-          <div>
+          </section>
+          <section>
             <ReviewsRatings />
-          </div>
+          </section>
         </div>
-      </div>
+      </main>
     );
   }
 }
