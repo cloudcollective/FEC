@@ -5,12 +5,6 @@ import ProductInformation from './components/ProductInformation';
 import StyleSelector from './components/StyleSelector';
 import AddToCart from './components/AddToCart';
 import ProductOverview from './components/ProductOverview';
-// plug these ids into app.jsx line 14 for testing purposes
-// 25167
-// 25171
-// 25169
-// 25170
-// 25174
 
 const Body = styled.div`
 `;
