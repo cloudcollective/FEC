@@ -141,7 +141,7 @@ class App extends React.Component {
           <ProductDetails
             selectedProduct={seansData}
             setFavorite={this.setFavorite}
-            rating={this.state.average}
+            rating={average}
           />
         </section>
         <div className="related-info">
@@ -164,7 +164,6 @@ class App extends React.Component {
           </section>
           <section>
             <ReviewsRatings
-              productId={productId}
               method={this.fetchAverageRating}
               reviews={reviewsData}
               rating={ratings}

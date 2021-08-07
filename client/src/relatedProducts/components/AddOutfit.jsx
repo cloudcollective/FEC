@@ -6,8 +6,11 @@ const AddOutfitButton = styled.div`
 border: solid 1px #A0A0A0;
 height: 390px;
 width: 250px;
-display: inline-block;
 margin-right: 15px;
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: #F5F5F5;
 `;
 const CustomOutfitContainer = styled.div`
 display: flex;

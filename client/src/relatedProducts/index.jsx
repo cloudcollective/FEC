@@ -117,12 +117,5 @@ const RelatedProductsContainer = ({
     </RPContainer>
   );
 };
-// RelatedProductsContainer.propTypes = {
-//   product: PropTypes.shape,
-//   products: PropTypes.arrayOf,
-// };
+
 export default RelatedProductsContainer;
-/*
- note to self
- check for duplicate products!
-  */
