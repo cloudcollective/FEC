@@ -31,7 +31,7 @@ const HalfStar = styled.div`
 const ThreeQuarterStar = styled.div`
   display: initial;
   font-size: 25px;
-  background-image: linear-gradient(to right, white 35%, goldenrod 65%);
+  background-image: linear-gradient(to right, goldenrod 65%, white 35%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -52,9 +52,9 @@ const StarRatingBar = ({ rating }) => (
 
       if (num <= rating) {
         return (<FullStar key={i}>★</FullStar>);
-      } if (rating !== num && Math.ceil(rating) === num && (num - rating < 0.25)) {
+      } if (rating !== num && Math.ceil(rating) === num && (num - rating > 0.75)) {
         return (<QuarterStar key={i}>★</QuarterStar>);
-      } if (rating !== num && Math.ceil(rating) === num && (num - rating < 0.5)) {
+      } if (rating !== num && Math.ceil(rating) === num && (num - rating > 0.5)) {
         return (<HalfStar key={i}>★</HalfStar>);
       } if (rating !== num && Math.ceil(rating) === num) {
         return (<ThreeQuarterStar key={i}>★</ThreeQuarterStar>);
