@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import CardMaker from './CardMaker';
 
 const AddOutfitButton = styled.div`
-border: solid 1px black;
-height: 360px;
+border: solid 1px #A0A0A0;
+height: 390px;
 width: 250px;
 display: inline-block;
 margin-right: 15px;
