@@ -54,13 +54,12 @@ const ReviewListTile = ({ result, productId, reload }) => {
         id: id,
       },
     })
-    .then(reload())
-    .catch((err) => console.log("hjnnknni", err));
+      .then(reload())
+      .catch((err) => console.log("hjnnknni", err));
   };
 
   return (
     <Tile>
-      {result.review_id};
       <CornerContent>
         <div>
           <StarRatingBar rating={result.rating} />
