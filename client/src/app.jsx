@@ -18,12 +18,14 @@ class App extends React.Component {
       ratings: [],
       questionsAndAnswersData: {},
       selectedProductData: {},
+      average: null,
       seansData: {},
     };
 
     this.getProductData = this.getProductData.bind(this);
     this.getQuestionData = this.getQuestionData.bind(this);
     this.getCurrentProductData = this.getCurrentProductData.bind(this);
+    this.fetchAverageRating = this.fetchAverageRating.bind(this);
   }
 
   componentDidMount() {
@@ -90,6 +92,20 @@ class App extends React.Component {
       });
   }
 
+  fetchAverageRating(rating) {
+    this.setState({ average: rating}, () => (console.log("AAAAAAAAA : ", this.state.average)));
+  }
+  // const app = ({ data }) => (
+  //   <>
+  //     <ProductDetails product={data.product} productStyles={data.productStyles} />
+  //     {/* <RelatedProducts data={data} /> */}
+  //     {/* <QuestionsAnswers
+  //     questions={data.questions}
+  //     answers={data.answers}
+  //   /> */}
+  //   </>
+  // );
+
   render() {
     const {
       // eslint-disable-next-line max-len
@@ -119,6 +135,7 @@ class App extends React.Component {
           </section>
           <section>
             <ReviewsRatings
+              method={this.fetchAverageRating}
               reviews={reviewsData}
               rating={ratings}
             />
