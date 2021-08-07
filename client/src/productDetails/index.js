@@ -28,7 +28,7 @@ const RightColumn = styled.div`
   padding: 20px;
 `;
 
-const ProductDetails = ({ selectedProduct, setFavorite }) => {
+const ProductDetails = ({ selectedProduct, setFavorite, rating }) => {
   const [productData, setProductData] = useState([]);
   const [style, setStyle] = useState({
     id: '',
@@ -69,6 +69,7 @@ const ProductDetails = ({ selectedProduct, setFavorite }) => {
             styleId={style.id}
             styleIndex={style.index}
             styleSelected={style.selected}
+            rating={rating}
           />
           <StyleSelector
             styles={styleInfo}

@@ -18,6 +18,7 @@ class App extends React.Component {
       ratings: [],
       questionsAndAnswersData: {},
       selectedProductData: {},
+      average: null,
       seansData: {},
       isFavorite: false,
     };
@@ -26,6 +27,7 @@ class App extends React.Component {
     this.getQuestionData = this.getQuestionData.bind(this);
     this.getCurrentProductData = this.getCurrentProductData.bind(this);
     this.setFavorite = this.setFavorite.bind(this);
+    this.fetchAverageRating = this.fetchAverageRating.bind(this);
   }
 
   componentDidMount() {
@@ -105,6 +107,10 @@ class App extends React.Component {
     }
   }
 
+  fetchAverageRating(rating) {
+    this.setState({ average: rating }, () => (console.log("AAAAAAAAA : ", this.state.average)));
+  }
+
   render() {
     const {
       // eslint-disable-next-line max-len
@@ -116,7 +122,7 @@ class App extends React.Component {
           <Header />
         </header>
         <section>
-          <ProductDetails selectedProduct={seansData} setFavorite={this.setFavorite} />
+          <ProductDetails selectedProduct={seansData} setFavorite={this.setFavorite} rating={this.state.average} />
         </section>
         <div className="related-info">
           <section>
@@ -135,6 +141,7 @@ class App extends React.Component {
           </section>
           <section>
             <ReviewsRatings
+              method={this.fetchAverageRating}
               reviews={reviewsData}
               rating={ratings}
             />

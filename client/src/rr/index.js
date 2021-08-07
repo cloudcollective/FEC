@@ -64,8 +64,9 @@ class Reviews extends React.Component {
         numberOfRatings += parseInt(this.state.meta.ratings[i]);
       }
     }
-    this.setState({ numberOfRatings: numberOfRatings }, () => {console.log('number of ratings set to :' + this.state.numberOfRatings)});
+    this.setState({ numberOfRatings: numberOfRatings });
     let average = total / numberOfRatings;
+    this.props.method(average);
     return average;
   }
 
@@ -79,7 +80,10 @@ class Reviews extends React.Component {
     <FullComponent>
       <h3 className="widget-title">Ratings &#38; Reviews</h3>
       <Container>
-        <Overview ratings={this.state.meta.ratings} average={this.state.average} numberOfRatings={this.state.numberOfRatings}/>
+        <Overview ratings={this.state.meta.ratings}
+          average={this.state.average}
+          numberOfRatings={this.state.numberOfRatings}
+        />
         <ReviewList results={this.state.results} />
       </Container>
     </FullComponent>

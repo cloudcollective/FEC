@@ -3,8 +3,8 @@ import ReviewListTile from './ReviewListTile.jsx';
 import styled from 'styled-components';
 import Modal from './ModalWindow.jsx';
 
-const MoreReviews = styled.div(props => ({
-  display: props.display,
+const MoreReviews = styled.div(({ display }) => ({
+  display: display,
   border: '1px solid black',
   height: '3em',
   textAlign: 'center',
@@ -15,7 +15,7 @@ const MoreReviews = styled.div(props => ({
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  max-height: 100vh;
+  max-height: 80vh;
   overflow-y: scroll;
 `;
 
@@ -35,43 +35,50 @@ class ReviewList extends React.Component {
     super(props);
     this.state = {
       showing: 2,
-      buttonDisplay: "block",
+      buttonDisplay: 'block',
       open: false,
     };
     this.moreReview = this.moreReview.bind(this);
     this.onOpen = this.onOpen.bind(this);
     this.onClose = this.onClose.bind(this);
-  }
-
-  moreReview() {
-    this.setState({showing: this.state.showing + 2 }, () => (console.log(this.state.showing)));
-    if (this.state.showing >= this.props.results.length - 2) {
-      this.setState({ buttonDisplay: "none" });
-    }
+    console.log(this.props);
   }
 
   onOpen() {
-    this.setState({open: true});
+    this.setState({ open: true });
   }
 
   onClose() {
-    this.setState({open: false}, () => {console.log(this.state.open)});
+    this.setState({ open: false });
   }
 
+  moreReview() {
+    const { showing } = this.state;
+    const { results } = this.props;
+    this.setState( { showing: showing + 2 });
+    if (showing >= results.length - 2) {
+      this.setState({ buttonDisplay: 'none' }, () => console.log(this.state.buttonDisplay));
+    }
+  }
+
+
   render() {
+    const { results } = this.props;
+    const { showing, buttonDisplay, open } = this.state;
+    console.log(results);
     return (
       <div style={{ flexGrow: '4' }}>
       <Container>
-        {this.props.results.map((result, i) => {
-          if (i < this.state.showing) {
+        {results.map((result, i) => {
+          if (i < showing) {
             return (
-              <ReviewListTile result={result} key={i} showing={this.state.showing} />
+              <ReviewListTile result={result} key={i} showing={this.showing} />
             );
           }
           return null;
         })}
       </Container>
-        <MoreReviews display={this.state.buttonDisplay} onClick={this.moreReview}>
+        <MoreReviews display={buttonDisplay} onClick={this.moreReview}>
           <br />
           More Reviews
           <br />
@@ -81,7 +88,7 @@ class ReviewList extends React.Component {
           Add A Review
           <br />
         </AddReview>
-        <Modal open={this.state.open} close={this.onClose} />
+        <Modal open={this.open} close={this.onClose} />
       </div>
     );
   }
