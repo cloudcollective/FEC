@@ -1,11 +1,29 @@
-const noDuplicates = (arr) => {
-  const obj = {};
-  for (let i = 0; i < arr.length; i += 1) {
-    const { feature, value } = arr[i];
+const noDuplicateFeatures = (middle, left, right) => {
+  const arrayOfFeatures = (arr) => arr.map((obj) => {
+    const { feature, value } = obj;
+    return `${feature} ${value}`;
+  });
+  const middleF = {};
+  const leftF = arrayOfFeatures(left);
+  const rightF = arrayOfFeatures(right);
+  for (let i = 0; i < middle.length; i += 1) {
+    const { feature, value } = middle[i];
     const characteristic = `${feature} ${value}`;
-    obj[characteristic] = characteristic;
+    middleF[characteristic] = characteristic;
   }
-  return Object.values(obj);
+
+  return [Object.values(middleF), leftF, rightF];
 };
 
-export default noDuplicates;
+const noDuplicateIds = (arr) => {
+  const obj = {};
+  for (let i = 0; i < arr.length; i += 1) {
+    obj[arr[i]] = arr[i];
+  }
+  const relatedProductIds = Object.keys(obj).map((stringNum) => (
+    Number(stringNum)
+  ));
+  return relatedProductIds;
+};
+
+export default { noDuplicateFeatures, noDuplicateIds };

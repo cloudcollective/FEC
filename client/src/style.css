@@ -79,3 +79,14 @@ input {
 .related-info {
   padding: 0 100px;
 }
+
+/* modal table */
+table,
+td {
+    border: 1px solid #333;
+    text-align: center
+}
+tBody {
+  display: block;
+  text-align: center;
+}
