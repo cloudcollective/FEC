@@ -15,7 +15,7 @@ display:flex;
 `;
 
 const RelatedProductsContainer = ({
-  product, products, ratings, isFavorite, setFavorite,
+  product, products, ratings, isFavorite, setFavorite, resetId,
 }) => {
   let arrayOfProductCards = [];
   const [relatedProductData, setrelatedProductData] = useState([]);
@@ -69,6 +69,7 @@ const RelatedProductsContainer = ({
       rating={rating}
       key={prod.id}
       buttonType="modal"
+      resetId={resetId}
     />
   ));
   return (

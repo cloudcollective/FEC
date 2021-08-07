@@ -12,7 +12,7 @@ display: inline-block;
 margin-right: 15px;
 `;
 const CardMaker = ({
-  product, currentProduct, rating, buttonType, setFavorite,
+  product, currentProduct, rating, buttonType, setFavorite, resetId,
 }) => {
   const placeholderImage = 'https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png';
   const [productData, setProductData] = useState([]);
@@ -39,11 +39,29 @@ const CardMaker = ({
   }, [product]);
   return (
     <Card>
-      {buttonType === 'modal' && (<FeaturesButton currentFeatures={currentProductFeatures} relatedFeatures={relatedProductedFeatures} />)}
-      {buttonType === 'delete' && (<DeleteButton setFavorite={setFavorite} />)}
+      {buttonType === 'modal' && (<FeaturesButton currentFeatures={currentProductFeatures} relatedFeatures={relatedProductedFeatures} />)
+      && (
+      <div className="center-image">
+        <img
+          src={`${productData[0]}`}
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = placeholderImage;
+          }}
+          alt="default"
+          width="210"
+          height="288px"
+          // onClick={() => {
+          //   resetId(product.id);
+          // }}
+        />
+      </div>
+      )}
+      {buttonType === 'delete' && (<DeleteButton setFavorite={setFavorite} />) && (
       <div className="center-image">
         <img src={`${productData[0]}`} onError={(e) => { e.target.onerror = null; e.target.src = placeholderImage; }} alt="default" width="210" height="288px" />
       </div>
+      )}
       <div className="category">
         {`Category: ${productData[1]}`}
       </div>

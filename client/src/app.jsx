@@ -29,6 +29,7 @@ class App extends React.Component {
     this.getCurrentProductData = this.getCurrentProductData.bind(this);
     this.setFavorite = this.setFavorite.bind(this);
     this.fetchAverageRating = this.fetchAverageRating.bind(this);
+    this.updateProductId = this.updateProductId.bind(this);
   }
 
   componentDidMount() {
@@ -116,6 +117,16 @@ class App extends React.Component {
     this.setState({ average: rating });
   }
 
+  updateProductId(id) {
+    this.setState({
+      productId: id,
+    });
+    const { productId } = this.state;
+    this.getProductData(productId);
+    this.getQuestionData(productId);
+    this.getCurrentProductData(productId);
+  }
+
   render() {
     const {
       // eslint-disable-next-line max-len
@@ -141,6 +152,7 @@ class App extends React.Component {
               ratings={ratings}
               setFavorite={this.setFavorite}
               isFavorite={isFavorite}
+              resetId={this.updateProductId}
             />
           </section>
           <section>
