@@ -20,16 +20,19 @@ class App extends React.Component {
       selectedProductData: {},
       average: null,
       seansData: {},
+      isFavorite: false,
     };
 
     this.getProductData = this.getProductData.bind(this);
     this.getQuestionData = this.getQuestionData.bind(this);
     this.getCurrentProductData = this.getCurrentProductData.bind(this);
+    this.setFavorite = this.setFavorite.bind(this);
     this.fetchAverageRating = this.fetchAverageRating.bind(this);
+
   }
 
   componentDidMount() {
-    // 25169, 25171
+    // 25169, 25171a
     const { productId } = this.state;
     this.getProductData(productId);
     this.getQuestionData(productId);
@@ -92,6 +95,20 @@ class App extends React.Component {
       });
   }
 
+
+  setFavorite() {
+    if (!this.state.isFavorite) {
+      this.setState({
+        isFavorite: true,
+      });
+    } else {
+      this.setState({
+        isFavorite: false,
+      });
+      ;
+    }
+  }
+
   fetchAverageRating(rating) {
     this.setState({ average: rating}, () => (console.log("AAAAAAAAA : ", this.state.average)));
   }
@@ -117,13 +134,14 @@ class App extends React.Component {
           <Header />
         </header>
         <section>
-          <ProductDetails selectedProduct={seansData} />
+          <ProductDetails selectedProduct={seansData} setFavorite={this.setFavorite} />
         </section>
         <div className="related-info">
           <section>
             <RelatedProducts
               product={selectedProductData}
               products={relatedProductData}
+              isFavorite={this.state.isFavorite}
             />
           </section>
           <section>
