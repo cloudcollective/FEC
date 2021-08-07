@@ -14,6 +14,7 @@ const Content = styled.div`
   justify-content: flex-start;
   margin-top: 15px;
   flex-flow: row wrap;
+  margin-bottom: 15px;
 `;
 
 const LeftColumn = styled.div`
