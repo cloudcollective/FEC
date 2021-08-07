@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { FaUser, FaCheckCircle } from 'react-icons/fa';
 import styled from 'styled-components';
 import StarRatingBar from './StarRatingBar';
@@ -46,41 +47,40 @@ const Helpful = styled.div`
   margin: 20px;
 `;
 
-const ReviewListTile = ({ result }) => (
-  <Tile>
-    <CornerContent>
-      <div>
-        <StarRatingBar rating={result.rating} />
-      </div>
-      <Username>
-        <FaUser /> {result.reviewer_name} @ {result.date.slice(0, 10)}
-      </Username>
-    </CornerContent>
-    {result.recommend && (
-      <RecommendBox>
-        <FaCheckCircle color="green" />
-        { ' I recommend this product!' }
-      </RecommendBox>
-      )}
-    <ReviewSummary> {result.summary}</ReviewSummary>
-    <ReviewBody><br />{result.body}</ReviewBody>
-    <Helpful> Was this review helpful? <u>Yes (10)</u></Helpful>
-  </Tile>
-);
+const ReviewListTile = ({ result, productId, reload }) => {
+  const helpfulRequest = (id) => {
+    axios.put(`/reviews/helpful/`, {
+      params: {
+        id: id,
+      },
+    })
+    .then(reload())
+    .catch((err) => console.log("hjnnknni", err));
+  };
+
+  return (
+    <Tile>
+      {result.review_id};
+      <CornerContent>
+        <div>
+          <StarRatingBar rating={result.rating} />
+        </div>
+        <Username>
+          <FaUser /> {result.reviewer_name} @ {result.date.slice(0, 10)}
+        </Username>
+      </CornerContent>
+      {result.recommend && (
+        <RecommendBox>
+          <FaCheckCircle color="green" />
+          { ' I recommend this product!' }
+        </RecommendBox>
+        )}
+      <ReviewSummary> {result.summary}</ReviewSummary>
+      <ReviewBody><br />{result.body}</ReviewBody>
+      <Helpful> Was this review helpful? <u ><div onClick={() => { console.log(result.review_id); helpfulRequest(result.review_id)}}>Yes ({result.helpfulness})</div></u></Helpful>
+    </Tile>
+  )
+};
 
 export default ReviewListTile;
-
-// {
-//   "review_id": 407324,
-//   "rating": 5,
-//   "summary": "tips for FEC",
-//   "recommend": true,
-//   "response": null,
-//   "body": "use hooks, maybe redux, before all that make sure you know how git workflow works. Good luck!!!!",
-//   "date": "2021-06-20T00:00:00.000Z",
-//   "reviewer_name": "friendly Yuki",
-//   "helpfulness": 3,
-//   "photos": []
-// }
-
 

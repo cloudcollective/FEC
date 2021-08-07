@@ -10,11 +10,10 @@ text-align: center;
 width: 100%;
 `;
 
-
 const SubmitButton = styled.button`
-margin-left: 12.5%;
+margin-left: 0;
 margin-top: 15px;
-width: 75%;
+height: 2.5em
 `;
 
 class ModalForm extends React.Component {
@@ -28,22 +27,22 @@ class ModalForm extends React.Component {
 
       <StyledForm>
         Write Your Review!
-        <form style={{width: "100%"}}>
+        <form style={{ width: '100%' }}>
           <br />
-          <input style={{width: "100%"}} placeholder="Review Title" />
-          <br />
-          <br />
-          <textarea style={{width: "100%"}} placeholder="Your review goes Here!" rows="10" cols="50" />
+          <input style={{ width: '100%' }} placeholder="Review Title" />
           <br />
           <br />
-          <input style={{width: "100%"}} placeholder="Username" />
+          <textarea style={{ width: '100%' }} placeholder="Your review goes Here!" rows="10" cols="50" />
           <br />
           <br />
-          <input style={{width: "100%"}} placeholder="Email" />
+          <input style={{ width: '100%' }} placeholder="Username" />
           <br />
-          <SubmitButton>Submit</SubmitButton>
           <br />
-          <div onClick={ this.props.close }>Close</div>
+          <input style={{ width: '100%' }} placeholder="Email" />
+          <br />
+          <SubmitButton style={{ width: '100%' }}>Submit</SubmitButton>
+          <br />
+          <div style={{ border: '1px solid black', width: "100%", }} onClick={ this.props.close }>Close</div>
         </form>
         <br />
       </StyledForm>

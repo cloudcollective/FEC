@@ -33,60 +33,92 @@ class Reviews extends React.Component {
       numberOfRatings: null,
 
     };
+    this.reload = this.reload.bind(this);
   }
 
   componentDidMount() {
+    const { productId } = this.props;
     axios.get('/reviews/id', {
       params: {
-        id: 25171,
+        id: productId,
       },
     })
-      .then(((res) => this.setState({ results: res.data.results }, () => { console.log('reviews recieved and set on state', this.state.results ); })))
-      .catch((err) => console.log(err, 'what reviews'));
+      .then(((res) => this.setState({ results: res.data.results })))
+      .catch((err) => console.log (err, 'what reviews'));
 
     axios.get('/reviews/meta', {
       params: {
-        id: 25171,
+        id: productId,
       },
     })
-      .then((res) => (this.setState({ meta: res.data }, () => { console.log('metadata received and set on state', this.state.meta);
-        this.setState({ average: this.getAverageRating() },
-          () => {console.log(this.state.average)}); })))
+      .then((res) => (this.setState({ meta: res.data }, () => {
+        this.setState({ average: this.getAverageRating() });
+      })))
       .catch((err) => (console.log('what metadata', err)));
   }
 
   getAverageRating() {
+    const { meta } = this.state;
+    const { method } = this.props;
     let total = 0;
     let numberOfRatings = 0;
-    for (var i = 1; i <= 5; i++) {
-      if(this.state.meta.ratings[i]) {
-        total += (parseInt(this.state.meta.ratings[i]) * i);
-        numberOfRatings += parseInt(this.state.meta.ratings[i]);
+    for (let i = 1; i <= 5; i++) {
+      if (meta.ratings[i]) {
+        total += (parseInt(meta.ratings[i]) * i);
+        numberOfRatings += parseInt(meta.ratings[i]);
       }
     }
     this.setState({ numberOfRatings: numberOfRatings });
-    let average = total / numberOfRatings;
-    this.props.method(average);
+    const average = total / numberOfRatings;
+    method(average);
     return average;
   }
 
+  reload() {
+    const { productId } = this.props;
+    axios.get('/reviews/id', {
+      params: {
+        id: productId,
+      },
+    })
+      .then(((res) => this.setState({ results: res.data.results })))
+      .catch((err) => console.log (err, 'what reviews'));
+
+    axios.get('/reviews/meta', {
+      params: {
+        id: productId,
+      },
+    })
+      .then((res) => (this.setState({ meta: res.data }, () => {
+        this.setState({ average: this.getAverageRating() });
+      })))
+      .catch((err) => (console.log('what metadata', err)));
+  }
+
   render() {
-    if (this.state.results === null || this.state.meta === null) {
+    const {
+      results, meta, average, numberOfRatings,
+    } = this.state;
+    const { productId } = this.props;
+    if (results === null || meta === null) {
       return (
-      <>loading</>
+        <>
+          loading
+        </>
       );
     }
     return (
-    <FullComponent>
-      <h3 className="widget-title">Ratings &#38; Reviews</h3>
-      <Container>
-        <Overview ratings={this.state.meta.ratings}
-          average={this.state.average}
-          numberOfRatings={this.state.numberOfRatings}
-        />
-        <ReviewList results={this.state.results} />
-      </Container>
-    </FullComponent>
+      <FullComponent>
+        <h3 className="widget-title">Ratings &#38; Reviews</h3>
+        <Container>
+          <Overview
+            ratings={meta.ratings}
+            average={average}
+            numberOfRatings={numberOfRatings}
+          />
+          <ReviewList reload={this.reload} productId={productId} results={results} />
+        </Container>
+      </FullComponent>
     );
   }
 }

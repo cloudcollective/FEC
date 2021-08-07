@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import ModalForm from './ModalForm.jsx';
+import ModalForm from './ModalForm';
 
 const ModalContent = styled.div`
   position: fixed;
@@ -29,15 +29,15 @@ const Overlay = styled.div`
   z-index: 900;
 `;
 
-const Modal = ( { open, children, close } ) => {
+const Modal = ({ open, children, close }) => {
   if (!open) return null;
 
   return ReactDOM.createPortal(
     <>
-      <Overlay onClick={close}/>
+      <Overlay onClick={close} />
       <ModalContent>
         {children}
-        <ModalForm style={{ width: "100%" }} close={close}/>
+        <ModalForm style={{ width: '100%' }} close={close} />
       </ModalContent>
     </>,
     document.getElementById('portal'),
