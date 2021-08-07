@@ -39,10 +39,7 @@ const Form = ({ formFields, buttonLabel, doSubmit }) => {
   const [errors, setErrors] = useState(null);
 
   const clearState = () => {
-    setInput((prevState) => ({
-      ...prevState,
-      ...defaultFields,
-    }));
+    setInput(defaultFields);
     setErrors(null);
   };
 
@@ -77,6 +74,7 @@ const Form = ({ formFields, buttonLabel, doSubmit }) => {
     if (errorsFound) {
       return;
     }
+    clearState();
 
     doSubmit(input)
       .then(() => {
@@ -84,6 +82,7 @@ const Form = ({ formFields, buttonLabel, doSubmit }) => {
       })
       .catch((error) => {
         console.log('An error was received from the API', error);
+        clearState();
       });
   };
 

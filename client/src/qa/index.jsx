@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import QuestionsAnswersList from './components/QuestionsAnswersList';
 import SearchQuestions from './components/SearchQuestions';
 import AddQuestionBtn from './components/AddQuestionBtn';
@@ -10,11 +11,18 @@ const QuestionsAnswersContainer = ({ productId, questions, productN }) => {
   const [productName, setProductName] = useState('');
   const [currentQuestions, setCurrentQuestions] = useState([]);
   const [resetDisplay, setResetDisplay] = useState(false);
+
+  // For Add Question Modal
   const { on, toggle } = useToggle(false);
+
+  // To handle display more questions
+  const [displayMoreQuestions, setDisplayMoreQuestions] = useState(false);
+  const [slicer, setSlicer] = useState(2);
 
   useEffect(() => {
     if (questions) {
       setCurrentQuestions(questions);
+      setDisplayMoreQuestions(true);
     }
   }, [questions]);
 
@@ -54,33 +62,57 @@ const QuestionsAnswersContainer = ({ productId, questions, productN }) => {
         results.push(question);
       }
     });
-    console.log('here are the results', results);
     setCurrentQuestions(results);
   };
 
   return (
-    <div>
+    <>
       <h3 className="widget-title">
         Questions &#38; Answers
       </h3>
-      <SearchQuestions
-        handleSearchQuestions={handleSearchQuestions}
-        doReset={setResetDisplay}
-      />
-      <QuestionsAnswersList
-        productName={productName}
-        questions={currentQuestions}
-      />
-      <AddQuestionBtn setIsVisible={toggle} />
-      <QuestionModal
-        productId={productId}
-        productName={productName}
-        isVisible={on}
-        setIsVisible={toggle}
-      />
-    </div>
+      {questions.length
+        ? (
+          <div>
+            <SearchQuestions
+              handleSearchQuestions={handleSearchQuestions}
+              doReset={setResetDisplay}
+            />
+            <QuestionsAnswersList
+              productName={productName}
+              questions={currentQuestions}
+              slicer={slicer}
+              setDisplayMoreQuestions={setDisplayMoreQuestions}
+            />
+          </div>
+        ) : null}
+      <ButtonRow>
+        {displayMoreQuestions
+        && (
+          <button
+            style={{ marginRight: '15px' }}
+            type="button"
+            onClick={() => { setSlicer(slicer + 2); }}
+          >
+            More Answered Questions
+          </button>
+        )}
+        <AddQuestionBtn setIsVisible={toggle} />
+        <QuestionModal
+          productId={productId}
+          productName={productName}
+          isVisible={on}
+          setIsVisible={toggle}
+        />
+      </ButtonRow>
+    </>
   );
 };
+
+const ButtonRow = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  margin: 15px 0;
+`;
 
 QuestionsAnswersContainer.propTypes = {
   productId: PropTypes.string,
@@ -107,6 +139,10 @@ QuestionsAnswersContainer.propTypes = {
   )]),
   productId: PropTypes.string,
   productN: PropTypes.string,
+};
+
+QuestionsAnswersContainer.defaultProps = {
+  questions: [],
 };
 
 export default QuestionsAnswersContainer;
