@@ -5,6 +5,7 @@ import RelatedProducts from './relatedProducts';
 import QuestionsAnswers from './qa';
 import ReviewsRatings from './rr';
 import Header from './productDetails/components/Header';
+import noDupes from './relatedProducts/components/noDuplicates';
 import './style.css';
 
 class App extends React.Component {
@@ -37,8 +38,9 @@ class App extends React.Component {
   getProductData(id) {
     axios.get(`/products/${id}`)
       .then((data) => {
+        const rpi = noDupes.noDuplicateIds(data.data[2]);
         this.setState({
-          relatedProductIds: data.data[2],
+          relatedProductIds: rpi,
           reviewsData: data.data[3].results,
           ratings: data.data[4].ratings,
           seansData: data.data,
@@ -103,17 +105,18 @@ class App extends React.Component {
         <header>
           <Header />
         </header>
-        {/* <section>
+        <section>
           <ProductDetails selectedProduct={seansData} />
-        </section> */}
+        </section>
         <div className="related-info">
           <section>
             <RelatedProducts
               product={selectedProductData}
               products={relatedProductData}
+              ratings={ratings}
             />
           </section>
-          {/* <section>
+          <section>
             <QuestionsAnswers
               questions={questionsAndAnswersData.results}
               productId={productId}
@@ -125,7 +128,7 @@ class App extends React.Component {
               reviews={reviewsData}
               rating={ratings}
             />
-          </section> */}
+          </section>
         </div>
       </main>
     );
