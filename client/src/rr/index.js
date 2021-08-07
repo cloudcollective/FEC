@@ -38,6 +38,7 @@ class Reviews extends React.Component {
 
   componentDidMount() {
     const { productId } = this.props;
+    console.log(productId)
     axios.get('/reviews/id', {
       params: {
         id: productId,
