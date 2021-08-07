@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import QuestionsAnswersList from './components/QuestionsAnswersList';
 import SearchQuestions from './components/SearchQuestions';
 import AddQuestionBtn from './components/AddQuestionBtn';
 import QuestionModal from './components/QuestionModal';
 import useToggle from './components/common/useToggle';
 
-const QuestionsAnswersContainer = ({ productId, questions }) => {
+const QuestionsAnswersContainer = ({ productId, questions, productN }) => {
   const [productName, setProductName] = useState('');
   const [currentQuestions, setCurrentQuestions] = useState([]);
   const [resetDisplay, setResetDisplay] = useState(false);
@@ -20,32 +19,12 @@ const QuestionsAnswersContainer = ({ productId, questions }) => {
   }, [questions]);
 
   useEffect(() => {
-    if (productId) {
-      axios.get('qa/questions', {
-        params: {
-          id: productId,
-        },
-      })
-        .then((data) => {
-          setCurrentQuestions(data.data.results);
-        })
-        .catch((error) => {
-          console.log('Error retrieving questions via product ID', error);
-        });
-    }
+    if (resetDisplay) { setCurrentQuestions(questions); }
   }, [resetDisplay]);
 
   useEffect(() => {
-    if (productId) {
-      axios.get(`single/products/${productId}`)
-        .then((data) => {
-          setProductName(data.data.name);
-        })
-        .catch((error) => {
-          console.log('Error retrieving Product name', error);
-        });
-    }
-  }, [productId]);
+    if (productN) { setProductName(productN); }
+  }, [productN]);
 
   const doFilter = (filterText, text) => (
     text.toLowerCase().includes(filterText.toLowerCase())
@@ -127,6 +106,7 @@ QuestionsAnswersContainer.propTypes = {
     }),
   )]),
   productId: PropTypes.string,
+  productN: PropTypes.string,
 };
 
 export default QuestionsAnswersContainer;
