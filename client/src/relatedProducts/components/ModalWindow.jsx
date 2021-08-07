@@ -1,23 +1,22 @@
 import React from 'react';
-import styled from 'styled-components';
 import ModalFeatures from './ModalFeatures';
 import Modal from '../../qa/components/common/Modal';
-
-// const featuresContainer = styled.div`
-//   display:flex;
-//   `;
-// const featuresColumn = styled.div`
-//   height:100px;
-//   width: 33px;
-//   border: solid 1px black;
-//   `;
 
 const featuresModal = ({
   currentFeatures, relatedFeatures, isVisible, setIsVisible,
 }) => {
   let features = [];
   if (currentFeatures.length) {
-    features = ModalFeatures(currentFeatures, relatedFeatures);
+    const temp = ModalFeatures(currentFeatures, relatedFeatures);
+    features = temp.map((row) => (
+      <tbody>
+        <tr>
+          <td>{row[0]}</td>
+          <td>{row[1]}</td>
+          <td>{row[2]}</td>
+        </tr>
+      </tbody>
+    ));
   }
   return (
     <Modal
@@ -25,25 +24,19 @@ const featuresModal = ({
       setIsVisible={setIsVisible}
     >
       <table>
-        <thread>
+        <tbody>
           <tr>
             <th colSpan="3">Features Overview</th>
           </tr>
-        </thread>
+        </tbody>
         <tbody>
           <tr>
-            <td className="left">{currentFeatures[0]}</td>
+            <td>{currentFeatures[0]}</td>
             <td>Features</td>
-            <td className="right">{relatedFeatures[0]}</td>
+            <td>{relatedFeatures[0]}</td>
           </tr>
-          {/* <tr>
-            <td>V</td>
-            <td>with two columns</td>
-            <td>X</td>
-
-          </tr> */}
-          {features}
         </tbody>
+        {features}
       </table>
     </Modal>
   );

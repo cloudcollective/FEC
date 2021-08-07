@@ -1,4 +1,3 @@
-import React from 'react';
 import noDuplicateFeatures from './noDuplicates';
 
 const findIndexOf = (arr, str) => {
@@ -40,8 +39,14 @@ const ModalFeatures = (currentFeatures, relatedFeatures) => {
       rightFeatures[i] = 'X';
     }
   }
-
-  return [middleFeatures, leftFeatures, rightFeatures];
+  const featuresTableData = [];
+  for (let i = 0; i < middleFeatures.length; i += 1) {
+    const temp = [];
+    temp.push(leftFeatures[i]);
+    temp.push(middleFeatures[i]);
+    temp.push(rightFeatures[i]);
+    featuresTableData.push(temp);
+  }
+  return [featuresTableData];
 };
 export default ModalFeatures;
-// perhaps make each row a block
