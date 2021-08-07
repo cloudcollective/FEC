@@ -3,26 +3,19 @@ import styled from 'styled-components';
 
 const OverviewBody = styled.div`
   display: grid;
-  grid-template-columns: 65% 3% 28%;
+  grid-template-columns: 70% 30%;
   padding: 0 100px;
 `;
 
 const SloganAndDescription = styled.div`
   justify-content: center;
-  align-items: center;
-  text-align: center;
-`;
-
-const Divider = styled.div`
-  border-left: 1px solid grey;
+  padding: 20px;
+  border-right: 1px solid black;
 `;
 
 const ProductFeatures = styled.div`
   justify-content: center;
-  align-items: center;
-  text-align: center;
   padding: 20px;
-  margin: 20px;
 `;
 
 const ProductSlogan = styled.h1`
@@ -40,7 +33,6 @@ const ProductOverview = ({ product }) => {
         <ProductSlogan>{product.slogan}</ProductSlogan>
         <h3>{product.description}</h3>
       </SloganAndDescription>
-      <Divider />
       <ProductFeatures>
         {product.features.map((description) => (
           <h4>

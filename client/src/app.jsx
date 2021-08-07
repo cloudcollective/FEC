@@ -122,7 +122,11 @@ class App extends React.Component {
           <Header />
         </header>
         <section>
-          <ProductDetails selectedProduct={seansData} setFavorite={this.setFavorite} rating={this.state.average} />
+          <ProductDetails
+            selectedProduct={seansData}
+            setFavorite={this.setFavorite}
+            rating={this.state.average}
+          />
         </section>
         <div className="related-info">
           <section>
