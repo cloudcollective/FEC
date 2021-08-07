@@ -51,7 +51,6 @@ const QuantitySelector = styled.div`
 
 const CustomSelector = styled.select`
   appearance: none;
-  background-color: transparent;
   margin: 0;
   width: 100%;
   line-height: 1.3;
@@ -76,7 +75,6 @@ const CustomSelector = styled.select`
 const DisabledSelector = styled.select`
   box-sizing: border-box;
   appearance: none;
-  background-color: transparent;
   margin: 0;
   width: 100%;
   line-height: 1.3;

@@ -46,10 +46,12 @@ const ProductDetails = ({ selectedProduct }) => {
     setProductData(selectedProduct);
   }, [selectedProduct]);
 
-  const getStyleId = (id, index) => {
-    setStyle.id(id);
-    setStyle.index(index);
-    setStyle.selected(true);
+  const getStyleId = (styleId, styleIndex) => {
+    setStyle({
+      id: styleId,
+      index: styleIndex,
+      selected: true,
+    });
   };
 
   const productInfo = productData[0];
