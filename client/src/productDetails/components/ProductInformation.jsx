@@ -15,6 +15,10 @@ const RatingAndReview = styled.div`
   display: grid | inline-grid;
 `;
 
+const Reviews = styled.a`
+   text-decoration: underline;
+`;
+
 const ProductCategory = styled.div`
 `;
 
@@ -67,7 +71,7 @@ const ProductInformation = ({ product, styles, styleId, styleIndex, styleSelecte
     <>
       <RatingAndReview>
         <StarRatingBar rating={rating} />
-        <a>Read all reviews</a>
+        <Reviews>Read all reviews</Reviews>
       </RatingAndReview>
       <ProductCategory>
         <h3>{product.category}</h3>
