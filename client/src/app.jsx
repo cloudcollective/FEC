@@ -108,7 +108,7 @@ class App extends React.Component {
   }
 
   fetchAverageRating(rating) {
-    this.setState({ average: rating }, () => (console.log("AAAAAAAAA : ", this.state.average)));
+    this.setState({ average: rating });
   }
 
   render() {
