@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import styled from 'styled-components';
 import ButtonLink from './common/ButtonLink';
 
 const Report = ({ id }) => {
@@ -21,22 +22,25 @@ const Report = ({ id }) => {
   };
 
   return (
-    <>
+    <SmallText>
       {isReportable
         ? (
           <ButtonLink
-            small
             type="button"
             label="Report"
             onClick={reportAnswer}
           />
         )
         : (
-          <p className="qa-meta">Reported</p>
+          <p>Reported</p>
         )}
-    </>
+    </SmallText>
   );
 };
+
+const SmallText = styled.div`
+  font-size: 0.8em;
+`;
 
 Report.propTypes = {
   id: PropTypes.number.isRequired,
