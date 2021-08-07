@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import QuestionAndAnswerEntry from './QuestionAndAnswerEntry';
 
-const QuestionsAnswersList = ({ productName, questions }) => {
-  const [slicer, setSlicer] = useState(2);
+const QuestionsAnswersList = ({
+  productName, questions, slicer, setDisplayMoreQuestions
+}) => {
   const [currentQuestions, setCurrentQuestions] = useState(null);
-  const [numOfQuestionsLeft, setNumOfQuestionsLeft] = useState(null);
   const [sortedQuestions, setSortedQuestions] = useState(null);
 
   const sortByHelpfulness = (a, b) => b.question_helpfulness - a.question_helpfulness;
@@ -20,7 +21,6 @@ const QuestionsAnswersList = ({ productName, questions }) => {
     if (sortedQuestions !== null) {
       const initialQuestions = sortedQuestions.slice(0, slicer);
       setCurrentQuestions(initialQuestions);
-      setNumOfQuestionsLeft(sortedQuestions.length - initialQuestions.length);
     }
   }, [sortedQuestions]);
 
@@ -28,7 +28,9 @@ const QuestionsAnswersList = ({ productName, questions }) => {
     if (sortedQuestions !== null) {
       const newSortedQuestions = sortedQuestions.slice(0, slicer);
       setCurrentQuestions(newSortedQuestions);
-      setNumOfQuestionsLeft(sortedQuestions.length - newSortedQuestions.length);
+      if (sortedQuestions.length - newSortedQuestions.length <= 0) {
+        setDisplayMoreQuestions(false);
+      }
     }
   }, [slicer, sortedQuestions]);
 
@@ -39,7 +41,7 @@ const QuestionsAnswersList = ({ productName, questions }) => {
   }
 
   return (
-    <div data-testid="qa-list" style={{ maxHeight: '100vh', overflowY: 'auto' }}>
+    <ScrollableContainer data-testid="qa-list">
       {currentQuestions.map((question) => (
         <QuestionAndAnswerEntry
           productName={productName}
@@ -48,43 +50,41 @@ const QuestionsAnswersList = ({ productName, questions }) => {
           answers={Object.values(question.answers)}
         />
       ))}
-      {numOfQuestionsLeft > 0
-        && (
-          <button
-            type="button"
-            onClick={() => setSlicer(slicer + 2)}
-          >
-            More Answered Questions
-          </button>
-        )}
-    </div>
+    </ScrollableContainer>
   );
 };
 
-// QuestionsAnswersList.propTypes = {
-//   questions: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(
-//     PropTypes.shape({
-//       answers: PropTypes.shape({
-//         answer_id: PropTypes.number,
-//         body: PropTypes.string,
-//         date: PropTypes.string,
-//         answerer_name: PropTypes.string,
-//         helpfulness: PropTypes.number,
-//         photos: PropTypes.arrayOf(PropTypes.string),
-//       }),
-//       question_id: PropTypes.number,
-//       question_body: PropTypes.string,
-//       question_date: PropTypes.string,
-//       asker_name: PropTypes.string,
-//       question_helpfulness: PropTypes.number,
-//       reported: PropTypes.bool,
-//     }),
-//   )]),
-//   productName: PropTypes.string.isRequired,
-// };
+const ScrollableContainer = styled.div`
+  max-height: 100vh;
+  overflow-y: auto;
+`;
 
-// QuestionsAnswersList.defaultProps = {
-//   questions: [],
-// };
+QuestionsAnswersList.propTypes = {
+  questions: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(
+    PropTypes.shape({
+      answers: PropTypes.shape({
+        answer_id: PropTypes.number,
+        body: PropTypes.string,
+        date: PropTypes.string,
+        answerer_name: PropTypes.string,
+        helpfulness: PropTypes.number,
+        photos: PropTypes.arrayOf(PropTypes.string),
+      }),
+      question_id: PropTypes.number,
+      question_body: PropTypes.string,
+      question_date: PropTypes.string,
+      asker_name: PropTypes.string,
+      question_helpfulness: PropTypes.number,
+      reported: PropTypes.bool,
+    }),
+  )]),
+  productName: PropTypes.string.isRequired,
+  slicer: PropTypes.number.isRequired,
+  setDisplayMoreQuestions: PropTypes.func.isRequired,
+};
+
+QuestionsAnswersList.defaultProps = {
+  questions: [],
+};
 
 export default QuestionsAnswersList;

@@ -113,14 +113,13 @@ class App extends React.Component {
   }
 
   fetchAverageRating(rating) {
-    const { average } = this.state;
-    this.setState({ average: rating }, () => (console.log('AAAAAAAAA : ', average)));
+    this.setState({ average: rating });
   }
 
   render() {
     const {
       // eslint-disable-next-line max-len
-      relatedProductData, questionsAndAnswersData, reviewsData, ratings, selectedProductData, seansData, productId, isFavorite,
+      relatedProductData, questionsAndAnswersData, reviewsData, ratings, selectedProductData, seansData, productId, isFavorite, average,
     } = this.state;
     return (
       <main>
@@ -128,7 +127,11 @@ class App extends React.Component {
           <Header />
         </header>
         <section>
-          <ProductDetails selectedProduct={seansData} setFavorite={this.setFavorite} />
+          <ProductDetails
+            selectedProduct={seansData}
+            setFavorite={this.setFavorite}
+            rating={average}
+          />
         </section>
         <div className="related-info">
           <section>
