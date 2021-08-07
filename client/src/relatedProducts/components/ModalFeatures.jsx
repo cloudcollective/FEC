@@ -17,6 +17,7 @@ const ModalFeatures = (currentFeatures, relatedFeatures) => {
   const [middleFeatures, leftArr, rightArr] = noDuplicateFeatures(concatedFeatures, currentFeatures[1], relatedFeatures[1]);
   const leftFeatures = middleFeatures.slice(0);
   const rightFeatures = middleFeatures.slice(0);
+
   for (let i = 0; i < middleFeatures.length; i += 1) {
     const feature = middleFeatures[i];
     const leftIndex = findIndexOf(leftArr, feature);
