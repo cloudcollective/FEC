@@ -12,13 +12,13 @@ class App extends React.Component {
     super(prop);
     this.state = {
       productId: '25171',
-      selectedProduct: {},
       relatedProductIds: [],
       relatedProductData: [],
       reviewsData: [],
-      metaReviewData: [],
+      ratings: [],
       questionsAndAnswersData: {},
       selectedProductData: {},
+      seansData: {},
     };
 
     this.getProductData = this.getProductData.bind(this);
@@ -38,10 +38,10 @@ class App extends React.Component {
     axios.get(`/products/${id}`)
       .then((data) => {
         this.setState({
-          selectedProduct: data.data[0],
           relatedProductIds: data.data[2],
-          reviewsData: data.data[3],
-          metaReviewData: data.data[4],
+          reviewsData: data.data[3].results,
+          ratings: data.data[4].ratings,
+          seansData: data.data,
         });
       })
       .then(() => {
@@ -56,11 +56,9 @@ class App extends React.Component {
           this.setState({
             relatedProductData: temp,
           });
+        }).catch((err) => {
+          console.log(`Failed to fetch data from the server: ${err}`);
         });
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error);
       });
   }
 
@@ -91,21 +89,11 @@ class App extends React.Component {
         console.log('Error retrieving questions via product ID', error);
       });
   }
-  // const app = ({ data }) => (
-  //   <>
-  //     <ProductDetails product={data.product} productStyles={data.productStyles} />
-  //     {/* <RelatedProducts data={data} /> */}
-  //     {/* <QuestionsAnswers
-  //     questions={data.questions}
-  //     answers={data.answers}
-  //   /> */}
-  //   </>
-  // );
 
   render() {
     const {
       // eslint-disable-next-line max-len
-      selectedProduct, relatedProductData, questionsAndAnswersData, reviewsData, metaReviewData, selectedProductData,
+      relatedProductData, questionsAndAnswersData, reviewsData, ratings, selectedProductData, seansData, productId,
     } = this.state;
     return (
       <main>
@@ -113,7 +101,7 @@ class App extends React.Component {
           <Header />
         </header>
         <section>
-          <ProductDetails />
+          <ProductDetails selectedProduct={seansData} />
         </section>
         <div className="related-info">
           <section>
@@ -125,16 +113,19 @@ class App extends React.Component {
           <section>
             <QuestionsAnswers
               questions={questionsAndAnswersData.results}
-              productId={questionsAndAnswersData.product_id}
+              productId={productId}
+              productN={selectedProductData.name}
             />
           </section>
           <section>
-            <ReviewsRatings />
+            <ReviewsRatings
+              reviews={reviewsData}
+              rating={ratings}
+            />
           </section>
         </div>
       </main>
     );
   }
 }
-// Warning, if there are render issues comment out lines 93 to 97 for now.
 export default App;
