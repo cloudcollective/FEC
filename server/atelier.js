@@ -119,6 +119,22 @@ const markAnswerHelpful = (answerId) => {
     });
 };
 
+const markReviewHelpful = async (reviewId) => {
+  const options = {
+    method: 'put',
+    url: `${baseURL}/reviews/${reviewId}/helpful`,
+    headers: {
+      Authorization: config.TOKEN,
+    },
+  };
+
+  return axios(options)
+    .then((response) => response.data)
+    .catch((error) => {
+      throw error;
+    });
+};
+
 const markQuestionHelpful = (questionId) => {
   const options = {
     method: 'put',
@@ -209,6 +225,7 @@ module.exports = {
   getRelatedProductsById,
   reportAnswer,
   markAnswerHelpful,
+  markReviewHelpful,
   markQuestionHelpful,
   getQuestions,
   postQuestion,
