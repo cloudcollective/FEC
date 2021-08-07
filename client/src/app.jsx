@@ -57,6 +57,7 @@ class App extends React.Component {
             relatedProductData: temp,
           });
         }).catch((err) => {
+          // eslint-disable-next-line no-console
           console.log(`Failed to fetch data from the server: ${err}`);
         });
       });
@@ -74,6 +75,7 @@ class App extends React.Component {
         });
       })
       .catch((error) => {
+        // eslint-disable-next-line no-console
         console.log('Error retrieving questions via product ID', error);
       });
   }
@@ -86,6 +88,7 @@ class App extends React.Component {
         });
       })
       .catch((error) => {
+        // eslint-disable-next-line no-console
         console.log('Error retrieving questions via product ID', error);
       });
   }
@@ -100,9 +103,9 @@ class App extends React.Component {
         <header>
           <Header />
         </header>
-        <section>
+        {/* <section>
           <ProductDetails selectedProduct={seansData} />
-        </section>
+        </section> */}
         <div className="related-info">
           <section>
             <RelatedProducts
@@ -110,7 +113,7 @@ class App extends React.Component {
               products={relatedProductData}
             />
           </section>
-          <section>
+          {/* <section>
             <QuestionsAnswers
               questions={questionsAndAnswersData.results}
               productId={productId}
@@ -122,7 +125,7 @@ class App extends React.Component {
               reviews={reviewsData}
               rating={ratings}
             />
-          </section>
+          </section> */}
         </div>
       </main>
     );
