@@ -19,11 +19,13 @@ class App extends React.Component {
       questionsAndAnswersData: {},
       selectedProductData: {},
       seansData: {},
+      isFavorite: false,
     };
 
     this.getProductData = this.getProductData.bind(this);
     this.getQuestionData = this.getQuestionData.bind(this);
     this.getCurrentProductData = this.getCurrentProductData.bind(this);
+    this.setFavorite = this.setFavorite.bind(this);
   }
 
   componentDidMount() {
@@ -90,7 +92,18 @@ class App extends React.Component {
       });
   }
 
-
+  setFavorite() {
+    if (!this.state.isFavorite) {
+      this.setState({
+        isFavorite: true,
+      });
+    } else {
+      this.setState({
+        isFavorite: false,
+      });
+      ;
+    }
+  }
 
   render() {
     const {
@@ -103,13 +116,14 @@ class App extends React.Component {
           <Header />
         </header>
         <section>
-          <ProductDetails selectedProduct={seansData} />
+          <ProductDetails selectedProduct={seansData} setFavorite={this.setFavorite} />
         </section>
         <div className="related-info">
           <section>
             <RelatedProducts
               product={selectedProductData}
               products={relatedProductData}
+              isFavorite={this.state.isFavorite}
             />
           </section>
           <section>

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import StarRatingBar from '../../rr/components/StarRatingBar';
-import Reviews from '../../rr';
 
 const OriginalPrice = styled.span`
   text-decoration: line-through;

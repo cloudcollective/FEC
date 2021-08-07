@@ -94,7 +94,7 @@ const DisabledSelector = styled.select`
 `;
 
 const AddToCart = ({
-  styles, styleId, styleIndex, styleSelected,
+  styles, styleId, styleIndex, styleSelected, setFavorite,
 }) => {
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedQty, setSelectedQty] = useState(0);
@@ -160,6 +160,7 @@ const AddToCart = ({
 
   const saveFavorite = () => {
     const productIdForRR = styles.product_id;
+    setFavorite();
     let styleIdForRR;
     if (!styleIndex) {
       styleIdForRR = styles.results[0].style_id

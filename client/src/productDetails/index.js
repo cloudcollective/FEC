@@ -17,9 +17,9 @@ const Body = styled.div`
 
 const Content = styled.div`
   display: flex;
-  flex-wrap: wrap;
   justify-content: flex-start;
   margin-top: 15px;
+  flex-flow: row wrap;
 `;
 
 const LeftColumn = styled.div`
@@ -29,12 +29,12 @@ const LeftColumn = styled.div`
 `;
 
 const RightColumn = styled.div`
-  flex-direction: column;
   width: 30%;
+  flex-direction: column;
   padding: 20px;
 `;
 
-const ProductDetails = ({ selectedProduct }) => {
+const ProductDetails = ({ selectedProduct, setFavorite }) => {
   const [productData, setProductData] = useState([]);
   const [style, setStyle] = useState({
     id: '',
@@ -85,6 +85,7 @@ const ProductDetails = ({ selectedProduct }) => {
             styleId={style.id}
             styleIndex={style.index}
             styleSelected={style.selected}
+            setFavorite={setFavorite}
           />
         </RightColumn>
       </Content>
