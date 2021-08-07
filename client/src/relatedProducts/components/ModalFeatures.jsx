@@ -1,4 +1,4 @@
-import noDuplicateFeatures from './noDuplicates';
+import noDupes from './noDuplicates';
 
 const findIndexOf = (arr, str) => {
   let index = -1;
@@ -14,7 +14,7 @@ const findIndexOf = (arr, str) => {
 const ModalFeatures = (currentFeatures, relatedFeatures) => {
   const concatedFeatures = relatedFeatures[1].concat(currentFeatures[1]);
   // eslint-disable-next-line max-len
-  const [middleFeatures, leftArr, rightArr] = noDuplicateFeatures(concatedFeatures, currentFeatures[1], relatedFeatures[1]);
+  const [middleFeatures, leftArr, rightArr] = noDupes.noDuplicateFeatures(concatedFeatures, currentFeatures[1], relatedFeatures[1]);
   const leftFeatures = middleFeatures.slice(0);
   const rightFeatures = middleFeatures.slice(0);
 
