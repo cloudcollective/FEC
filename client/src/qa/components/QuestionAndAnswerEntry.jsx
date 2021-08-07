@@ -3,20 +3,30 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import QuestionEntry from './QuestionEntry';
 import AnswerEntry from './AnswerEntry';
+import ButtonLink from './common/ButtonLink';
 
 const QuestionAndAnswerEntry = ({ productName, question, answers }) => {
-  const [slicer, setSlicer] = useState(2);
+  // const [slicer, setSlicer] = useState(2);
 
   // Sort answers and then slice
-  const sortedAnswers = [...answers].sort((a, b) => b.helpfulness - a.helpfulness);
-  const initialAnswers = sortedAnswers.slice(0, slicer);
+  const allSortedAnswers = [...answers].sort((a, b) => b.helpfulness - a.helpfulness);
+  const initialAnswers = allSortedAnswers.slice(0, 2);
   const [currentAnswers, setCurrentAnswers] = useState(initialAnswers);
-  const numOfAnswersLeft = sortedAnswers.length - currentAnswers.length;
-  const showMoreAnswers = () => numOfAnswersLeft > 0;
+  const [showAllAnswers, setShowAllAnswers] = useState(false);
+  // const numOfAnswersLeft = sortedAnswers.length - currentAnswers.length;
+  // const showMoreAnswers = () => numOfAnswersLeft > 0;
 
   useEffect(() => {
-    setCurrentAnswers(sortedAnswers.slice(0, slicer));
-  }, [slicer]);
+    if (showAllAnswers) {
+      setCurrentAnswers(allSortedAnswers);
+    } else {
+      setCurrentAnswers(initialAnswers);
+    }
+  }, [showAllAnswers]);
+
+  const handleShowAnswersClick = () => {
+    setShowAllAnswers(!showAllAnswers);
+  };
 
   return (
     <StyledContainer key={question.question_id}>
@@ -34,15 +44,15 @@ const QuestionAndAnswerEntry = ({ productName, question, answers }) => {
           answer={answer}
         />
       ))}
-      {showMoreAnswers()
+      {allSortedAnswers.length > 2
         && (
           <SecondCol>
-            <button
-              onClick={() => setSlicer(slicer + 2)}
+            <ButtonLink
+              label={showAllAnswers ? 'Collapse Answers' : 'See More Answers'}
+              bold
+              onClick={handleShowAnswersClick}
               type="button"
-            >
-              See More Answers
-            </button>
+            />
           </SecondCol>
         )}
     </StyledContainer>
