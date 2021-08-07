@@ -36,52 +36,57 @@ const RightColumn = styled.div`
 
 const ProductDetails = ({ selectedProduct }) => {
   const [productData, setProductData] = useState([]);
-  const [styleId, setStyleId] = useState('');
-  const [styleIndex, setStyleIndex] = useState('');
-  const [styleSelected, setStyleSelected] = useState(false);
+  const [style, setStyle] = useState({
+    id: '',
+    index: '',
+    selected: false,
+  });
 
   useEffect(() => {
     setProductData(selectedProduct);
   }, [selectedProduct]);
 
   const getStyleId = (id, index) => {
-    setStyleId(id);
-    setStyleIndex(index);
-    setStyleSelected(true);
+    setStyle.id(id);
+    setStyle.index(index);
+    setStyle.selected(true);
   };
+
+  const productInfo = productData[0];
+  const styleInfo = productData[1];
 
   return (
     <Body>
       <Content>
         <LeftColumn>
           <ImageGallery
-            productStyle={productData[1]}
-            styleId={styleId}
-            styleIndex={styleIndex}
-            styleSelected={styleSelected}
+            productStyle={styleInfo}
+            styleId={style.id}
+            styleIndex={style.index}
+            styleSelected={style.selected}
           />
         </LeftColumn>
         <RightColumn>
           <ProductInformation
-            product={productData[0]}
-            styles={productData[1]}
-            styleId={styleId}
-            styleIndex={styleIndex}
-            styleSelected={styleSelected}
+            product={productInfo}
+            styles={styleInfo}
+            styleId={style.id}
+            styleIndex={style.index}
+            styleSelected={style.selected}
           />
           <StyleSelector
-            styles={productData[1]}
+            styles={styleInfo}
             getStyleId={getStyleId}
           />
           <AddToCart
-            styles={productData[1]}
-            styleId={styleId}
-            styleIndex={styleIndex}
-            styleSelected={styleSelected}
+            styles={styleInfo}
+            styleId={style.id}
+            styleIndex={style.index}
+            styleSelected={style.selected}
           />
         </RightColumn>
       </Content>
-      <ProductOverview product={productData[0]} />
+      <ProductOverview product={productInfo} />
     </Body>
   );
 };
