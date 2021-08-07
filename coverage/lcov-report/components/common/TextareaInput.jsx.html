@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for FEC/client/src/qa/components/AnswerEntry.jsx</title>
+    <title>Code coverage report for components/common/TextareaInput.jsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../../../../prettify.css" />
-    <link rel="stylesheet" href="../../../../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../../../../favicon.png" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../../../../sort-arrow-sprite.png);
+            background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../../../index.html">All files</a> / <a href="index.html">FEC/client/src/qa/components</a> AnswerEntry.jsx</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/common</a> TextareaInput.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>69/69</span>
+                <span class='fraction'>55/55</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>69/69</span>
+                <span class='fraction'>55/55</span>
             </div>
         
             
@@ -112,35 +112,7 @@
 <a name='L53'></a><a href='#L53'>53</a>
 <a name='L54'></a><a href='#L54'>54</a>
 <a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -198,72 +170,58 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import AnswererInfo from './AnswererInfo';
-import PhotoModal from './PhotoModal';
 &nbsp;
-const AnswerEntry = ({ answer, first }) =&gt; (
+const TextareaInput = ({
+  name, label, maxLength, value, onChange, afterInput,
+}) =&gt; (
   &lt;&gt;
-    &lt;FirstCol&gt;{first &amp;&amp; &lt;h4&gt;A: &lt;/h4&gt;}&lt;/FirstCol&gt;
-    &lt;SecondCol&gt;
-      &lt;p&gt;{answer.body}&lt;/p&gt;
-    &lt;/SecondCol&gt;
-    {answer.photos
-    &amp;&amp; (
-      &lt;SecondCol&gt;
-        {answer.photos.map((photoUrl, index) =&gt; (
-          &lt;PhotoModal
-            key={`${photoUrl}-${index}`}
-            url={photoUrl}
-            description={answer.body}
-            index={index}
-          /&gt;
-        ))}
-      &lt;/SecondCol&gt;
-    )}
-    &lt;SecondCol&gt;
-      &lt;UserRow&gt;
-        &lt;AnswererInfo
-          className="user-info"
-          answerId={answer.id}
-          username={answer.answerer_name}
-          date={answer.date}
-          helpfulness={answer.helpfulness}
-        /&gt;
-      &lt;/UserRow&gt;
-    &lt;/SecondCol&gt;
+    &lt;label htmlFor={name}&gt;
+      {label}
+      &lt;StyledTextarea
+        id={name}
+        name={name}
+        type="text"
+        rows="8"
+        cols="40"
+        maxLength={maxLength}
+        value={value}
+        onChange={onChange}
+      /&gt;
+    &lt;/label&gt;
+    {afterInput<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; &lt;p&gt;&lt;</span>small&gt;{afterInput}&lt;/small&gt;&lt;/p&gt;}
   &lt;/&gt;
 );
 &nbsp;
-const FirstCol = styled.div`
-  grid-column: 1 / span 1;
+const StyledTextarea = styled.textarea`
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #272727;
+  background-color: #fff;
+  border: 1px solid #767676;
+  &amp;:focus {
+    outline: none;
+    border: 1px solid #272727;
+  }
 `;
 &nbsp;
-const SecondCol = styled.div`
-  grid-column: 2 / span 1;
-`;
-&nbsp;
-const UserRow = styled.div`
-  display: flex;
-  align-items: baseline;
-`;
-&nbsp;
-AnswerEntry.propTypes = {
-  answer: PropTypes.shape({
-    id: PropTypes.number,
-    body: PropTypes.string,
-    date: PropTypes.string,
-    answerer_name: PropTypes.string,
-    helpfulness: PropTypes.number,
-    photos: PropTypes.arrayOf(PropTypes.string),
-  }).isRequired,
-  first: PropTypes.bool,
+TextareaInput.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  maxLength: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  afterInput: PropTypes.string,
 };
 &nbsp;
-AnswerEntry.defaultProps = {
-  first: true,
+TextareaInput.defaultProps = {
+  afterInput: null,
 };
 &nbsp;
-export default AnswerEntry;
+export default TextareaInput;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -271,17 +229,17 @@ export default AnswerEntry;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sat Aug 07 2021 10:55:12 GMT-0700 (Pacific Daylight Time)
+                at Sat Aug 07 2021 10:49:39 GMT-0700 (Pacific Daylight Time)
             </div>
         </div>
-        <script src="../../../../../prettify.js"></script>
+        <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../../../../sorter.js"></script>
-        <script src="../../../../../block-navigation.js"></script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
     </body>
 </html>
     

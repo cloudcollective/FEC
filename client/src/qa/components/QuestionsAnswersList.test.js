@@ -11,17 +11,21 @@ test('It should render', () => {
     <QuestionsAnswersList
       questions={questions.results}
       productName="some fakey product"
+      slicer={2}
+      setDisplayMoreQuestions={jest.fn((bool) => !bool)}
     />,
   );
   expect(getByTestId('qa-list')).toBeInTheDocument();
 });
 
-test('It should render a button', () => {
+test('Should display loading if no questions', () => {
   render(
     <QuestionsAnswersList
-      questions={questions.results}
+      questions={[]}
       productName="some fakey product"
+      slicer={2}
+      setDisplayMoreQuestions={jest.fn((bool) => !bool)}
     />,
   );
-  expect(screen.getByText('See More Questions')).toBeInTheDocument();
+  expect(screen.getByText('Loading questions...')).toBeInTheDocument();
 });

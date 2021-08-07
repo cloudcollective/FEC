@@ -26,7 +26,7 @@ const QuestionEntry = ({
           handleHelpful={sendPutReqForHelpful}
         />
         <Divider />
-        <AddAnswerBtn className="qa-meta" setIsVisible={answerToggle.toggle} />
+        <AddAnswerBtn small setIsVisible={answerToggle.toggle} />
         <AnswerModal
           questionId={questionId}
           productName={productName}
