@@ -25,13 +25,24 @@ const AddtoBagBtn = styled.button`
   }
 `;
 
-const FavoriteBtn = styled.button`
+const DefaultFavoriteBtn = styled.button`
   transition-duration: 0.3s;
   width: 20%;
   float: left;
   margin: 0 10px;
   &:hover {
-    color: #DC2F2F;
+    font-weight: bold;
+    border: 2px solid black;
+  }
+`;
+
+const FavoriteBtn = styled.button`
+  transition-duration: 0.3s;
+  width: 20%;
+  float: left;
+  margin: 0 10px;
+  color: red;
+  &:hover {
     font-weight: bold;
     border: 2px solid black;
   }
@@ -98,6 +109,7 @@ const AddToCart = ({
 }) => {
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedQty, setSelectedQty] = useState(0);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   if (!styles && !styleId && !styleIndex && !styleSelected) {
     return null;
@@ -161,6 +173,13 @@ const AddToCart = ({
   const saveFavorite = () => {
     const productIdForRR = styles.product_id;
     setFavorite();
+
+    if (isFavorite) {
+      setIsFavorite(false);
+    } else {
+      setIsFavorite(true);
+    }
+
     let styleIdForRR;
     if (!styleIndex) {
       styleIdForRR = styles.results[0].style_id
@@ -192,6 +211,12 @@ const AddToCart = ({
     );
   }
 
+  let favorite;
+  if (isFavorite) {
+    favorite = <FavoriteBtn onClick={saveFavorite} type="button">★</FavoriteBtn>;
+  } else {
+    favorite = <DefaultFavoriteBtn onClick={saveFavorite} type="button">★</DefaultFavoriteBtn>;
+  }
   return (
     <CartContainer>
       <SizeAndQuantity>
@@ -214,7 +239,7 @@ const AddToCart = ({
       </SizeAndQuantity>
       <AddBagAndFavorite>
         <AddtoBagBtn onClick={addToCart} type="submit">ADD TO BAG +</AddtoBagBtn>
-        <FavoriteBtn onClick={saveFavorite} type="button">★</FavoriteBtn>
+        {favorite}
       </AddBagAndFavorite>
     </CartContainer>
   );
