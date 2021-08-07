@@ -51,7 +51,6 @@ const QuantitySelector = styled.div`
 
 const CustomSelector = styled.select`
   appearance: none;
-  background-color: transparent;
   margin: 0;
   width: 100%;
   line-height: 1.3;
@@ -76,7 +75,6 @@ const CustomSelector = styled.select`
 const DisabledSelector = styled.select`
   box-sizing: border-box;
   appearance: none;
-  background-color: transparent;
   margin: 0;
   width: 100%;
   line-height: 1.3;
@@ -96,7 +94,7 @@ const DisabledSelector = styled.select`
 `;
 
 const AddToCart = ({
-  styles, styleId, styleIndex, styleSelected,
+  styles, styleId, styleIndex, styleSelected, setFavorite,
 }) => {
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedQty, setSelectedQty] = useState(0);
@@ -109,7 +107,6 @@ const AddToCart = ({
   const size = [];
   const quantity = [];
 
-  // let sizeAndQuantityObj = Object.entries(quantityAndSize);
   if (styleSelected) {
     quantityAndSize = styles.results[styleIndex].skus;
     for (const [sizeNum, qAndS] of Object.entries(quantityAndSize)) {
@@ -163,6 +160,7 @@ const AddToCart = ({
 
   const saveFavorite = () => {
     const productIdForRR = styles.product_id;
+    setFavorite();
     let styleIdForRR;
     if (!styleIndex) {
       styleIdForRR = styles.results[0].style_id
@@ -190,7 +188,7 @@ const AddToCart = ({
             </option>
           ))
         }
-      </CustomSelector >
+      </CustomSelector>
     );
   }
 

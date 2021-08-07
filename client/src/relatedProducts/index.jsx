@@ -14,7 +14,7 @@ margin: 0 0 0 5px;
 display:flex;
 `;
 
-const RelatedProductsContainer = ({ product, products, ratings }) => {
+const RelatedProductsContainer = ({ product, products, ratings, isFavorite }) => {
   let arrayOfProductCards = [];
   const [relatedProductData, setrelatedProductData] = useState([]);
   const [productCards, setproductCards] = useState([]);
@@ -75,28 +75,28 @@ const RelatedProductsContainer = ({ product, products, ratings }) => {
         <h3><em>Related Products</em></h3>
         <CardList>
           {leftButtonVisibility
-          && (
-          <button
-            type="button"
-            onClick={() => {
-              setStart(((prevState) => prevState - 1));
-              setEnd(((prevState) => prevState - 1));
-            }}
-          >
-            &lt;
-          </button>
-          )}
+            && (
+              <button
+                type="button"
+                onClick={() => {
+                  setStart(((prevState) => prevState - 1));
+                  setEnd(((prevState) => prevState - 1));
+                }}
+              >
+                &lt;
+              </button>
+            )}
           {displayCards}
           {rightButtonVisibility && (
-          <button
-            type="button"
-            onClick={() => {
-              setStart(((prevState) => prevState + 1));
-              setEnd(((prevState) => prevState + 1));
-            }}
-          >
-            &gt;
-          </button>
+            <button
+              type="button"
+              onClick={() => {
+                setStart(((prevState) => prevState + 1));
+                setEnd(((prevState) => prevState + 1));
+              }}
+            >
+              &gt;
+            </button>
           )}
         </CardList>
       </div>
