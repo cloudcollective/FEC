@@ -6,15 +6,11 @@ import AnswerEntry from './AnswerEntry';
 import ButtonLink from './common/ButtonLink';
 
 const QuestionAndAnswerEntry = ({ productName, question, answers }) => {
-  // const [slicer, setSlicer] = useState(2);
-
   // Sort answers and then slice
   const allSortedAnswers = [...answers].sort((a, b) => b.helpfulness - a.helpfulness);
   const initialAnswers = allSortedAnswers.slice(0, 2);
   const [currentAnswers, setCurrentAnswers] = useState(initialAnswers);
   const [showAllAnswers, setShowAllAnswers] = useState(false);
-  // const numOfAnswersLeft = sortedAnswers.length - currentAnswers.length;
-  // const showMoreAnswers = () => numOfAnswersLeft > 0;
 
   useEffect(() => {
     if (showAllAnswers) {
@@ -47,12 +43,14 @@ const QuestionAndAnswerEntry = ({ productName, question, answers }) => {
       {allSortedAnswers.length > 2
         && (
           <SecondCol>
-            <ButtonLink
-              label={showAllAnswers ? 'Collapse Answers' : 'See More Answers'}
-              bold
-              onClick={handleShowAnswersClick}
-              type="button"
-            />
+            <StyledButtonContainer>
+              <ButtonLink
+                label={showAllAnswers ? 'Collapse Answers' : 'See More Answers'}
+                bold
+                onClick={handleShowAnswersClick}
+                type="button"
+              />
+            </StyledButtonContainer>
           </SecondCol>
         )}
     </StyledContainer>
@@ -63,14 +61,22 @@ const StyledContainer = styled.div`
   display: grid;
   grid-template-columns: 0.5fr 8fr 3fr;
   align-items: center;
-
+  background-color: #FFFFFF;
+  padding: 20px;
+  margin: 20px 0;
+  &:hover {
+    background-color: #FCFCFC;
+  }
   & p {
-    margin: 0.75em 0;
+    margin: 0.5em 0;
   }
-
   & h4 {
-    margin: 0.75em 0;
+    margin: 0.5em 0;
   }
+`;
+
+const StyledButtonContainer = styled.div`
+  margin-top: 20px;
 `;
 
 const SecondCol = styled.div`
