@@ -15,4 +15,15 @@ const noDuplicateFeatures = (middle, left, right) => {
   return [Object.values(middleF), leftF, rightF];
 };
 
-export default noDuplicateFeatures;
+const noDuplicateIds = (arr) => {
+  const obj = {};
+  for (let i = 0; i < arr.length; i += 1) {
+    obj[arr[i]] = arr[i];
+  }
+  const relatedProductIds = Object.keys(obj).map((stringNum) => (
+    Number(stringNum)
+  ));
+  return relatedProductIds;
+};
+
+export default { noDuplicateFeatures, noDuplicateIds };
