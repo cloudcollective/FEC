@@ -7,7 +7,7 @@ const OverviewBody = styled.div`
   padding: 0 100px;
 `;
 
-const sloganAndDescription = styled.div`
+const SloganAndDescription = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -17,7 +17,7 @@ const Divider = styled.div`
   border-left: 1px solid grey;
 `;
 
-const productFeatures = styled.div`
+const ProductFeatures = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -36,12 +36,12 @@ const ProductOverview = ({ product }) => {
 
   return (
     <OverviewBody>
-      <sloganAndDescription>
+      <SloganAndDescription>
         <ProductSlogan>{product.slogan}</ProductSlogan>
         <h3>{product.description}</h3>
-      </sloganAndDescription>
+      </SloganAndDescription>
       <Divider />
-      <productFeatures>
+      <ProductFeatures>
         {product.features.map((description) => (
           <h4>
             {description.feature}
@@ -51,7 +51,7 @@ const ProductOverview = ({ product }) => {
             {description.value}
           </h4>
         ))}
-      </productFeatures>
+      </ProductFeatures>
     </OverviewBody>
   );
 };
