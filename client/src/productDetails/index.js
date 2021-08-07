@@ -52,7 +52,6 @@ const ProductDetails = ({ selectedProduct }) => {
   const [styleIndex, setStyleIndex] = useState('');
   const [styleSelected, setStyleSelected] = useState(false);
 
-
   useEffect(() => {
     getData(setProductData);
   }, []);

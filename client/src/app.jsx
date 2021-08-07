@@ -19,6 +19,7 @@ class App extends React.Component {
       metaReviewData: [],
       questionsAndAnswersData: {},
       selectedProductData: {},
+      // isFavorite: false,
     };
 
     this.getProductData = this.getProductData.bind(this);
@@ -27,7 +28,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // 25169, 25171
+    // 25169, 25171a
     const { productId } = this.state;
     this.getProductData(productId);
     this.getQuestionData(productId);
@@ -101,6 +102,8 @@ class App extends React.Component {
   //   /> */}
   //   </>
   // );
+
+
 
   render() {
     const {
