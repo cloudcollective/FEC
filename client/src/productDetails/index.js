@@ -1,28 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 import ImageGallery from './components/ImageGallery';
 import ProductInformation from './components/ProductInformation';
 import StyleSelector from './components/StyleSelector';
 import AddToCart from './components/AddToCart';
 import ProductOverview from './components/ProductOverview';
-
+// plug these ids into app.jsx line 14 for testing purposes
 // 25167
 // 25171
 // 25169
 // 25170
 // 25174
-const tempProductID = 25174;
-
-const getData = (callback) => {
-  axios.get(`/products/${tempProductID}`)
-    .then((product) => {
-      callback(product.data);
-    })
-    .catch((err) => {
-      console.log(`Failed to fetch data from the server: ${err}`);
-    });
-};
 
 const Body = styled.div`
 `;
@@ -53,8 +41,8 @@ const ProductDetails = ({ selectedProduct }) => {
   const [styleSelected, setStyleSelected] = useState(false);
 
   useEffect(() => {
-    getData(setProductData);
-  }, []);
+    setProductData(selectedProduct);
+  }, [selectedProduct]);
 
   const getStyleId = (id, index) => {
     setStyleId(id);
