@@ -27,7 +27,9 @@ const QuestionsAnswersContainer = ({ productId, questions, productN }) => {
   }, [questions]);
 
   useEffect(() => {
-    if (resetDisplay) { setCurrentQuestions(questions); }
+    if (resetDisplay) {
+      setCurrentQuestions(questions);
+    }
   }, [resetDisplay]);
 
   useEffect(() => {
