@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import CardMaker from './components/CardMaker';
 import AddOutfit from './components/AddOutfit';
+import AverageRating from './components/AverageRating';
 
 const RPContainer = styled.div`
 border: hidden 1px;
@@ -13,18 +14,19 @@ margin: 0 0 0 5px;
 display:flex;
 `;
 
-const RelatedProductsContainer = ({ product, products }) => {
+const RelatedProductsContainer = ({ product, products, ratings }) => {
   let arrayOfProductCards = [];
   const [relatedProductData, setrelatedProductData] = useState([]);
   const [productCards, setproductCards] = useState([]);
+  const [rating, setRating] = useState(0);
   const [displayCards, setDisplayCards] = useState([]);
-  // const [navCardList, setNavCardList] = useState([0, 5]);
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(5);
   const [leftButtonVisibility, setLeftButtonVisibility] = useState(false);
   const [rightButtonVisibility, setRightButtonVisibility] = useState(false);
 
   useEffect(() => {
+    setRating(AverageRating(ratings));
     setrelatedProductData(products);
   }, [products]);
 
@@ -62,6 +64,7 @@ const RelatedProductsContainer = ({ product, products }) => {
     <CardMaker
       product={prod}
       currentProduct={product}
+      rating={rating}
       key={prod.id}
       buttonType="modal"
     />
@@ -69,7 +72,7 @@ const RelatedProductsContainer = ({ product, products }) => {
   return (
     <RPContainer>
       <div className="list-row-1">
-        <h4><em>Related Products</em></h4>
+        <h3><em>Related Products</em></h3>
         <CardList>
           {leftButtonVisibility
           && (
@@ -98,7 +101,7 @@ const RelatedProductsContainer = ({ product, products }) => {
         </CardList>
       </div>
       <div className="list-row-2">
-        <h4><em>Custom Outfits</em></h4>
+        <h3><em>Custom Outfits</em></h3>
         <CardList>
           <AddOutfit product={product} />
         </CardList>
