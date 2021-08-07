@@ -100,7 +100,8 @@ class App extends React.Component {
   }
 
   setFavorite() {
-    if (!this.state.isFavorite) {
+    const { isFavorite } = this.state;
+    if (!isFavorite) {
       this.setState({
         isFavorite: true,
       });
@@ -112,23 +113,14 @@ class App extends React.Component {
   }
 
   fetchAverageRating(rating) {
-    this.setState({ average: rating }, () => (console.log('AAAAAAAAA : ', this.state.average)));
+    const { average } = this.state;
+    this.setState({ average: rating }, () => (console.log('AAAAAAAAA : ', average)));
   }
-  // const app = ({ data }) => (
-  //   <>
-  //     <ProductDetails product={data.product} productStyles={data.productStyles} />
-  //     {/* <RelatedProducts data={data} /> */}
-  //     {/* <QuestionsAnswers
-  //     questions={data.questions}
-  //     answers={data.answers}
-  //   /> */}
-  //   </>
-  // );
 
   render() {
     const {
       // eslint-disable-next-line max-len
-      relatedProductData, questionsAndAnswersData, reviewsData, ratings, selectedProductData, seansData, productId,
+      relatedProductData, questionsAndAnswersData, reviewsData, ratings, selectedProductData, seansData, productId, isFavorite,
     } = this.state;
     return (
       <main>
@@ -144,7 +136,8 @@ class App extends React.Component {
               product={selectedProductData}
               products={relatedProductData}
               ratings={ratings}
-              isFavorite={this.state.isFavorite}
+              setFavorite={this.setFavorite}
+              isFavorite={isFavorite}
             />
           </section>
           <section>

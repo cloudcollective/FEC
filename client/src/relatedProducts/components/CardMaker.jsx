@@ -11,7 +11,9 @@ width: 250px;
 display: inline-block;
 margin-right: 15px;
 `;
-const CardMaker = ({ product, currentProduct, rating, buttonType }) => {
+const CardMaker = ({
+  product, currentProduct, rating, buttonType,
+}) => {
   const placeholderImage = 'https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png';
   const [productData, setProductData] = useState([]);
   const [currentProductFeatures, setCurrentProductFeatures] = useState([]);
@@ -24,14 +26,17 @@ const CardMaker = ({ product, currentProduct, rating, buttonType }) => {
     setProductData([url, category, name, price]);
   }, [product]);
   useEffect(() => {
-    const { name, features } = currentProduct;
-    setCurrentProductFeatures([name, features]);
+    if (buttonType === 'modal') {
+      const { name, features } = currentProduct;
+      setCurrentProductFeatures([name, features]);
+    }
   }, [currentProduct]);
   useEffect(() => {
-    const { name, features } = product;
-    setRelatedProductedFeatures([name, features]);
+    if (buttonType === 'modal') {
+      const { name, features } = product;
+      setRelatedProductedFeatures([name, features]);
+    }
   }, [product]);
-
   return (
     <Card>
       {buttonType === 'modal' && (<FeaturesButton currentFeatures={currentProductFeatures} relatedFeatures={relatedProductedFeatures} />)}

@@ -3,7 +3,15 @@ import React from 'react';
 const DeleteButton = () => {
   const ten = 10;
   return (
-    <button type="button">X</button>
+    <div
+      className="buttontype"
+      role="button"
+      onKeyUp={() => { console.log('secretMessage'); }}
+      onClick={() => { console.log('hi'); }}
+      tabIndex={0}
+    >
+      X
+    </div>
   );
 };
 

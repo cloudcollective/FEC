@@ -14,7 +14,9 @@ margin: 0 0 0 5px;
 display:flex;
 `;
 
-const RelatedProductsContainer = ({ product, products, ratings, isFavorite }) => {
+const RelatedProductsContainer = ({
+  product, products, ratings, isFavorite, setFavorite,
+}) => {
   let arrayOfProductCards = [];
   const [relatedProductData, setrelatedProductData] = useState([]);
   const [productCards, setproductCards] = useState([]);
@@ -103,7 +105,12 @@ const RelatedProductsContainer = ({ product, products, ratings, isFavorite }) =>
       <div className="list-row-2">
         <h3><em>Custom Outfits</em></h3>
         <CardList>
-          <AddOutfit product={product} />
+          <AddOutfit
+            product={product}
+            isFavorite={isFavorite}
+            setFavorite={setFavorite}
+            rating={rating}
+          />
         </CardList>
       </div>
     </RPContainer>

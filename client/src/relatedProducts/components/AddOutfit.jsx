@@ -12,7 +12,7 @@ margin-right: 15px;
 const CustomOutfitContainer = styled.div`
 display: flex;
 `;
-const AddOutfit = ({ product }) => {
+const AddOutfit = ({ product, isFavorite, setFavorite }) => {
   const [productData, setProductData] = useState({});
   const [customOutfits, setCustomOutfits] = useState([]);
   const [addedOutfit, setAddedOutfit] = useState(false);
@@ -21,18 +21,28 @@ const AddOutfit = ({ product }) => {
   }, [product]);
 
   useEffect(() => {
-    if (addedOutfit === true) {
+    if (isFavorite) {
+      setAddedOutfit(true);
       setCustomOutfits(productCard);
+    } else if (addedOutfit === true) {
+      console.log('error here 1?');
+      setCustomOutfits(productCard);
+      console.log('error here 2?');
     }
   }, [addedOutfit]);
 
-  const productCard = ((prod) => (
-    <CardMaker
-      product={prod}
-      key={prod.id}
-      buttonType="delete"
-    />
-  ))(productData);
+  let productCard;
+  if (product) {
+    productCard = (
+      <CardMaker
+        product={product}
+        key={product.id}
+        buttonType="delete"
+        isFavorite={isFavorite}
+        setFavorite={setFavorite}
+      />
+    );
+  }
 
   return (
     <CustomOutfitContainer>
@@ -46,9 +56,10 @@ const AddOutfit = ({ product }) => {
           Add Outfit
         </button>
       </AddOutfitButton>
-      <div>{customOutfits}</div>
+      {/* <div>{customOutfits}</div> */}
+      {productCard}
     </CustomOutfitContainer>
   );
 };
-// Question after they click on add outfit, will it create a card component inside of AddOutfit?
+
 export default AddOutfit;
