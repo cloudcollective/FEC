@@ -1,7 +1,7 @@
 import React from 'react';
-import ReviewListTile from './ReviewListTile.jsx';
 import styled from 'styled-components';
-import Modal from './ModalWindow.jsx';
+import ReviewListTile from './ReviewListTile';
+import Modal from './ModalWindow';
 
 const MoreReviews = styled.div(({ display }) => ({
   display: display,
@@ -41,7 +41,6 @@ class ReviewList extends React.Component {
     this.moreReview = this.moreReview.bind(this);
     this.onOpen = this.onOpen.bind(this);
     this.onClose = this.onClose.bind(this);
-    console.log(this.props);
   }
 
   onOpen() {
@@ -55,29 +54,27 @@ class ReviewList extends React.Component {
   moreReview() {
     const { showing } = this.state;
     const { results } = this.props;
-    this.setState( { showing: showing + 2 });
+    this.setState({ showing: showing + 2 });
     if (showing >= results.length - 2) {
-      this.setState({ buttonDisplay: 'none' }, () => console.log(this.state.buttonDisplay));
+      this.setState({ buttonDisplay: 'none' });
     }
   }
 
-
   render() {
-    const { results } = this.props;
+    const { results, productId, reload } = this.props;
     const { showing, buttonDisplay, open } = this.state;
-    console.log(results);
     return (
       <div style={{ flexGrow: '4' }}>
-      <Container>
-        {results.map((result, i) => {
-          if (i < showing) {
-            return (
-              <ReviewListTile result={result} key={i} showing={this.showing} />
-            );
-          }
-          return null;
-        })}
-      </Container>
+        <Container>
+          {results.map((result, i) => {
+            if (i < showing) {
+              return (
+                <ReviewListTile reload={ reload } productId={productId} result={result} key={i} showing={this.showing} />
+              );
+            }
+            return null;
+          })}
+        </Container>
         <MoreReviews display={buttonDisplay} onClick={this.moreReview}>
           <br />
           More Reviews
@@ -88,7 +85,7 @@ class ReviewList extends React.Component {
           Add A Review
           <br />
         </AddReview>
-        <Modal open={this.open} close={this.onClose} />
+        <Modal open={open} close={this.onClose} />
       </div>
     );
   }

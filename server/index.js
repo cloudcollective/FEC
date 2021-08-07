@@ -25,6 +25,17 @@ app.get('/products/:id', (req, res) => {
     });
 });
 
+app.put('/reviews/helpful', (req, res) => {
+  const { id } = req.body.params;
+  atelier.markReviewHelpful(id)
+    .then(() => {
+      res.sendStatus(204);
+    })
+    .catch((error) => {
+      res.status(501).send(error);
+    });
+});
+
 // Get single product by id
 app.get('/single/products/:id', (req, res) => {
   const { id } = req.params;

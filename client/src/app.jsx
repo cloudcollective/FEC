@@ -135,6 +135,7 @@ class App extends React.Component {
           </section>
           <section>
             <ReviewsRatings
+              productId={productId}
               method={this.fetchAverageRating}
               reviews={reviewsData}
               rating={ratings}

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import StarRatingBar from './StarRatingBar.jsx';
+import StarRatingBar from './StarRatingBar';
 
 const AverageRating = styled.div`
   font-size: 50px;
