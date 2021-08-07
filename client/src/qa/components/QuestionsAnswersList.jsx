@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import QuestionAndAnswerEntry from './QuestionAndAnswerEntry';
 
 const QuestionsAnswersList = ({
-  productName, questions, slicer, setDisplayMoreQuestions
+  productName, questions, slicer, setDisplayMoreQuestions,
 }) => {
   const [currentQuestions, setCurrentQuestions] = useState(null);
   const [sortedQuestions, setSortedQuestions] = useState(null);
@@ -30,6 +30,8 @@ const QuestionsAnswersList = ({
       setCurrentQuestions(newSortedQuestions);
       if (sortedQuestions.length - newSortedQuestions.length <= 0) {
         setDisplayMoreQuestions(false);
+      } else {
+        setDisplayMoreQuestions(true);
       }
     }
   }, [slicer, sortedQuestions]);
