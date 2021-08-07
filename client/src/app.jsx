@@ -141,7 +141,11 @@ class App extends React.Component {
           <ProductDetails
             selectedProduct={seansData}
             setFavorite={this.setFavorite}
+<<<<<<< HEAD
             rating={average}
+=======
+            rating={this.state.average}
+>>>>>>> main
           />
         </section>
         <div className="related-info">
