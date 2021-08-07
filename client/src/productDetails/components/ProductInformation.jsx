@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import StarRatingBar from '../../rr/components/StarRatingBar';
 
 const OriginalPrice = styled.span`
   text-decoration: line-through;
@@ -8,6 +9,14 @@ const OriginalPrice = styled.span`
 const SalePrice = styled.span`
   color: #DC2F2F;
   text-decoration: bold;
+`;
+
+const RatingAndReview = styled.div`
+  display: grid | inline-grid;
+`;
+
+const Reviews = styled.a`
+   text-decoration: underline;
 `;
 
 const ProductCategory = styled.div`
@@ -19,7 +28,7 @@ const ProductName = styled.div`
 const ProductStyleName = styled.div`
 `;
 
-const ProductInformation = ({ product, styles, styleId, styleIndex, styleSelected }) => {
+const ProductInformation = ({ product, styles, styleId, styleIndex, styleSelected, rating }) => {
   if (!product && !styles && !styleId && !styleIndex && !styleSelected) {
     return null;
   }
@@ -60,16 +69,10 @@ const ProductInformation = ({ product, styles, styleId, styleIndex, styleSelecte
 
   return (
     <>
-      <div className="ratingAndReview">
-        <p>
-          {/* Need rating function */}
-          <span>★★★★★  </span>
-          <span>
-            {/* anchor tag to Reviews and Rating */}
-            <a>Read all reviews</a>
-          </span>
-        </p>
-      </div>
+      <RatingAndReview>
+        <StarRatingBar rating={rating} />
+        <Reviews>Read all reviews</Reviews>
+      </RatingAndReview>
       <ProductCategory>
         <h3>{product.category}</h3>
       </ProductCategory>
