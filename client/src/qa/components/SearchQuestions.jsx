@@ -52,7 +52,6 @@ const SearchBox = styled.div`
   align-items: center;
   border: ${(props) => (props.focus ? '1px solid #272727' : '1px solid #767676')};
   width: 100%;
-  ${'' /* padding: .375rem .75rem; */}
   font-size: 1rem;
   line-height: 2;
   background-color: #fff;
