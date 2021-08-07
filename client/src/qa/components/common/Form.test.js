@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import Form, { validateEmail, capitalizeFirst } from './Form';
@@ -26,11 +26,13 @@ const formFields = {
   ],
 };
 
+const handleSubmit = jest.fn(() => Promise.resolve());
+
 beforeEach(() => {
   render(<Form
     formFields={formFields}
     buttonLabel="Submit question"
-    doSubmit={() => {}}
+    doSubmit={handleSubmit}
   />);
 });
 

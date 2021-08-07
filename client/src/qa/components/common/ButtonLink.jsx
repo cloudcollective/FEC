@@ -26,6 +26,7 @@ padding: 0;
 &:hover {
   color: #767676;
   border: none;
+  text-decoration: none;
 }
 `;
 

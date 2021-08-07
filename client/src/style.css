@@ -36,10 +36,6 @@ h1, h2, h3, h4, h5, h6 {
   color: #767676;
 }
 
-.qa-meta {
-  font-size: 0.8em;
-}
-
 .widget-title {
   font-size: 1.15em;
   text-transform: uppercase;
@@ -82,4 +78,15 @@ input {
 
 .related-info {
   padding: 0 100px;
+}
+
+/* modal table */
+table,
+td {
+    border: 1px solid #333;
+    text-align: center
+}
+tBody {
+  display: block;
+  text-align: center;
 }

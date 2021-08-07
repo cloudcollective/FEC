@@ -2,7 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 
 const OverviewBody = styled.div`
+  display: grid;
+  grid-template-columns: 70% 30%;
+  padding: 0 100px;
+`;
+
+const SloganAndDescription = styled.div`
+  justify-content: center;
   padding: 20px;
+  border-right: 1px solid black;
+`;
+
+const ProductFeatures = styled.div`
+  justify-content: center;
+  padding: 20px;
+  margin: 10px;
 `;
 
 const ProductSlogan = styled.h1`
@@ -16,19 +30,21 @@ const ProductOverview = ({ product }) => {
 
   return (
     <OverviewBody>
-      <div className="sloganAndDescription">
-        <div>
-          <ProductSlogan>{product.slogan}</ProductSlogan>
-        </div>
-        <div>
-          <h3>{product.description}</h3>
-        </div>
-      </div>
-      <div className="features">
-        <div>
-          <p>{product.features[0].feature} : {product.features[0].value}</p>
-        </div>
-      </div>
+      <SloganAndDescription>
+        <ProductSlogan>{product.slogan}</ProductSlogan>
+        <h3>{product.description}</h3>
+      </SloganAndDescription>
+      <ProductFeatures>
+        {product.features.map((description) => (
+          <h4>
+            {description.feature}
+            {' '}
+            -
+            {' '}
+            {description.value}
+          </h4>
+        ))}
+      </ProductFeatures>
     </OverviewBody>
   );
 };

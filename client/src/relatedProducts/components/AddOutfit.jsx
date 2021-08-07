@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import CardMaker from './CardMaker';
 
 const AddOutfitButton = styled.div`
-border: solid 1px black;
-height: 360px;
+border: solid 1px #A0A0A0;
+height: 390px;
 width: 250px;
 display: inline-block;
 margin-right: 15px;
@@ -12,27 +12,47 @@ margin-right: 15px;
 const CustomOutfitContainer = styled.div`
 display: flex;
 `;
-const AddOutfit = ({ product }) => {
-  const [productData, setProductData] = useState({});
-  const [customOutfits, setCustomOutfits] = useState([]);
-  const [addedOutfit, setAddedOutfit] = useState(false);
+const AddOutfit = ({
+  product, isFavorite, setFavorite, rating,
+}) => {
+  let productCard;
+  const [outfitList, setOutfitList] = useState({});
+  const [displayOutfits, setDisplayOutfits] = useState([]);
+  // lets me grab previous values
+  function usePrevious(value) {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  }
+  const prevOutfit = usePrevious(outfitList);
   useEffect(() => {
-    setProductData(product);
-  }, [product]);
+    if (isFavorite) {
+      prevOutfit[product.id] = productCard;
+      setOutfitList(prevOutfit);
+      const customOutfitsArray = Object.values(outfitList);
+      setDisplayOutfits(customOutfitsArray);
 
-  useEffect(() => {
-    if (addedOutfit === true) {
-      setCustomOutfits(productCard);
+    // eslint-disable-next-line max-len
+    } else if (!(outfitList[product.id] === undefined)) {
+      delete outfitList[product.id];
+      const customOutfitsArray = Object.values(outfitList);
+      setDisplayOutfits(customOutfitsArray);
     }
-  }, [addedOutfit]);
+  }, [isFavorite]);
 
-  const productCard = ((prod) => (
-    <CardMaker
-      product={prod}
-      key={prod.id}
-      buttonType="delete"
-    />
-  ))(productData);
+  if (product) {
+    productCard = (
+      <CardMaker
+        product={product}
+        key={product.id}
+        buttonType="delete"
+        rating={rating}
+        setFavorite={setFavorite}
+      />
+    );
+  }
 
   return (
     <CustomOutfitContainer>
@@ -40,15 +60,15 @@ const AddOutfit = ({ product }) => {
         <button
           type="button"
           onClick={() => {
-            setAddedOutfit(true);
+            setFavorite();
           }}
         >
           Add Outfit
         </button>
       </AddOutfitButton>
-      <div>{customOutfits}</div>
+      <div>{displayOutfits}</div>
     </CustomOutfitContainer>
   );
 };
-// Question after they click on add outfit, will it create a card component inside of AddOutfit?
+
 export default AddOutfit;

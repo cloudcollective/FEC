@@ -1,10 +1,17 @@
 import React from 'react';
 
-const DeleteButton = () => {
-  const ten = 10;
-  return (
-    <button type="button">X</button>
-  );
-};
+const DeleteButton = ({ setFavorite }) => (
+  <div
+    className="buttontype"
+    role="button"
+    onKeyUp={() => { console.log('secretMessage'); }}
+    onClick={() => {
+      setFavorite();
+    }}
+    tabIndex={0}
+  >
+    X
+  </div>
+);
 
 export default DeleteButton;

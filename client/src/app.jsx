@@ -5,6 +5,7 @@ import RelatedProducts from './relatedProducts';
 import QuestionsAnswers from './qa';
 import ReviewsRatings from './rr';
 import Header from './productDetails/components/Header';
+import noDupes from './relatedProducts/components/noDuplicates';
 import './style.css';
 
 class App extends React.Component {
@@ -20,16 +21,19 @@ class App extends React.Component {
       selectedProductData: {},
       average: null,
       seansData: {},
+      isFavorite: false,
     };
 
     this.getProductData = this.getProductData.bind(this);
     this.getQuestionData = this.getQuestionData.bind(this);
     this.getCurrentProductData = this.getCurrentProductData.bind(this);
+    this.setFavorite = this.setFavorite.bind(this);
     this.fetchAverageRating = this.fetchAverageRating.bind(this);
+    this.updateProductId = this.updateProductId.bind(this);
   }
 
   componentDidMount() {
-    // 25169, 25171
+    // 25169, 25171a
     const { productId } = this.state;
     this.getProductData(productId);
     this.getQuestionData(productId);
@@ -39,8 +43,9 @@ class App extends React.Component {
   getProductData(id) {
     axios.get(`/products/${id}`)
       .then((data) => {
+        const rpi = noDupes.noDuplicateIds(data.data[2]);
         this.setState({
-          relatedProductIds: data.data[2],
+          relatedProductIds: rpi,
           reviewsData: data.data[3].results,
           ratings: data.data[4].ratings,
           seansData: data.data,
@@ -59,6 +64,7 @@ class App extends React.Component {
             relatedProductData: temp,
           });
         }).catch((err) => {
+          // eslint-disable-next-line no-console
           console.log(`Failed to fetch data from the server: ${err}`);
         });
       });
@@ -76,6 +82,7 @@ class App extends React.Component {
         });
       })
       .catch((error) => {
+        // eslint-disable-next-line no-console
         console.log('Error retrieving questions via product ID', error);
       });
   }
@@ -88,28 +95,42 @@ class App extends React.Component {
         });
       })
       .catch((error) => {
+        // eslint-disable-next-line no-console
         console.log('Error retrieving questions via product ID', error);
       });
   }
 
-  fetchAverageRating(rating) {
-    this.setState({ average: rating}, () => (console.log("AAAAAAAAA : ", this.state.average)));
+  setFavorite() {
+    const { isFavorite } = this.state;
+    if (!isFavorite) {
+      this.setState({
+        isFavorite: true,
+      });
+    } else {
+      this.setState({
+        isFavorite: false,
+      });
+    }
   }
-  // const app = ({ data }) => (
-  //   <>
-  //     <ProductDetails product={data.product} productStyles={data.productStyles} />
-  //     {/* <RelatedProducts data={data} /> */}
-  //     {/* <QuestionsAnswers
-  //     questions={data.questions}
-  //     answers={data.answers}
-  //   /> */}
-  //   </>
-  // );
+
+  fetchAverageRating(rating) {
+    this.setState({ average: rating });
+  }
+
+  updateProductId(id) {
+    this.setState({
+      productId: id,
+    });
+    const { productId } = this.state;
+    this.getProductData(productId);
+    this.getQuestionData(productId);
+    this.getCurrentProductData(productId);
+  }
 
   render() {
     const {
       // eslint-disable-next-line max-len
-      relatedProductData, questionsAndAnswersData, reviewsData, ratings, selectedProductData, seansData, productId,
+      relatedProductData, questionsAndAnswersData, reviewsData, ratings, selectedProductData, seansData, productId, isFavorite, average,
     } = this.state;
     return (
       <main>
@@ -117,13 +138,21 @@ class App extends React.Component {
           <Header />
         </header>
         <section>
-          <ProductDetails selectedProduct={seansData} />
+          <ProductDetails
+            selectedProduct={seansData}
+            setFavorite={this.setFavorite}
+            rating={this.state.average}
+          />
         </section>
         <div className="related-info">
           <section>
             <RelatedProducts
               product={selectedProductData}
               products={relatedProductData}
+              ratings={ratings}
+              setFavorite={this.setFavorite}
+              isFavorite={isFavorite}
+              resetId={this.updateProductId}
             />
           </section>
           <section>

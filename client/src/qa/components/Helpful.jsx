@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import ButtonLink from './common/ButtonLink';
 
 const Helpful = ({ id, helpfulness, handleHelpful }) => {
@@ -23,7 +24,7 @@ const Helpful = ({ id, helpfulness, handleHelpful }) => {
 
   return (
     <>
-      <p className="qa-meta">
+      <SmallText>
         Helpful?&nbsp;&nbsp;
         {isReportableHelpful
           ? (
@@ -35,10 +36,14 @@ const Helpful = ({ id, helpfulness, handleHelpful }) => {
           )
           : 'Yes'}
         {` (${displayedHelpfulness})`}
-      </p>
+      </SmallText>
     </>
   );
 };
+
+const SmallText = styled.p`
+  font-size: 0.8em;
+`;
 
 Helpful.propTypes = {
   id: PropTypes.number.isRequired,

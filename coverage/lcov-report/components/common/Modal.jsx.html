@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for FEC/client/src/qa/components/AnswerEntry.jsx</title>
+    <title>Code coverage report for components/common/Modal.jsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../../../../prettify.css" />
-    <link rel="stylesheet" href="../../../../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../../../../favicon.png" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../../../../sort-arrow-sprite.png);
+            background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../../../index.html">All files</a> / <a href="index.html">FEC/client/src/qa/components</a> AnswerEntry.jsx</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/common</a> Modal.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>69/69</span>
+                <span class='fraction'>60/60</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>1/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>69/69</span>
+                <span class='fraction'>60/60</span>
             </div>
         
             
@@ -117,25 +117,7 @@
 <a name='L58'></a><a href='#L58'>58</a>
 <a name='L59'></a><a href='#L59'>59</a>
 <a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -198,72 +180,63 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import AnswererInfo from './AnswererInfo';
-import PhotoModal from './PhotoModal';
+import CloseButton from './CloseButton';
 &nbsp;
-const AnswerEntry = ({ answer, first }) =&gt; (
+const Modal = ({ isVisible, setIsVisible, children }) =&gt; (
   &lt;&gt;
-    &lt;FirstCol&gt;{first &amp;&amp; &lt;h4&gt;A: &lt;/h4&gt;}&lt;/FirstCol&gt;
-    &lt;SecondCol&gt;
-      &lt;p&gt;{answer.body}&lt;/p&gt;
-    &lt;/SecondCol&gt;
-    {answer.photos
-    &amp;&amp; (
-      &lt;SecondCol&gt;
-        {answer.photos.map((photoUrl, index) =&gt; (
-          &lt;PhotoModal
-            key={`${photoUrl}-${index}`}
-            url={photoUrl}
-            description={answer.body}
-            index={index}
-          /&gt;
-        ))}
-      &lt;/SecondCol&gt;
-    )}
-    &lt;SecondCol&gt;
-      &lt;UserRow&gt;
-        &lt;AnswererInfo
-          className="user-info"
-          answerId={answer.id}
-          username={answer.answerer_name}
-          date={answer.date}
-          helpfulness={answer.helpfulness}
-        /&gt;
-      &lt;/UserRow&gt;
-    &lt;/SecondCol&gt;
+    {isVisible
+      &amp;&amp; (
+        &lt;ModalWrapper role="dialog"&gt;
+          &lt;ModalCard&gt;
+            &lt;CloseButton
+              type="button"
+              onClick={<span class="fstat-no" title="function not covered" >() =&gt; s</span>etIsVisible(false)}
+            /&gt;
+            &lt;div&gt;{children}&lt;/div&gt;
+          &lt;/ModalCard&gt;
+          &lt;Background onClick={<span class="fstat-no" title="function not covered" >() =&gt; s</span>etIsVisible(false)} /&gt;
+        &lt;/ModalWrapper&gt;
+      )}
   &lt;/&gt;
 );
 &nbsp;
-const FirstCol = styled.div`
-  grid-column: 1 / span 1;
-`;
-&nbsp;
-const SecondCol = styled.div`
-  grid-column: 2 / span 1;
-`;
-&nbsp;
-const UserRow = styled.div`
+const ModalWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
-  align-items: baseline;
+  justify-content: center;
+  align-items: center;
 `;
 &nbsp;
-AnswerEntry.propTypes = {
-  answer: PropTypes.shape({
-    id: PropTypes.number,
-    body: PropTypes.string,
-    date: PropTypes.string,
-    answerer_name: PropTypes.string,
-    helpfulness: PropTypes.number,
-    photos: PropTypes.arrayOf(PropTypes.string),
-  }).isRequired,
-  first: PropTypes.bool,
+const ModalCard = styled.div`
+  position: relative;
+  background: white;
+  border-radius: 5px;
+  padding: 15px;
+  z-index: 10;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+`;
+&nbsp;
+const Background = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: black;
+  opacity: 0.5;
+`;
+&nbsp;
+Modal.propTypes = {
+  isVisible: PropTypes.bool.isRequired,
+  setIsVisible: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
 };
 &nbsp;
-AnswerEntry.defaultProps = {
-  first: true,
-};
-&nbsp;
-export default AnswerEntry;
+export default Modal;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -271,17 +244,17 @@ export default AnswerEntry;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sat Aug 07 2021 10:55:12 GMT-0700 (Pacific Daylight Time)
+                at Sat Aug 07 2021 10:49:39 GMT-0700 (Pacific Daylight Time)
             </div>
         </div>
-        <script src="../../../../../prettify.js"></script>
+        <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../../../../sorter.js"></script>
-        <script src="../../../../../block-navigation.js"></script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
     </body>
 </html>
     
