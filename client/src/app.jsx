@@ -19,11 +19,13 @@ class App extends React.Component {
       metaReviewData: [],
       questionsAndAnswersData: {},
       selectedProductData: {},
+      average: null,
     };
 
     this.getProductData = this.getProductData.bind(this);
     this.getQuestionData = this.getQuestionData.bind(this);
     this.getCurrentProductData = this.getCurrentProductData.bind(this);
+    this.fetchAverageRating = this.fetchAverageRating.bind(this);
   }
 
   componentDidMount() {
@@ -91,6 +93,10 @@ class App extends React.Component {
         console.log('Error retrieving questions via product ID', error);
       });
   }
+
+  fetchAverageRating(rating) {
+    this.setState({ average: rating}, () => (console.log("AAAAAAAAA : ", this.state.average)));
+  }
   // const app = ({ data }) => (
   //   <>
   //     <ProductDetails product={data.product} productStyles={data.productStyles} />
@@ -129,7 +135,7 @@ class App extends React.Component {
             />
           </section>
           <section>
-            <ReviewsRatings />
+            <ReviewsRatings method={this.fetchAverageRating}/>
           </section>
         </div>
       </main>

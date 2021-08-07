@@ -9,6 +9,7 @@ const ModalContent = styled.div`
   justify-content: center;
   top: 50%;
   left: 50%;
+  width: 40%;
   transform: translate(-50%, -50%);
   border: 1px solid black;
   background-color: white;
@@ -36,7 +37,7 @@ const Modal = ( { open, children, close } ) => {
       <Overlay onClick={close}/>
       <ModalContent>
         {children}
-        <ModalForm close={close}/>
+        <ModalForm style={{ width: "100%" }} close={close}/>
       </ModalContent>
     </>,
     document.getElementById('portal'),
