@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import CardMaker from './CardMaker';
 
@@ -12,33 +12,43 @@ margin-right: 15px;
 const CustomOutfitContainer = styled.div`
 display: flex;
 `;
-const AddOutfit = ({ product, isFavorite, setFavorite }) => {
-  const [productData, setProductData] = useState({});
-  const [customOutfits, setCustomOutfits] = useState([]);
-  const [addedOutfit, setAddedOutfit] = useState(false);
-  useEffect(() => {
-    setProductData(product);
-  }, [product]);
-
+const AddOutfit = ({
+  product, isFavorite, setFavorite, rating,
+}) => {
+  let productCard;
+  const [outfitList, setOutfitList] = useState({});
+  const [displayOutfits, setDisplayOutfits] = useState([]);
+  // lets me grab previous values
+  function usePrevious(value) {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  }
+  const prevOutfit = usePrevious(outfitList);
   useEffect(() => {
     if (isFavorite) {
-      setAddedOutfit(true);
-      setCustomOutfits(productCard);
-    } else if (addedOutfit === true) {
-      console.log('error here 1?');
-      setCustomOutfits(productCard);
-      console.log('error here 2?');
-    }
-  }, [addedOutfit]);
+      prevOutfit[product.id] = productCard;
+      setOutfitList(prevOutfit);
+      const customOutfitsArray = Object.values(outfitList);
+      setDisplayOutfits(customOutfitsArray);
 
-  let productCard;
+    // eslint-disable-next-line max-len
+    } else if (!(outfitList[product.id] === undefined)) {
+      delete outfitList[product.id];
+      const customOutfitsArray = Object.values(outfitList);
+      setDisplayOutfits(customOutfitsArray);
+    }
+  }, [isFavorite]);
+
   if (product) {
     productCard = (
       <CardMaker
         product={product}
         key={product.id}
         buttonType="delete"
-        isFavorite={isFavorite}
+        rating={rating}
         setFavorite={setFavorite}
       />
     );
@@ -50,14 +60,13 @@ const AddOutfit = ({ product, isFavorite, setFavorite }) => {
         <button
           type="button"
           onClick={() => {
-            setAddedOutfit(true);
+            setFavorite();
           }}
         >
           Add Outfit
         </button>
       </AddOutfitButton>
-      {/* <div>{customOutfits}</div> */}
-      {productCard}
+      <div>{displayOutfits}</div>
     </CustomOutfitContainer>
   );
 };
