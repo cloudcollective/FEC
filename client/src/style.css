@@ -58,6 +58,20 @@ button:hover {
   color: #767676;
 }
 
+.buttontype {
+  position: absolute;
+  z-index: 1;
+  border: solid 1px black;
+  border-radius: 50%;
+  background-color: rgb(165, 162, 143);
+}
+
+/* Image */
+.center-image {
+  display:flex;
+  justify-content: center;
+  border-bottom: solid 1px gainsboro;
+}
 input {
   background-color: transparent;
 }

@@ -12,22 +12,26 @@ class App extends React.Component {
     super(prop);
     this.state = {
       productId: '25171',
-      selectedProduct: {},
       relatedProductIds: [],
       relatedProductData: [],
       reviewsData: [],
-      metaReviewData: [],
+      ratings: [],
       questionsAndAnswersData: {},
       selectedProductData: {},
+      average: null,
+      seansData: {},
+      isFavorite: false,
     };
 
     this.getProductData = this.getProductData.bind(this);
     this.getQuestionData = this.getQuestionData.bind(this);
     this.getCurrentProductData = this.getCurrentProductData.bind(this);
+    this.setFavorite = this.setFavorite.bind(this);
+    this.fetchAverageRating = this.fetchAverageRating.bind(this);
   }
 
   componentDidMount() {
-    // 25169, 25171
+    // 25169, 25171a
     const { productId } = this.state;
     this.getProductData(productId);
     this.getQuestionData(productId);
@@ -38,10 +42,10 @@ class App extends React.Component {
     axios.get(`/products/${id}`)
       .then((data) => {
         this.setState({
-          selectedProduct: data.data[0],
           relatedProductIds: data.data[2],
-          reviewsData: data.data[3],
-          metaReviewData: data.data[4],
+          reviewsData: data.data[3].results,
+          ratings: data.data[4].ratings,
+          seansData: data.data,
         });
       })
       .then(() => {
@@ -56,11 +60,9 @@ class App extends React.Component {
           this.setState({
             relatedProductData: temp,
           });
+        }).catch((err) => {
+          console.log(`Failed to fetch data from the server: ${err}`);
         });
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error);
       });
   }
 
@@ -91,21 +93,28 @@ class App extends React.Component {
         console.log('Error retrieving questions via product ID', error);
       });
   }
-  // const app = ({ data }) => (
-  //   <>
-  //     <ProductDetails product={data.product} productStyles={data.productStyles} />
-  //     {/* <RelatedProducts data={data} /> */}
-  //     {/* <QuestionsAnswers
-  //     questions={data.questions}
-  //     answers={data.answers}
-  //   /> */}
-  //   </>
-  // );
+
+  setFavorite() {
+    if (!this.state.isFavorite) {
+      this.setState({
+        isFavorite: true,
+      });
+    } else {
+      this.setState({
+        isFavorite: false,
+      });
+      ;
+    }
+  }
+
+  fetchAverageRating(rating) {
+    this.setState({ average: rating });
+  }
 
   render() {
     const {
       // eslint-disable-next-line max-len
-      selectedProduct, relatedProductData, questionsAndAnswersData, reviewsData, metaReviewData, selectedProductData,
+      relatedProductData, questionsAndAnswersData, reviewsData, ratings, selectedProductData, seansData, productId,
     } = this.state;
     return (
       <main>
@@ -113,28 +122,33 @@ class App extends React.Component {
           <Header />
         </header>
         <section>
-          <ProductDetails />
+          <ProductDetails selectedProduct={seansData} setFavorite={this.setFavorite} rating={this.state.average} />
         </section>
         <div className="related-info">
           <section>
             <RelatedProducts
               product={selectedProductData}
               products={relatedProductData}
+              isFavorite={this.state.isFavorite}
             />
           </section>
           <section>
             <QuestionsAnswers
               questions={questionsAndAnswersData.results}
-              productId={questionsAndAnswersData.product_id}
+              productId={productId}
+              productN={selectedProductData.name}
             />
           </section>
           <section>
-            <ReviewsRatings />
+            <ReviewsRatings
+              method={this.fetchAverageRating}
+              reviews={reviewsData}
+              rating={ratings}
+            />
           </section>
         </div>
       </main>
     );
   }
 }
-// Warning, if there are render issues comment out lines 93 to 97 for now.
 export default App;

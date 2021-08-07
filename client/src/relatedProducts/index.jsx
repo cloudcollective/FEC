@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
-// 'prop-types' should be listed in the project's dependencies. Run 'npm i -S prop-types' to add it
 import CardMaker from './components/CardMaker';
 import AddOutfit from './components/AddOutfit';
 
@@ -15,9 +13,9 @@ margin: 0 0 0 5px;
 display:flex;
 `;
 
-const RelatedProductsContainer = ({ product, products }) => {
+const RelatedProductsContainer = ({ product, products, isFavorite }) => {
   let arrayOfProductCards = [];
-  const [relatedProdcutData, setRelatedProdcutData] = useState([]);
+  const [relatedProductData, setrelatedProductData] = useState([]);
   const [productCards, setproductCards] = useState([]);
   const [displayCards, setDisplayCards] = useState([]);
   // const [navCardList, setNavCardList] = useState([0, 5]);
@@ -27,12 +25,12 @@ const RelatedProductsContainer = ({ product, products }) => {
   const [rightButtonVisibility, setRightButtonVisibility] = useState(false);
 
   useEffect(() => {
-    setRelatedProdcutData(products);
+    setrelatedProductData(products);
   }, [products]);
 
   useEffect(() => {
     setproductCards(arrayOfProductCards);
-  }, [relatedProdcutData]);
+  }, [relatedProductData]);
 
   useEffect(() => {
     if (productCards.length === 0) {
@@ -60,10 +58,12 @@ const RelatedProductsContainer = ({ product, products }) => {
     }
   }, [productCards, end]);
 
-  arrayOfProductCards = relatedProdcutData.map((prod) => (
+  arrayOfProductCards = relatedProductData.map((prod) => (
     <CardMaker
       product={prod}
+      currentProduct={product}
       key={prod.id}
+      buttonType="modal"
     />
   ));
   return (
@@ -72,28 +72,28 @@ const RelatedProductsContainer = ({ product, products }) => {
         <h4><em>Related Products</em></h4>
         <CardList>
           {leftButtonVisibility
-          && (
-          <button
-            type="button"
-            onClick={() => {
-              setStart(((prevState) => prevState - 1));
-              setEnd(((prevState) => prevState - 1));
-            }}
-          >
-            &lt;
-          </button>
-          )}
+            && (
+              <button
+                type="button"
+                onClick={() => {
+                  setStart(((prevState) => prevState - 1));
+                  setEnd(((prevState) => prevState - 1));
+                }}
+              >
+                &lt;
+              </button>
+            )}
           {displayCards}
           {rightButtonVisibility && (
-          <button
-            type="button"
-            onClick={() => {
-              setStart(((prevState) => prevState + 1));
-              setEnd(((prevState) => prevState + 1));
-            }}
-          >
-            &gt;
-          </button>
+            <button
+              type="button"
+              onClick={() => {
+                setStart(((prevState) => prevState + 1));
+                setEnd(((prevState) => prevState + 1));
+              }}
+            >
+              &gt;
+            </button>
           )}
         </CardList>
       </div>

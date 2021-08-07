@@ -32,10 +32,12 @@ const RecommendBox = styled.div`
 
 const ReviewSummary = styled.div`
   font-size: 1.75em;
+
 `;
 
 const ReviewBody = styled.div`
   margin-left: 20px;
+  max-width 90%;
 `;
 
 const Helpful = styled.div`
@@ -44,25 +46,24 @@ const Helpful = styled.div`
   margin: 20px;
 `;
 
-const ReviewListTile = (props) => (
+const ReviewListTile = ({ result }) => (
   <Tile>
     <CornerContent>
       <div>
-        <StarRatingBar rating={props.result.rating} />
+        <StarRatingBar rating={result.rating} />
       </div>
       <Username>
-        <FaUser /> {props.result.reviewer_name} @ {props.result.date.slice(0, 10)}
+        <FaUser /> {result.reviewer_name} @ {result.date.slice(0, 10)}
       </Username>
     </CornerContent>
-    {props.result.recommend &&
-      (
+    {result.recommend && (
       <RecommendBox>
         <FaCheckCircle color="green" />
         { ' I recommend this product!' }
       </RecommendBox>
       )}
-    <ReviewSummary> {props.result.summary}</ReviewSummary>
-    <ReviewBody><br />{props.result.body}</ReviewBody>
+    <ReviewSummary> {result.summary}</ReviewSummary>
+    <ReviewBody><br />{result.body}</ReviewBody>
     <Helpful> Was this review helpful? <u>Yes (10)</u></Helpful>
   </Tile>
 );

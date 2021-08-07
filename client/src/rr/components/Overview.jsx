@@ -8,9 +8,9 @@ const AverageRating = styled.div`
 
 const Container = styled.div`
   text-align: center;
-  margin-top: 50px;
   margin-right: 50px;
-  flex-grow: 1;
+  flex-grow: 2;
+  min-width: 200px;
 `;
 
 const Meter = styled.meter`
