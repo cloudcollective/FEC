@@ -54,6 +54,7 @@ const AnswerModal = ({
         formFields={formFields}
         buttonLabel="Submit answer"
         doSubmit={postAnswer}
+        acceptPhotos
       />
     </Modal>
   );

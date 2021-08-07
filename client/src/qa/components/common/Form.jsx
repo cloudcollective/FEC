@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Input from './Input';
 import TextareaInput from './TextareaInput';
+import FileInput from './FileInput';
 
 const StyledFormGroup = styled.div`
   margin-bottom: 1rem;
@@ -23,7 +24,9 @@ export const validateEmail = (email) => {
   return pattern.test(email);
 };
 
-const Form = ({ formFields, buttonLabel, doSubmit }) => {
+const Form = ({
+  formFields, buttonLabel, doSubmit, acceptPhotos,
+}) => {
   // Extract field names from formFields object
   // Set to an empty string
   const defaultFields = {};
@@ -115,6 +118,17 @@ const Form = ({ formFields, buttonLabel, doSubmit }) => {
           />
         </StyledFormGroup>
       ))}
+      {acceptPhotos
+        && (
+          <StyledFormGroup>
+            {/* <label htmlFor="photo">Upload Your Photos</label> */}
+            <FileInput
+              multiple
+              label="Upload Your Photos"
+              name="photos"
+            />
+          </StyledFormGroup>
+        )}
       {errors
         && (
           <WarningText>
@@ -151,6 +165,11 @@ Form.propTypes = {
   }).isRequired,
   buttonLabel: PropTypes.string.isRequired,
   doSubmit: PropTypes.func.isRequired,
+  acceptPhotos: PropTypes.bool,
+};
+
+Form.defaultProps = {
+  acceptPhotos: false,
 };
 
 export default Form;

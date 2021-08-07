@@ -34,6 +34,7 @@ const StyledInput = styled.input`
   &:focus {
     outline: none;
     border: 1px solid #272727;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
   }
 `;
 

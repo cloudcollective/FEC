@@ -16,6 +16,7 @@ const SloganAndDescription = styled.div`
 const ProductFeatures = styled.div`
   justify-content: center;
   padding: 20px;
+  margin: 10px;
 `;
 
 const ProductSlogan = styled.h1`

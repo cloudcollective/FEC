@@ -51,6 +51,7 @@ const SearchBox = styled.div`
   justify: flex-start;
   align-items: center;
   border: ${(props) => (props.focus ? '1px solid #272727' : '1px solid #767676')};
+  box-shadow: ${(props) => (props.focus ? '2px 2px 8px rgba(0, 0, 0, 0.3)' : 'none')};
   width: 100%;
   font-size: 1rem;
   line-height: 2;
