@@ -65,6 +65,11 @@ button:hover {
   border-radius: 50%;
   background-color: rgb(165, 162, 143);
 }
+.add-outfit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* Image */
 .center-image {

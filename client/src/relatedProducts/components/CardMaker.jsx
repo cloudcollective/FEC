@@ -10,7 +10,9 @@ height: 390px;
 width: 250px;
 display: inline-block;
 margin-right: 15px;
+text-align: center
 `;
+
 const CardMaker = ({
   product, currentProduct, rating, buttonType, setFavorite, resetId,
 }) => {
