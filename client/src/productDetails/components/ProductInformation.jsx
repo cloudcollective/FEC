@@ -15,6 +15,10 @@ const RatingAndReview = styled.div`
   display: grid | inline-grid;
 `;
 
+const Reviews = styled.a`
+   text-decoration: underline;
+`;
+
 const ProductCategory = styled.div`
 `;
 
@@ -24,7 +28,7 @@ const ProductName = styled.div`
 const ProductStyleName = styled.div`
 `;
 
-const ProductInformation = ({ product, styles, styleId, styleIndex, styleSelected }) => {
+const ProductInformation = ({ product, styles, styleId, styleIndex, styleSelected, rating }) => {
   if (!product && !styles && !styleId && !styleIndex && !styleSelected) {
     return null;
   }
@@ -66,8 +70,8 @@ const ProductInformation = ({ product, styles, styleId, styleIndex, styleSelecte
   return (
     <>
       <RatingAndReview>
-        <StarRatingBar />
-        <a>Read all reviews</a>
+        <StarRatingBar rating={rating} />
+        <Reviews>Read all reviews</Reviews>
       </RatingAndReview>
       <ProductCategory>
         <h3>{product.category}</h3>
