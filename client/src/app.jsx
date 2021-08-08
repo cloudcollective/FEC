@@ -30,6 +30,7 @@ class App extends React.Component {
     this.setFavorite = this.setFavorite.bind(this);
     this.fetchAverageRating = this.fetchAverageRating.bind(this);
     this.updateProductId = this.updateProductId.bind(this);
+    this.reload = this.reload.bind(this);
   }
 
   componentDidMount() {
@@ -127,6 +128,11 @@ class App extends React.Component {
     this.getCurrentProductData(productId);
   }
 
+  reload() {
+    const { productId } = this.state;
+    this.getProductData(productId);
+  }
+
   render() {
     const {
       // eslint-disable-next-line max-len
@@ -166,7 +172,9 @@ class App extends React.Component {
             <ReviewsRatings
               method={this.fetchAverageRating}
               reviews={reviewsData}
+              productId={productId}
               rating={ratings}
+              reload={this.reload}
             />
           </section>
         </div>
