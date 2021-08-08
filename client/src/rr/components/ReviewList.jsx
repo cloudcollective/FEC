@@ -4,7 +4,7 @@ import ReviewListTile from './ReviewListTile';
 import Modal from './ModalWindow';
 
 const MoreReviews = styled.div(({ display }) => ({
-  display: display,
+  display,
   border: '1px solid black',
   height: '3em',
   textAlign: 'center',
@@ -41,6 +41,7 @@ class ReviewList extends React.Component {
     this.moreReview = this.moreReview.bind(this);
     this.onOpen = this.onOpen.bind(this);
     this.onClose = this.onClose.bind(this);
+    console.log(props, 'anything here?');
   }
 
   onOpen() {
@@ -61,7 +62,7 @@ class ReviewList extends React.Component {
   }
 
   render() {
-    const { results, productId, reload } = this.props;
+    const { results, reload, productId } = this.props;
     const { showing, buttonDisplay, open } = this.state;
     return (
       <div style={{ flexGrow: '4' }}>
@@ -69,7 +70,7 @@ class ReviewList extends React.Component {
           {results.map((result, i) => {
             if (i < showing) {
               return (
-                <ReviewListTile reload={ reload } productId={productId} result={result} key={i} showing={this.showing} />
+                <ReviewListTile reload={reload} productId={productId} result={result} key={i} showing={this.showing} />
               );
             }
             return null;
